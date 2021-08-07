@@ -1,0 +1,78 @@
+!
+service routing protocols model multi-agent
+!
+spanning-tree mode none
+!
+switchport default mode routed
+!
+interface Ethernet1
+   description 'to leaf1a at dc1'
+   no switchport
+   ipv6 enable
+!
+interface Ethernet2
+   description 'to leaf1b at dc1'
+   no switchport
+   ipv6 enable
+!
+interface Ethernet3
+   description 'to leaf2 at dc1'
+   no switchport
+   ipv6 enable
+
+interface Ethernet4
+   description 'to leaf3 at dc1'
+   no switchport
+   ipv6 enable
+!
+interface Ethernet5
+   description 'to border1 at dc1'
+   no switchport
+   ipv6 enable
+!
+interface Ethernet6
+   description 'to border2 at dc1'
+   no switchport
+   ipv6 enable
+!
+interface Loopback0
+   description 'loopback0'
+   ip address 10.255.0.102/32
+!
+ip routing
+ipv6 unicast-routing
+ip routing ipv6 interface
+!
+ip prefix-list LOOPBACK seq 10 permit 10.255.0.0/23 eq 32
+!
+route-map LOOPBACK permit 10
+   match ip address prefix-list LOOPBACK
+route-map LOOPBACK deny 65535
+!
+peer-filter LEAF_PF
+   10 match as-range 4266393601-4266459135 result accept
+!
+router bgp 65510
+   bgp asn notation asdot
+   router-id 10.255.0.102
+!   update wait-install
+   no bgp default ipv4-unicast
+   maximum-paths 2 ecmp 2
+   neighbor UNDERLAY_PG peer group
+   neighbor UNDERLAY_PG send-community
+   neighbor OVERLAY_PG peer group
+   neighbor OVERLAY_PG next-hop-unchanged
+   neighbor OVERLAY_PG update-source Loopback0
+   neighbor OVERLAY_PG ebgp-multihop 3
+   neighbor OVERLAY_PG send-community
+   bgp listen range fe80::/10 peer-group UNDERLAY_PG peer-filter LEAF_PF
+   bgp listen range 10.255.0.0/24 peer-group OVERLAY_PG peer-filter LEAF_PF
+   redistribute connected route-map LOOPBACK
+   address-family ipv4
+      neighbor UNDERLAY_PG activate
+      neighbor UNDERLAY_PG next-hop address-family ipv6 originate
+   !   
+   address-family evpn
+      neighbor OVERLAY_PG activate
+   !   
+!      
