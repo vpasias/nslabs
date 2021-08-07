@@ -1,0 +1,42 @@
+!
+service routing protocols model multi-agent
+!
+vlan 22
+   name CUST234
+!
+interface Ethernet3
+   switchport
+!
+interface Ethernet3
+   switchport trunk allowed vlan 22
+   switchport mode trunk
+!
+interface Ethernet4
+   switchport
+!
+interface Ethernet4
+   switchport access vlan 22
+   switchport mode access
+!
+router bgp 65100
+   router-id 10.0.0.10
+   maximum-paths 128 ecmp 128
+   neighbor 10.0.0.12 remote-as 65100
+   neighbor 10.0.0.12 update-source Loopback0
+   neighbor 10.0.0.12 fall-over bfd
+   neighbor 10.0.0.12 send-community standard extended
+   neighbor 10.0.0.12 maximum-routes 12000
+   !
+   address-family evpn
+      neighbor default encapsulation mpls next-hop-self source-interface Loopback0
+      neighbor 10.0.0.12 activate
+   !
+   no address-family ipv4
+      no network 10.0.0.10/32
+   !
+   vlan 22
+      rd 10.0.0.10:234
+      route-target both 65100:234
+      redistribute learned
+   !
+!
