@@ -1,0 +1,93 @@
+!
+service routing protocols model multi-agent
+!
+vlan 43
+!
+vlan 44
+!
+vrf instance CUST-D
+!
+vrf instance GATEWAY
+!
+interface Vxlan1
+   vxlan source-interface Loopback0
+   vxlan udp-port 4789
+   vxlan vlan 43 vni 430
+   vxlan vlan 44 vni 440
+   vxlan vrf CUST-C vni 1240
+   vxlan vrf GATEWAY vni 8888
+   vxlan learn-restrict any
+!
+ip routing
+ip routing vrf CUST-D
+!
+ip routing vrf GATEWAY
+!
+ipv6 unicast-routing
+ipv6 unicast-routing vrf CUST-D
+!
+interface Ethernet3
+   switchport
+!
+interface Ethernet3
+   switchport trunk allowed vlan 43-44
+   switchport mode trunk
+!
+interface Vlan43
+   vrf GATEWAY
+   ip address 192.168.12.252/24
+   ip virtual-router address 192.168.12.254
+!
+interface Vlan44
+   vrf GATEWAY
+   ip address 192.168.13.252/24
+   ip virtual-router address 192.168.13.254
+!
+ip virtual-router mac-address 00:00:00:00:00:0b
+!
+router bgp 65300
+   router-id 10.0.0.15
+   no bgp default ipv4-unicast
+   timers bgp 10 30
+   maximum-paths 128 ecmp 128
+   neighbor 10.0.0.16 remote-as 65300
+   neighbor 10.0.0.16 update-source Loopback0
+   neighbor 10.0.0.16 fall-over bfd
+   neighbor 10.0.0.16 send-community standard extended
+   neighbor 10.0.0.16 maximum-routes 12000
+   !
+   address-family evpn
+      neighbor 10.0.0.16 activate
+      network 10.0.0.15/32
+   !
+   no address-family ipv4
+      no network 10.0.0.15/32
+   !
+   vrf CUST-D
+      rd 10.0.0.15:124
+      route-target import evpn 124:1240
+      route-target export evpn 124:1240
+      redistribute connected
+   !
+   vrf GATEWAY
+      rd 10.0.0.15:8888
+      route-target import evpn 88:8888
+      route-target export evpn 88:8888
+      redistribute connected
+      redistribute ospf
+   !   
+   vlan 43
+      rd 65300:430
+      route-target both 43:430
+      redistribute learned
+   !
+   vlan 44
+      rd 65300:440
+      route-target both 44:440
+      redistribute learned
+  !
+!
+router ospf 1 vrf GATEWAY
+   redistribute bgp
+   network 192.168.12.0/24 area 0.0.0.0
+!   
