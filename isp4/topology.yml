@@ -89,20 +89,20 @@ nodes:
     module: [ sr, isis, bgp ]
     bgp:
       as: 65000
-      rr_list: [ s1, s2 ]
+      rr: [ s1, s2 ]
   s2:
     device: eos
     module: [ sr, isis, bgp ]
     bgp:
       as: 65000
-      rr_list: [ s1, s2 ]
+      rr: [ s1, s2 ]
 # Edge routers - PE L2 routers - access/spine switches
   e1:
     device: eos
     module: [ sr, isis, bgp ]
     bgp:
       as: 65000
-      rr_list: [ s1, s2 ]      
+      rr: [ s1, s2 ]      
   e2:
     device: eos
     module: [ sr, isis, bgp ]
@@ -118,7 +118,7 @@ nodes:
     module: [ sr, isis, bgp ]
     bgp:
       as: 65000
-      rr_list: [ s1, s2 ]      
+      rr: [ s1, s2 ]      
   e4:
     device: eos
     module: [ sr, isis, bgp ]
