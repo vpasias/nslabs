@@ -1,0 +1,290 @@
+# DC Network Topology
+#
+nodes:
+# Spine DC switches
+  s1dc1:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65510
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48      
+  s2dc1:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65510
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48  
+  s1dc2:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65520
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48      
+  s2dc2:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65520
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48        
+# Leaf & Border DC switches
+  l1adc1:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65510.1
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  l1bdc1:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65510.1
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48  
+  l2dc1:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65510.2
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48     
+  l3dc1:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65510.3
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48   
+  b1dc1:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65510.51
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48     
+  b2dc1:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65510.52
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  l1adc2:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65520.1
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  l1bdc2:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65520.1
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48  
+  l2dc2:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65520.2
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48     
+  l3dc2:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65520.3
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48   
+  b1dc2:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65520.51
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48     
+  b2dc2:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65520.52
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48        
+# Border DCI Switches
+  b1dci:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65500
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  b2dci:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65500
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  b3dci:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65500
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  b4dci:
+    device: eos
+    module: [ bgp ]
+    bgp:
+      as: 65500
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48     
+# Hosts
+  h1dc1:
+    device: eos
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  h2dc1:
+    device: eos
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  h1dc2:
+    device: eos
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  h2dc2:
+    device: eos
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48          
+
+links:
+# DC1 links
+- s1dc1-l1adc1
+- s1dc1-l1bdc1
+- s1dc1-l2dc1
+- s1dc1-l3dc1
+- s1dc1-b1dc1
+- s1dc1-b2dc1
+- s2dc1-l1adc1
+- s2dc1-l1bdc1
+- s2dc1-l2dc1
+- s2dc1-l3dc1
+- s2dc1-b1dc1
+- s2dc1-b2dc1
+- l1adc1-l1bdc1
+- l1adc1-l1bdc1
+- l1adc1-h1dc1
+- l1bdc1-h1dc1
+- l2dc1-h2dc1
+- l3dc1-h2dc1
+- b1dc1-b1dci
+- b1dc1-b2dci
+- b2dc1-b1dci
+- b2dc1-b2dci
+
+# DC2 links
+- s1dc2-l1adc2
+- s1dc2-l1bdc2
+- s1dc2-l2dc2
+- s1dc2-l3dc2
+- s1dc2-b1dc2
+- s1dc2-b2dc2
+- s2dc2-l1adc2
+- s2dc2-l1bdc2
+- s2dc2-l2dc2
+- s2dc2-l3dc2
+- s2dc2-b1dc2
+- s2dc2-b2dc2
+- l1adc2-l1bdc2
+- l1adc2-l1bdc2
+- l1adc2-h1dc2
+- l1bdc2-h1dc2
+- l2dc2-h2dc2
+- l3dc2-h2dc2
+- b1dc2-b3dci
+- b1dc2-b4dci
+- b2dc2-b3dci
+- b2dc2-b4dci
+
+# DCI area links
+- b1dci-b3dci
+- b1dci-b2dci
+- b2dci-b4dci
+- b3dci-b4dci
