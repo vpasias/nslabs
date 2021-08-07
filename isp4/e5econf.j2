@@ -1,0 +1,93 @@
+!
+service routing protocols model multi-agent
+!
+vlan 33
+!
+vlan 34
+!
+vrf instance CUST-C
+!
+vrf instance GATEWAY
+!
+interface Vxlan1
+   vxlan source-interface Loopback0
+   vxlan udp-port 4789
+   vxlan vlan 33 vni 330
+   vxlan vlan 34 vni 340
+   vxlan vrf CUST-C vni 1230
+   vxlan vrf GATEWAY vni 9999
+   vxlan learn-restrict any
+!
+ip routing
+ip routing vrf CUST-C
+!
+ip routing vrf CUST-A
+ip routing vrf CUST-B
+ip route vrf CUST-A 0.0.0.0/0 192.168.10.254
+ip route vrf CUST-B 0.0.0.0/0 192.168.11.254
+!
+ip routing vrf GATEWAY
+!
+ipv6 unicast-routing
+ipv6 unicast-routing vrf CUST-C
+!
+interface Ethernet3
+   switchport
+!
+interface Ethernet3
+   switchport trunk allowed vlan 33-34
+   switchport mode trunk
+!
+interface Vlan33
+   vrf GATEWAY
+   ip address 192.168.10.252/24
+   ip virtual-router address 192.168.10.254
+!
+interface Vlan34
+   vrf GATEWAY
+   ip address 192.168.11.252/24
+   ip virtual-router address 192.168.11.254
+!
+ip virtual-router mac-address 00:00:00:00:00:0a
+!
+router bgp 65200
+   router-id 10.0.0.13
+   no bgp default ipv4-unicast
+   timers bgp 10 30
+   maximum-paths 128 ecmp 128
+   neighbor 10.0.0.14 remote-as 65200
+   neighbor 10.0.0.14 update-source Loopback0
+   neighbor 10.0.0.14 fall-over bfd
+   neighbor 10.0.0.14 send-community standard extended
+   neighbor 10.0.0.14 maximum-routes 12000
+   !
+   address-family evpn
+      neighbor 10.0.0.14 activate
+      network 10.0.0.13/32
+   !
+   no address-family ipv4
+      no network 10.0.0.13/32
+   !
+   vrf CUST-C
+      rd 10.0.0.13:123
+      route-target import evpn 123:1230
+      route-target export evpn 123:1230
+      redistribute connected
+   !
+   vrf GATEWAY
+      rd 10.0.0.13:9999
+      route-target import evpn 99:9999
+      route-target export evpn 99:9999
+      redistribute connected
+   !   
+   vlan 33
+      rd 65200:330
+      route-target both 33:330
+      redistribute learned
+   !
+   vlan 34
+      rd 65200:340
+      route-target both 34:340
+      redistribute learned
+  !
+!
