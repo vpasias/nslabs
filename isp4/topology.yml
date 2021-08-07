@@ -1,0 +1,309 @@
+# Service Provider Network Topology
+#
+nodes:
+# Core routers - P routers - backbone super-spine switches
+  c1:
+    device: eos
+    module: [ sr,isis ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48      
+  c2:
+    device: eos
+    module: [ sr,isis ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  c3:
+    device: eos
+    module: [ sr,isis ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48      
+  c4:
+    device: eos
+    module: [ sr,isis ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48        
+# Agreggation routers - PE L1 routers - distribution super-spine switches
+  a1:
+    device: eos
+    module: [ sr,isis ] 
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48     
+  a2:
+    device: eos
+    module: [ sr,isis ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48     
+  a3:
+    device: eos
+    module: [ sr,isis ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48     
+  a4:
+    device: eos
+    module: [ sr,isis ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48     
+  a5:
+    device: eos
+    module: [ sr,isis ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48     
+  a6:
+    device: eos
+    module: [ sr,isis ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+# Service routers - Route Reflectors
+  s1:
+    device: eos
+    module: [ sr, isis, bgp ]
+    bgp:
+      as: 65000
+      rr_list: [ s1, s2 ]
+  s2:
+    device: eos
+    module: [ sr, isis, bgp ]
+    bgp:
+      as: 65000
+      rr_list: [ s1, s2 ]
+# Edge routers - PE L2 routers - access/spine switches
+  e1:
+    device: eos
+    module: [ sr, isis, bgp ]
+    bgp:
+      as: 65000
+      rr_list: [ s1, s2 ]      
+  e2:
+    device: eos
+    module: [ sr, isis, bgp ]
+    bgp:
+      as: 65100
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  e3:
+    device: eos
+    module: [ sr, isis, bgp ]
+    bgp:
+      as: 65000
+      rr_list: [ s1, s2 ]      
+  e4:
+    device: eos
+    module: [ sr, isis, bgp ]
+    bgp:
+      as: 65100
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  e5:
+    device: eos
+    module: [ sr, isis, bgp ]
+    bgp:
+      as: 65200
+  e6:
+    device: eos
+    module: [ sr, isis, bgp ]
+    bgp:
+      as: 65200
+  e7:
+    device: eos
+    module: [ sr, isis, bgp ]
+    bgp:
+      as: 65300
+  e8:
+    device: eos
+    module: [ sr, isis, bgp ]
+    bgp:
+      as: 65300      
+# Customer routers - CE routers - leaf/ToR switches
+  x1:
+    device: iosv
+    dhcp_prefix: 10.41.41.0/24
+    module: [ bgp ]
+    bgp:
+      as: 65001
+  x2:
+    device: iosv
+    dhcp_prefix: 10.42.42.0/24   
+    module: [ bgp ]
+    bgp:
+      as: 65002
+  x3:
+    device: cumulus
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48    
+  x4:
+    device: cumulus
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48    
+  x5:
+    device: eos
+  x6:
+    device: eos
+  x7:
+    device: cumulus
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48    
+  x8:
+    device: cumulus
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48    
+  x9:
+    device: iosv
+    module: [ bgp ]
+    bgp:
+      as: 65003
+  x10:
+    device: iosv
+    module: [ bgp ]
+    bgp:
+      as: 65004
+  x11:
+    device: eos
+  x12:
+    device: eos     
+# Client routers
+  z1:
+    device: iosv
+  z2:
+    device: iosv
+  z3:
+    device: iosv
+  z4:
+    device: iosv     
+
+links:
+# Core layer links
+- c1-c2
+- c1-c3
+- c2-c4
+- c3-c4
+- c1-c4
+- c2-c3
+
+# Agreggation layer links
+- a1-c1
+- a1-c2
+- a2-c1
+- a2-c2
+- a1-a2
+- a3-c3
+- a3-c4
+- a4-c3
+- a4-c4
+- a3-a4
+- a5-c1
+- a5-c3
+- a6-c1
+- a6-c3
+- a5-a6
+
+# Service area links
+- s1-a5
+- s1-a6
+- s2-a5
+- s2-a6
+
+# Edge layer links
+- e1-a1
+- e1-a2
+- e2-a1
+- e2-a2
+- e3-a3
+- e3-a4
+- e4-a3
+- e4-a4
+- e5-a1
+- e5-a2
+- e6-a3
+- e6-a4
+- e7-a1
+- e7-a2
+- e8-a3
+- e8-a4
+
+# External links
+- x1-e1
+- x2-e3
+- x3-e2
+- x4-e4
+- x5-e5
+- x6-e6
+- x7-e2
+- x8-e4
+- x9-e1
+- x10-e3
+- x11-e7
+- x12-e8
+- x1:
+  z1:
+  role: dhcp
+- x2:
+  z2:
+  role: dhcp
+- x1:
+  z3:
+  role: dhcp
+- x2:
+  z4:
+  role: dhcp  
+
+# Stub links
+- x1
+- x2
+- x3
+- x4
+- x5
+- x6
+- x7
+- x8
+- x9
+- x10
+- x11
+- x12
