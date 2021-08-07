@@ -1,0 +1,18 @@
+ISP4
+
+###################################################################################################################################################################
+            x11 - e7   s1   s2   e8 - x12
+                  II   |    |    II
+        z1   x5 - e5   a5   a6   e6 - x6   z2
+        |         II   |  X |    II        | 
+   z3 - x1 - e1 - a1 - c1 - c3 - a3 - e3 - x2 - z4
+        x9 --'  X II X |  X |  X II X '-- x10
+        x3 - e2 - a2 - c2 - c4 - a4 - e4 - x4
+            /                         \    
+           x7                          x8
+####################################################################################################################################################################
+
+
+http://etutorials.org/Networking/MPLS+VPN+security/Part+III+Practical+Guidelines+to+MPLS+VPN+Security/Chapter+8.+Secure+Operation+and+Maintenance+of+an+MPLS+Core/Management+Network+Security/
+
+https://i1.wp.com/www.packetnetworking.com/wp-content/uploads/2020/10/blog_ISP_services-1.png?ssl=1
