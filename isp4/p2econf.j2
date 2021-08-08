@@ -1,0 +1,18 @@
+interface Gigabitethernet 0/1
+ description OUTSIDE Interface
+ ip address 10.200.0.2 255.255.255.0
+ ip nat outside
+!
+interface Gigabitethernet 0/2
+ description INSIDE Interface
+ ip address 10.10.10.1 255.255.255.0
+ ip nat inside
+!
+ip access-list extended NAT_Eligible
+ permit ip 10.10.10.0 0.0.0.255 any
+!
+ip nat inside source list NAT_Eligible interface Gigabitethernet 0/1 overload
+!
+router bgp 65102
+ neighbor 10.200.0.1 remote-as 100
+!
