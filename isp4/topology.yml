@@ -77,7 +77,7 @@ nodes:
         unnumbered: true
       loopback:
         ipv6: 2001:db8:cafe::/48
-# Service routers - Route Reflectors
+# Infrastructure Service routers
   i1:
     module: [ sr,isis ]
     addressing:
