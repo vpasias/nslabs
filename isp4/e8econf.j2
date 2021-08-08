@@ -7,21 +7,16 @@ vlan 44
 !
 vrf instance CUST-D
 !
-vrf instance GATEWAY
-!
 interface Vxlan1
    vxlan source-interface Loopback0
    vxlan udp-port 4789
    vxlan vlan 43 vni 430
    vxlan vlan 44 vni 440
-   vxlan vrf CUST-C vni 1240
-   vxlan vrf GATEWAY vni 8888
+   vxlan vrf CUST-D vni 1240
    vxlan learn-restrict any
 !
 ip routing
 ip routing vrf CUST-D
-!
-ip routing vrf GATEWAY
 !
 ipv6 unicast-routing
 ipv6 unicast-routing vrf CUST-D
@@ -30,16 +25,14 @@ interface Ethernet3
    switchport
 !
 interface Ethernet3
-   switchport trunk allowed vlan 43-44
-   switchport mode trunk
+   switchport access vlan 43
+   switchport mode access
 !
 interface Vlan43
-   vrf GATEWAY
    ip address 192.168.12.253/24
    ip virtual-router address 192.168.12.254
 !
 interface Vlan44
-   vrf GATEWAY
    ip address 192.168.13.253/24
    ip virtual-router address 192.168.13.254
 !
@@ -68,14 +61,7 @@ router bgp 65300
       route-target import evpn 124:1240
       route-target export evpn 124:1240
       redistribute connected
-  !
-  vrf GATEWAY
-      rd 10.0.0.18:8888
-      route-target import evpn 88:8888
-      route-target export evpn 88:8888
-      redistribute connected
-      redistribute ospf
-  !    
+  !   
   vlan 43
       rd 65300:430
       route-target both 43:430
@@ -86,8 +72,4 @@ router bgp 65300
       route-target both 44:440
       redistribute learned
   !
-!
-router ospf 1 vrf GATEWAY
-   redistribute bgp
-   network 192.168.12.0/24 area 0.0.0.0
 !
