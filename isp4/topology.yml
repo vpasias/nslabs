@@ -84,25 +84,25 @@ nodes:
       loopback:
         ipv6: 2001:db8:cafe::/48
 # Service routers - Route Reflectors
-  s1:
+  i1:
     device: eos
     module: [ sr, isis, bgp ]
     bgp:
       as: 65000
-      rr: [ s1, s2 ]
-  s2:
+      rr: [ i1, i2 ]
+  i2:
     device: eos
     module: [ sr, isis, bgp ]
     bgp:
       as: 65000
-      rr: [ s1, s2 ]
+      rr: [ i1, i2 ]
 # Edge routers - PE L2 routers - access/spine switches
   e1:
     device: eos
     module: [ sr, isis, bgp ]
     bgp:
       as: 65000
-      rr: [ s1, s2 ]      
+      rr: [ i1, i2 ]      
   e2:
     device: eos
     module: [ sr, isis, bgp ]
@@ -118,7 +118,7 @@ nodes:
     module: [ sr, isis, bgp ]
     bgp:
       as: 65000
-      rr: [ s1, s2 ]      
+      rr: [ i1, i2 ]      
   e4:
     device: eos
     module: [ sr, isis, bgp ]
@@ -150,64 +150,64 @@ nodes:
     bgp:
       as: 65300      
 # Customer routers - CE routers - leaf/ToR switches
-  x1:
+  n1:
     device: iosv
     dhcp_prefix: 10.41.41.0/24
     module: [ bgp ]
     bgp:
       as: 65001
-  x2:
+  n2:
     device: iosv
     dhcp_prefix: 10.42.42.0/24   
     module: [ bgp ]
     bgp:
       as: 65002
-  x3:
+  n3:
     device: cumulus
     addressing:
       p2p:
         unnumbered: true
       loopback:
         ipv6: 2001:db8:cafe::/48    
-  x4:
+  n4:
     device: cumulus
     addressing:
       p2p:
         unnumbered: true
       loopback:
         ipv6: 2001:db8:cafe::/48    
-  x5:
+  n5:
     device: eos
-  x6:
+  n6:
     device: eos
-  x7:
+  n7:
     device: cumulus
     addressing:
       p2p:
         unnumbered: true
       loopback:
         ipv6: 2001:db8:cafe::/48    
-  x8:
+  n8:
     device: cumulus
     addressing:
       p2p:
         unnumbered: true
       loopback:
         ipv6: 2001:db8:cafe::/48    
-  x9:
+  n9:
     device: iosv
     module: [ bgp ]
     bgp:
       as: 65003
-  x10:
+  n10:
     device: iosv
     module: [ bgp ]
     bgp:
       as: 65004
-  x11:
-    device: eos
-  x12:
-    device: eos     
+  n11:
+    device: iosv
+  n12:
+    device: iosv     
 # Client routers
   z1:
     device: iosv
@@ -245,10 +245,10 @@ links:
 - a5-a6
 
 # Service area links
-- s1-a5
-- s1-a6
-- s2-a5
-- s2-a6
+- i1-a5
+- i1-a6
+- i2-a5
+- i2-a6
 
 # Edge layer links
 - e1-a1
@@ -269,41 +269,41 @@ links:
 - e8-a4
 
 # External links
-- x1-e1
-- x2-e3
-- x3-e2
-- x4-e4
-- x5-e5
-- x6-e6
-- x7-e2
-- x8-e4
-- x9-e1
-- x10-e3
-- x11-e7
-- x12-e8
-- x1:
+- n1-e1
+- n2-e3
+- n3-e2
+- n4-e4
+- n5-e5
+- n6-e6
+- n7-e2
+- n8-e4
+- n9-e1
+- n10-e3
+- n11-e7
+- n12-e8
+- n1:
   z1:
   role: dhcp
-- x2:
+- n2:
   z2:
   role: dhcp
-- x1:
+- n1:
   z3:
   role: dhcp
-- x2:
+- n2:
   z4:
   role: dhcp  
 
 # Stub links
-- x1
-- x2
-- x3
-- x4
-- x5
-- x6
-- x7
-- x8
-- x9
-- x10
-- x11
-- x12
+- n1
+- n2
+- n3
+- n4
+- n5
+- n6
+- n7
+- n8
+- n9
+- n10
+- n11
+- n12
