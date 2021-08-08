@@ -204,8 +204,18 @@ nodes:
       as: 65004
   n11:
     device: iosv
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
   n12:
-    device: iosv     
+    device: iosv
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48    
 # Client routers
   p1:
     device: iosv
