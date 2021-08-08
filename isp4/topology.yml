@@ -152,13 +152,11 @@ nodes:
 # Customer routers - CE routers - leaf/ToR switches
   n1:
     device: iosv
-    dhcp_prefix: 10.41.41.0/24
     module: [ bgp ]
     bgp:
       as: 65001
   n2:
     device: iosv
-    dhcp_prefix: 10.42.42.0/24   
     module: [ bgp ]
     bgp:
       as: 65002
@@ -211,16 +209,14 @@ nodes:
 # Client routers
   p1:
     device: iosv
+    dhcp_prefix: 10.41.41.0/24   
   p2:
     device: iosv
-  z1:
+    dhcp_prefix: 10.42.42.0/24    
+  q1:
     device: iosv
-  z2:
-    device: iosv
-  z3:
-    device: iosv
-  z4:
-    device: iosv     
+  q2:
+    device: iosv 
 
 links:
 # Core layer links
@@ -287,18 +283,12 @@ links:
 - n12-e8
 - n11-p1
 - n12-p2
-- n1:
-  z1:
+- p1:
+  q1:
   role: dhcp
-- n2:
-  z2:
+- p2:
+  q2:
   role: dhcp
-- n1:
-  z3:
-  role: dhcp
-- n2:
-  z4:
-  role: dhcp  
 
 # Stub links
 - n1
@@ -315,3 +305,5 @@ links:
 - n12
 - p1
 - p2
+- q1
+- q2
