@@ -209,6 +209,10 @@ nodes:
   n12:
     device: iosv     
 # Client routers
+  p1:
+    device: iosv
+  p2:
+    device: iosv
   z1:
     device: iosv
   z2:
