@@ -5,11 +5,11 @@ interface Gigabitethernet 0/1
 !
 interface Gigabitethernet 0/2
  description INSIDE Interface
- ip address 10.100.100.1 255.255.255.0
+ ip address 10.10.10.1 255.255.255.0
  ip nat inside
 !
 ip access-list extended NAT_Eligible
- permit ip 10.100.100.0 0.0.0.255 any
+ permit ip 10.10.10.0 0.0.0.255 any
 !
 ip nat inside source list NAT_Eligible interface Gigabitethernet 0/1 overload
 !
