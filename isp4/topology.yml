@@ -3,25 +3,6 @@
 # Defaults      
 defaults:
   device: eos
-  bgp:
-    as_list:
-      65000:
-        members: [ e1, e3, i1, i2 ]
-        rr: [ i1, i2 ]
-      65100:
-        members: [ e2, e4 ]
-      65200:
-        members: [ e5, e6 ]
-      65300:
-        members: [ e7, e8 ] 
-      65001:
-        members: [ n1 ]
-      65002:
-        members: [ n2 ]
-      65003:
-        members: [ n9 ]
-      65004:
-        members: [ n10 ]  
 
 nodes:
 # Core routers - P routers - backbone super-spine switches
@@ -98,23 +79,41 @@ nodes:
         ipv6: 2001:db8:cafe::/48
 # Service routers - Route Reflectors
   i1:
-    module: [ sr, isis, bgp ]
+    module: [ sr,isis ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
   i2:
-    module: [ sr, isis, bgp ]
+    module: [ sr,isis ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
 # Edge routers - PE L2 routers - access/spine switches
   e1:
-    module: [ sr, isis, bgp ] 
+    module: [ sr, isis, bgp ]
+    bgp:
+      as: 65000
   e2:
     module: [ sr, isis, bgp ]
+    bgp:
+      as: 65100
     addressing:
       p2p:
         unnumbered: true
       loopback:
         ipv6: 2001:db8:cafe::/48
   e3:
-    module: [ sr, isis, bgp ]  
+    module: [ sr, isis, bgp ]
+    bgp:
+      as: 65000
   e4:
     module: [ sr, isis, bgp ]
+    bgp:
+      as: 65100
     addressing:
       p2p:
         unnumbered: true
@@ -122,19 +121,31 @@ nodes:
         ipv6: 2001:db8:cafe::/48
   e5:
     module: [ sr, isis, bgp ]
+    bgp:
+      as: 65200
   e6:
     module: [ sr, isis, bgp ]
+    bgp:
+      as: 65200
   e7:
     module: [ sr, isis, bgp ]
+    bgp:
+      as: 65300
   e8:
     module: [ sr, isis, bgp ]
+    bgp:
+      as: 65300
 # Customer routers - CE routers - leaf/ToR switches
   n1:
     device: iosv
     module: [ bgp ]
+    bgp:
+      as: 65001
   n2:
     device: iosv
     module: [ bgp ]
+    bgp:
+      as: 65002
   n3:
     device: cumulus
     addressing:
@@ -170,9 +181,13 @@ nodes:
   n9:
     device: iosv
     module: [ bgp ]
+    bgp:
+      as: 65003    
   n10:
     device: iosv
     module: [ bgp ]
+    bgp:
+      as: 65004    
   n11:
     device: iosv
     addressing:
