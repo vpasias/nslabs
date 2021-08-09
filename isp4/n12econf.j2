@@ -2,34 +2,13 @@ interface Loopback 1
  ip address 10.255.255.2 255.255.255.255
 !
 interface GigabitEthernet 0/1
- description Connected to e8
  ip address 192.168.12.2 255.255.255.0
- ip nat outside
 !
 interface GigabitEthernet 0/2
- description Connected to p2
  ip address 10.200.0.1 255.255.255.0
- ip nat inside
-!
-ip access-list extended CPE1_Traffic
- permit ip 10.200.0.0 0.0.0.255 any
-!
-ip nat inside source list CPE1_Traffic interface GigabitEthernet 0/1 overload
-!
-router bgp 100
- neighbor 10.200.0.2 remote-as 65102               !iBGP with p2 router
- neighbor 10.200.0.2 default-originate
- neighbor 10.200.0.2 route-map Default_Only out
- neighbor 10.255.255.1 remote-as 100               !iBGP with n11 router
- neighbor 10.255.255.1 update-source Loopback 1
- redistribute connected
 !
 router ospf 1
  network 10.255.255.2 0.0.0.0 area 0
  network 192.168.12.0 0.0.0.255 area 0
-!
-access-list 10 permit 0.0.0.0 0.0.0.0
-!
-route-map Default_Only
- match ip address 10
+ network 10.200.0.0 0.0.0.255 area 0
 !
