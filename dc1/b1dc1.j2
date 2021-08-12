@@ -80,8 +80,8 @@ router bgp 65510.51
    neighbor OVERLAY_PG ebgp-multihop 3
    neighbor interface Eth1 peer-group UNDERLAY_PG remote-as 65510
    neighbor interface Eth2 peer-group UNDERLAY_PG remote-as 65510
-   neighbor interface Eth3 peer-group UNDERLAY_PG remote-as 65510
-   neighbor interface Eth4 peer-group UNDERLAY_PG remote-as 65510   
+   neighbor interface Eth3 peer-group UNDERLAY_PG remote-as 65500
+   neighbor interface Eth4 peer-group UNDERLAY_PG remote-as 65500   
    neighbor 10.255.0.101 peer group OVERLAY_PG
    neighbor 10.255.0.102 peer group OVERLAY_PG
    neighbor 10.255.0.11 peer group OVERLAY_PG  
