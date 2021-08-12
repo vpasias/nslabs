@@ -121,6 +121,8 @@ router bgp 65510.3
       redistribute connected
    !   
 !
+vrf instance TENANT-B
+!
 ip routing vrf TENANT-B
 !
 vlan 200
