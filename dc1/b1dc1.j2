@@ -15,6 +15,16 @@ interface Ethernet2
    no switchport
    ipv6 enable
 !
+interface Ethernet3
+   description 'to border1 at dc1'
+   no switchport
+   ipv6 enable
+!
+interface Ethernet4
+   description 'to border2 at dc1'
+   no switchport
+   ipv6 enable
+!
 interface Loopback0
    description 'Loopback 0'
    ip address 10.255.0.131/32
