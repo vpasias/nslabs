@@ -94,13 +94,6 @@ interface vlan101
 !
 ip address virtual source-nat vrf TENANT-A address 172.16.101.121
 !
-interface Ethernet3
-   no shutdown
-   description 'TENANTA-host1'
-   switchport
-   switchport mode trunk
-   switchport trunk allowed vlan 100-101
-!
 int vxlan1
    vxlan vlan add 100-101 vni 100-101
    vxlan vrf TENANT-A vni 1000
@@ -143,13 +136,6 @@ int vlan201
 !
 ip address virtual source-nat vrf TENANT-B address 172.16.201.121
 !
-interface Ethernet4
-   no shutdown
-   description 'TENANTB-host1'
-   switchport
-   switchport mode trunk
-   switchport trunk allowed vlan 200-201
-!
 int vxlan1
    vxlan vlan add 200-201 vni 200-201
    vxlan vrf TENANT-B vni 2000
@@ -170,7 +156,7 @@ router bgp 65510.2
       redistribute connected
    !   
 !      
-interface po5
+interface po3
    description 'to host2 at dc1'
    switchport
    switchport mode trunk
@@ -179,7 +165,7 @@ interface po5
       route-target import 50:09:00:a3:1f:d8
    lacp system-id 001c.7300.0099
 !
-interface Ethernet5
+interface Ethernet3
    no shutdown
    switchport
    switchport mode trunk
