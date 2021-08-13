@@ -171,7 +171,7 @@ router bgp 65510.2
    !   
 !      
 interface po5
-   description 'host2-site1'
+   description 'to host2 at dc1'
    switchport
    switchport mode trunk
    evpn ethernet-segment
@@ -183,6 +183,6 @@ interface Ethernet5
    no shutdown
    switchport
    switchport mode trunk
-   description 'host2-site1'
+   description 'to host2 at dc1'
    channel-group 5 mode active
 !   
