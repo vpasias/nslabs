@@ -18,8 +18,8 @@ interface Tunnel 11
  tunnel mode gre multipoint
  tunnel source GigabitEthernet0/2
  tunnel key 123
- ip nhrp map 10.0.1.1 172.16.0.17
- ip nhrp map multicast 172.16.0.17
+ ip nhrp map 10.0.1.1 172.16.0.21
+ ip nhrp map multicast 172.16.0.21
  ip nhrp nhs 10.0.1.1
  ip nhrp network-id 123
  ip nhrp holdtime 60
@@ -31,8 +31,8 @@ interface Tunnel 22
  tunnel mode gre multipoint
  tunnel source GigabitEthernet0/2
  tunnel key 456
- ip nhrp map 10.0.2.1 172.16.1.21
- ip nhrp map multicast 172.16.1.21
+ ip nhrp map 10.0.2.1 172.16.1.25
+ ip nhrp map multicast 172.16.1.25
  ip nhrp nhs 10.0.2.1
  ip nhrp network-id 456
  ip nhrp holdtime 60
