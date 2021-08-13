@@ -1,0 +1,46 @@
+spanning-tree mode none
+!
+switchport default mode routed
+!
+vrf instance TENANT-A-100
+!
+vrf instance TENANT-A-101
+!
+vrf instance TENANT-B-200
+!
+vrf instance TENANT-B-201
+!
+ip route vrf TENANT-A-101 0/0 192.168.101.1
+ip route vrf TENANT-B-201 0/0 192.168.201.1
+!
+int eth1
+   description 'to leaf1a at dc1'
+   channel-group 1 mode active
+!
+int eth2
+   description 'to leaf1b at dc1'
+   channel-group 1 mode active
+!
+int po1
+   description 'to leaf1 at dc1'
+!
+int po1.100
+   encapsulation dot1q vlan 100
+   vrf TENANT-A-100
+   ip address 192.168.100.11/24
+!
+int po1.101
+   encapsulation dot1q vlan 101
+   vrf TENANT-A-101
+   ip address 192.168.101.11/24
+!
+int po1.200
+   encapsulation dot1q vlan 200
+   vrf TENANT-B-200
+   ip address 192.168.200.11/24
+!
+int po1.201
+   encapsulation dot1q vlan 201
+   vrf TENANT-B-201
+   ip address 192.168.201.11/24
+!   
