@@ -37,7 +37,7 @@ interface Ethernet6
 !
 interface Loopback0
    description 'loopback0'
-   ip address 10.255.0.101/32
+   ip address 10.255.0.201/32
 !
 ip routing
 ipv6 unicast-routing
@@ -50,11 +50,11 @@ route-map LOOPBACK permit 10
 route-map LOOPBACK deny 65535
 !
 peer-filter LEAF_PF
-   10 match as-range 4266393601-4266459135 result accept
+   10 match as-range 4272947201-4273012735 result accept
 !
-router bgp 65510
+router bgp 65520
    bgp asn notation asdot
-   router-id 10.255.0.101
+   router-id 10.255.0.201
 !   update wait-install
    no bgp default ipv4-unicast
    maximum-paths 2 ecmp 2
