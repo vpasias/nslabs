@@ -62,35 +62,6 @@ nodes:
       p2p:
         unnumbered: true
       loopback:
-        ipv6: 2001:db8:cafe::/48     
-  a5:
-    module: [ sr,isis ]
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48     
-  a6:
-    module: [ sr,isis ]
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48
-# Infrastructure Service routers
-  i1:
-    module: [ sr,isis ]
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48
-  i2:
-    module: [ sr,isis ]
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
         ipv6: 2001:db8:cafe::/48
 # Edge routers - PE L2 routers - access/spine switches
   e1:
@@ -204,11 +175,9 @@ nodes:
         ipv6: 2001:db8:cafe::/48    
 # Client routers
   p1:
-    device: iosv
-    dhcp_prefix: 10.41.41.0/24   
+    device: iosv 
   p2:
-    device: iosv
-    dhcp_prefix: 10.42.42.0/24    
+    device: iosv  
   q1:
     device: iosv
   q2:
@@ -234,17 +203,6 @@ links:
 - a4-c3
 - a4-c4
 - a3-a4
-- a5-c1
-- a5-c3
-- a6-c1
-- a6-c3
-- a5-a6
-
-# Service area links
-- i1-a5
-- i1-a6
-- i2-a5
-- i2-a6
 
 # Edge layer links
 - e1-a1
@@ -279,12 +237,8 @@ links:
 - n12-e8
 - n11-p1
 - n12-p2
-- p1:
-  q1:
-  role: dhcp
-- p2:
-  q2:
-  role: dhcp
+- p1-q1
+- p2-q2
 
 # Stub links
 - n1
