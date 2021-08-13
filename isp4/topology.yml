@@ -63,6 +63,20 @@ nodes:
         unnumbered: true
       loopback:
         ipv6: 2001:db8:cafe::/48
+  a5:
+    module: [ sr,isis ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48     
+  a6:
+    module: [ sr,isis ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48        
 # Edge routers - PE L2 routers - access/spine switches
   e1:
     module: [ sr, isis, bgp ]
@@ -203,6 +217,11 @@ links:
 - a4-c3
 - a4-c4
 - a3-a4
+- a5-c1
+- a5-c3
+- a6-c1
+- a6-c3
+- a5-a6
 
 # Edge layer links
 - e1-a1
@@ -217,10 +236,10 @@ links:
 - e5-a2
 - e6-a3
 - e6-a4
-- e7-a1
-- e7-a2
-- e8-a3
-- e8-a4
+- e7-a5
+- e7-a6
+- e8-a5
+- e8-a6
 
 # External links
 - n1-e1
