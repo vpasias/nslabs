@@ -66,7 +66,7 @@ router bgp 65520
    neighbor OVERLAY_PG ebgp-multihop 3
    neighbor OVERLAY_PG send-community
    bgp listen range fe80::/10 peer-group UNDERLAY_PG peer-filter LEAF_PF
-   bgp listen range 10.255.0.0/24 peer-group OVERLAY_PG peer-filter LEAF_PF
+   bgp listen range 10.0.0.0/8 peer-group OVERLAY_PG peer-filter LEAF_PF
    redistribute connected route-map LOOPBACK
    address-family ipv4
       neighbor UNDERLAY_PG activate
