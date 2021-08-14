@@ -54,6 +54,10 @@ nodes:
     module: [ bgp ]
     bgp:
       as: 65520.1
+  l1bdc2:
+    module: [ bgp ]
+    bgp:
+      as: 65520.1 
   l2dc2:
     module: [ bgp ]
     bgp:
@@ -89,21 +93,9 @@ nodes:
       as: 65500 
 # Hosts
   h1dc1:
-    addressing:
-      p2p:
-        unnumbered: true
   h2dc1:
-    addressing:
-      p2p:
-        unnumbered: true
   h1dc2:
-    addressing:
-      p2p:
-        unnumbered: true
   h2dc2:
-    addressing:
-      p2p:
-        unnumbered: true       
 
 links:
 # DC1 links
