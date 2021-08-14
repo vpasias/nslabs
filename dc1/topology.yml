@@ -29,51 +29,51 @@ nodes:
   l1adc1:
     module: [ bgp ]
     bgp:
-      as: 65510.1
+      as: 65511
   l1bdc1:
     module: [ bgp ]
     bgp:
-      as: 65510.1
+      as: 65511
   l2dc1:
     module: [ bgp ]
     bgp:
-      as: 65510.2
+      as: 65512
   l3dc1:
     module: [ bgp ]
     bgp:
-      as: 65510.3
+      as: 65513
   b1dc1:
     module: [ bgp ]
     bgp:
-      as: 65510.51
+      as: 655151
   b2dc1:
     module: [ bgp ]
     bgp:
-      as: 65510.52
+      as: 655152
   l1adc2:
     module: [ bgp ]
     bgp:
-      as: 65520.1
+      as: 65521
   l1bdc2:
     module: [ bgp ]
     bgp:
-      as: 65520.1 
+      as: 65521 
   l2dc2:
     module: [ bgp ]
     bgp:
-      as: 65520.2
+      as: 65522
   l3dc2:
     module: [ bgp ]
     bgp:
-      as: 65520.3
+      as: 65523
   b1dc2:
     module: [ bgp ]
     bgp:
-      as: 65520.51
+      as: 655251
   b2dc2:
     module: [ bgp ]
     bgp:
-      as: 65520.52     
+      as: 655252
 # Border DCI Switches
   b1dci:
     module: [ bgp ]
