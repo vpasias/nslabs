@@ -127,14 +127,14 @@ vlan 101
 interface Loopback101
    description 'TENANT-A Loopback'
    vrf TENANT-A
-   ip address 172.16.111.212/32
+   ip address 172.16.101.212/32
 !
 interface vlan101
    description 'TENANT-A Gateway'
    vrf TENANT-A
-   ip address virtual 192.168.111.1/24
+   ip address virtual 192.168.101.1/24
 !   
-ip address virtual source-nat vrf TENANT-A address 172.16.111.212
+ip address virtual source-nat vrf TENANT-A address 172.16.101.212
 !
 interface vxlan1
    vxlan vlan add 100-101 vni 100-101
@@ -169,14 +169,14 @@ vlan 201
 interface Loopback201
    description 'TENANT-B Loopback'
    vrf TENANT-B
-   ip address 172.16.211.212/32
+   ip address 172.16.201.212/32
 !
 interface vlan201
    description 'TENANT-B Gateway'
    vrf TENANT-B
-   ip address virtual 192.168.211.1/24
+   ip address virtual 192.168.201.1/24
 !
-ip address virtual source-nat vrf TENANT-B address 172.16.211.212
+ip address virtual source-nat vrf TENANT-B address 172.16.201.212
 !
 interface vxlan1
    vxlan vlan add 200-201 vni 200-201
