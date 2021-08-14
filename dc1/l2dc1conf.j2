@@ -46,7 +46,7 @@ route-map EVPN_T5 permit 10
    set extcommunity rt 666:0 additive
 route-map EVPN_T5 permit 65535
 !
-router bgp 65510.2
+router bgp 65512
    bgp asn notation asdot
    router-id 10.255.0.121
 !   update wait-install
@@ -98,7 +98,7 @@ int vxlan1
    vxlan vlan add 100-101 vni 100-101
    vxlan vrf TENANT-A vni 1000
 !
-router bgp 65510.2
+router bgp 65512
    vlan-aware-bundle TENANT-A
       rd 10.255.0.121:100
       route-target both 100:100
@@ -140,7 +140,7 @@ int vxlan1
    vxlan vlan add 200-201 vni 200-201
    vxlan vrf TENANT-B vni 2000
 !
-router bgp 65510.2
+router bgp 65512
    vlan-aware-bundle TENANT-B
       rd 10.255.0.121:200
       route-target both 200:200
