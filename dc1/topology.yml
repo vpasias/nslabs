@@ -3,156 +3,107 @@
 # Defaults      
 defaults:
   device: eos
+  addressing:
+    p2p:
+      unnumbered: true
 
 nodes:
 # Spine DC switches
   s1dc1:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48      
+    module: [ bgp ]
+    bgp:
+      as: 65510 
   s2dc1:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48  
+    module: [ bgp ]
+    bgp:
+      as: 65510
   s1dc2:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48      
+    module: [ bgp ]
+    bgp:
+      as: 65520
   s2dc2:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48        
+    module: [ bgp ]
+    bgp:
+      as: 65520
 # Leaf & Border DC switches
   l1adc1:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48
+    module: [ bgp ]
+    bgp:
+      as: 65510.1
   l1bdc1:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48  
+    module: [ bgp ]
+    bgp:
+      as: 65510.1
   l2dc1:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48     
+    module: [ bgp ]
+    bgp:
+      as: 65510.2
   l3dc1:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48   
+    module: [ bgp ]
+    bgp:
+      as: 65510.3
   b1dc1:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48     
+    module: [ bgp ]
+    bgp:
+      as: 65510.51
   b2dc1:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48
+    module: [ bgp ]
+    bgp:
+      as: 65510.52
   l1adc2:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48
-  l1bdc2:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48  
+    module: [ bgp ]
+    bgp:
+      as: 65520.1
   l2dc2:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48     
+    module: [ bgp ]
+    bgp:
+      as: 65520.2
   l3dc2:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48   
+    module: [ bgp ]
+    bgp:
+      as: 65520.3
   b1dc2:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48     
+    module: [ bgp ]
+    bgp:
+      as: 65520.51
   b2dc2:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48        
+    module: [ bgp ]
+    bgp:
+      as: 65520.52     
 # Border DCI Switches
   b1dci:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48
+    module: [ bgp ]
+    bgp:
+      as: 65500
   b2dci:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48
+    module: [ bgp ]
+    bgp:
+      as: 65500
   b3dci:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48
+    module: [ bgp ]
+    bgp:
+      as: 65500
   b4dci:
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48     
+    module: [ bgp ]
+    bgp:
+      as: 65500 
 # Hosts
   h1dc1:
     addressing:
       p2p:
         unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48
   h2dc1:
     addressing:
       p2p:
         unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48
   h1dc2:
     addressing:
       p2p:
         unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48
   h2dc2:
     addressing:
       p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48          
+        unnumbered: true       
 
 links:
 # DC1 links
