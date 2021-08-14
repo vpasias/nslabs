@@ -122,7 +122,7 @@ interface vlan101
 ip address virtual source-nat vrf TENANT-A address 172.16.101.151
 !
 int vxlan1
-   vxlan vlan add 101 vni 101
+   vxlan vlan add 100-101 vni 100-101
    vxlan vrf TENANT-A vni 1000
 !
 router bgp 655151
@@ -165,7 +165,7 @@ int vlan201
 ip address virtual source-nat vrf TENANT-B address 172.16.201.151
 !
 int vxlan1
-   vxlan vlan add 201 vni 201
+   vxlan vlan add 200-201 vni 200-201
    vxlan vrf TENANT-B vni 2000
 !
 router bgp 655151
