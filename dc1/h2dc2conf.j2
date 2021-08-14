@@ -11,9 +11,9 @@ vrf instance TENANT-B-200
 !
 vrf instance TENANT-B-201
 !
-ip route vrf TENANT-A-101 0/0 192.168.111.1
+ip route vrf TENANT-A-101 0/0 192.168.101.1
 !
-ip route vrf TENANT-B-201 0/0 192.168.211.1
+ip route vrf TENANT-B-201 0/0 192.168.201.1
 !
 int eth1
    description 'to leaf2 at dc2'
@@ -34,7 +34,7 @@ int po1.100
 int po1.101
    encapsulation dot1q vlan 101
    vrf TENANT-A-101
-   ip address 192.168.111.14/24
+   ip address 192.168.101.14/24
 !
 int po1.200
    encapsulation dot1q vlan 200
@@ -44,5 +44,5 @@ int po1.200
 int po1.201
    encapsulation dot1q vlan 201
    vrf TENANT-B-201
-   ip address 192.168.211.14/24
+   ip address 192.168.201.14/24
 !   
