@@ -62,8 +62,8 @@ router bgp 65500
    neighbor BACKBONE_LOCAL_PG next-hop-self
    neighbor BACKBONE_LOCAL_PG send-community  
    neighbor BACKBONE_LOCAL_PG metric-out 100
-   neighbor interface Eth1 peer-group UNDERLAY_PG remote-as 65520.51
-   neighbor interface Eth2 peer-group UNDERLAY_PG remote-as 65520.52
+   neighbor interface Eth1 peer-group UNDERLAY_PG remote-as 655251
+   neighbor interface Eth2 peer-group UNDERLAY_PG remote-as 655252
    neighbor interface Eth3 peer-group BACKBONE_REMOTE_PG remote-as 65500
    neighbor interface Eth4 peer-group BACKBONE_LOCAL_PG remote-as 65500
    redistribute connected route-map LOOPBACK
@@ -71,9 +71,9 @@ router bgp 65500
    neighbor 10.255.0.12 peer group OVERLAY_PG
    neighbor 10.255.0.14 peer group OVERLAY_PG
    neighbor 10.255.0.251 peer group OVERLAY_PG
-   neighbor 10.255.0.251 remote-as 65520.51
+   neighbor 10.255.0.251 remote-as 655251
    neighbor 10.255.0.252 peer group OVERLAY_PG
-   neighbor 10.255.0.252 remote-as 65520.52
+   neighbor 10.255.0.252 remote-as 655252
    !
    address-family ipv4
      neighbor UNDERLAY_PG activate
