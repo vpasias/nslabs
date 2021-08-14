@@ -3,9 +3,6 @@
 # Defaults      
 defaults:
   device: eos
-  addressing:
-    p2p:
-      unnumbered: true
 
 nodes:
 # Spine DC switches
