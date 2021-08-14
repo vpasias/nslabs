@@ -65,7 +65,7 @@ route-map EVPN_DCI permit 30
 !   
 route-map EVPN_DCI deny 65535
 !
-router bgp 65520.52
+router bgp 655252
    bgp asn notation asdot
    router-id 10.255.0.252
 !   update wait-install
@@ -125,7 +125,7 @@ int vxlan1
    vxlan vlan add 101 vni 101
    vxlan vrf TENANT-A vni 1000
 !
-router bgp 65520.52
+router bgp 655252
    vlan-aware-bundle TENANT-A
       rd 10.255.0.252:100
       route-target both 100:100
@@ -168,7 +168,7 @@ int vxlan1
    vxlan vlan add 201 vni 201
    vxlan vrf TENANT-B vni 2000
 !
-router bgp 65520.52
+router bgp 655252
    vlan-aware-bundle TENANT-B
       rd 10.255.0.252:200
       route-target both 200:200
