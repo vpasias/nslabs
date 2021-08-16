@@ -1,1 +1,51 @@
+#
+# EVPN Multihoming
+#
 
+nodes:
+  s1:
+    device: cumulus
+  s2:
+    device: cumulus  
+  l1:
+    device: cumulus  
+  l2:
+    device: cumulus  
+  l3:
+    device: cumulus  
+  l4:
+    device: cumulus  
+  h1:
+    device: cumulus  
+  h2:
+    device: cumulus  
+  h3:
+    device: cumulus  
+  h4:
+    device: cumulus  
+  h5:
+    device: cumulus  
+  h6:
+    device: cumulus  
+
+links:
+- s1-l1
+- s1-l2
+- s1-l3
+- s1-l4
+- s2-l1
+- s2-l2
+- s2-l3
+- s2-l4
+- l1-h1
+- l2-h1
+- l1-h2
+- l2-h2
+- l1-h3
+- l2-h3
+- l3-h4
+- l4-h4
+- l3-h5
+- l4-h5
+- l3-h6
+- l4-h6
