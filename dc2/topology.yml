@@ -6,18 +6,18 @@ defaults:
   device: cumulus
 
 nodes:
-  s1
-  s2
-  l1
-  l2
-  l3
-  l4
-  h1
-  h2
-  h3
-  h4
-  h5
-  h6
+  s1:
+  s2:
+  l1:
+  l2:
+  l3:
+  l4:
+  h1:
+  h2:
+  h3:
+  h4:
+  h5:
+  h6:
 
 links:
 - s1-l1
