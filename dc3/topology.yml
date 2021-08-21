@@ -19,7 +19,7 @@ nodes:
   ph1:
   ph2:
   sh1:
-  shs:
+  sh2:
 
 links:
 - ps1-pl1
@@ -34,7 +34,7 @@ links:
 - ss2-sl2
 - ss1-sd1
 - ss2-sd1
-- sd1-sd2
+- pd1-sd1
 - pl1-ph1
 - pl2-ph2
 - sl1-sh1
