@@ -1,1 +1,41 @@
+#
+# Primary-Secondary Data centers with DCI, eBGP overlay and VXLAN
+#
+# Defaults      
+defaults:
+  device: cumulus
 
+nodes:
+  ps1:
+  ps2:
+  pl1:
+  pl2:
+  pd1:
+  ss1:
+  ss2:
+  sl1:
+  sl2:
+  sd1:
+  ph1:
+  ph2:
+  sh1:
+  shs:
+
+links:
+- ps1-pl1
+- ps1-pl2
+- ps2-pl1
+- ps2-pl2
+- ps1-pd1
+- ps2-pd1
+- ss1-sl1
+- ss1-sl2
+- ss2-sl1
+- ss2-sl2
+- ss1-sd1
+- ss2-sd1
+- sd1-sd2
+- pl1-ph1
+- pl2-ph2
+- sl1-sh1
+- sl2-sh2
