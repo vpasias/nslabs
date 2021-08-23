@@ -1,1 +1,88 @@
+#
+# Primary-Secondary Data Centers with dual DCI connectivity, EVPN Multihoming and VXLAN
+#
+# Defaults      
+defaults:
+  device: cumulus
 
+nodes:
+  ps1:
+  ps2:
+  pl1:
+  pl2:
+  pl3:
+  pl4:
+  pd1:
+  pd2:
+  ph1:
+  ph2:
+  ph3:
+  ph4:
+  ph5:
+  ph6:
+  ss1:
+  ss2:
+  sl1:
+  sl2:
+  sl3:
+  sl4:
+  sd1:
+  sd2:
+  sh1:
+  sh2:
+  sh3:
+  sh4:
+  sh5:
+  sh6:  
+
+links:
+- ps1-pl1
+- ps1-pl2
+- ps1-pl3
+- ps1-pl4
+- ps2-pl1
+- ps2-pl2
+- ps2-pl3
+- ps2-pl4
+- ps1-pd1
+- ps1-pd2
+- ps2-pd1
+- ps2-pd2
+- pl1-ph1
+- pl2-ph1
+- pl1-ph2
+- pl2-ph2
+- pl1-ph3
+- pl2-ph3
+- pl3-ph4
+- pl4-ph4
+- pl3-ph5
+- pl4-ph5
+- pl3-ph6
+- pl4-ph6
+- ss1-sl1
+- ss1-sl2
+- ss1-sl3
+- ss1-sl4
+- ss2-sl1
+- ss2-sl2
+- ss2-sl3
+- ss2-sl4
+- ss1-sd1
+- ss1-sd2
+- ss2-sd1
+- ss2-sd2
+- sl1-sh1
+- sl2-sh1
+- sl1-sh2
+- sl2-sh2
+- sl1-sh3
+- sl2-sh3
+- sl3-sh4
+- sl4-sh4
+- sl3-sh5
+- sl4-sh5
+- sl3-sh6
+- sl4-sh6
+- pd1-sd1
+- pd2-sd2
