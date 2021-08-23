@@ -1,5 +1,5 @@
 #
-# Primary-Secondary Data centers with DCI, eBGP overlay and VXLAN
+# Primary-Secondary Data centers with single DCI connectivity, eBGP overlay and VXLAN
 #
 # Defaults      
 defaults:
