@@ -568,340 +568,193 @@ ANSIBLE_STDOUT_CALLBACK=dense netlab initial
 # netlab initial -v
 
 ### Spine switch s1 configuration
-netlab connect s1 "sudo systemctl enable nvued && \
-sudo systemctl start nvued && \
-sudo systemctl enable nvue-startup.service && \
-sudo systemctl start nvue-startup.service && \
-sudo nv set interface lo ip address 10.254.254.101/32 && \
-sudo nv set interface swp1-4 && \
-sudo nv set router bgp autonomous-system 65199 && \
-sudo nv set router bgp router-id 10.254.254.101 && \
+netlab connect s1 "sudo systemctl enable nvued && sudo systemctl start nvued && \
+sudo systemctl enable nvue-startup.service && sudo systemctl start nvue-startup.service && \
+sudo nv set interface lo ip address 10.254.254.101/32 && sudo nv set interface swp1-4 && \
+sudo nv set router bgp autonomous-system 65199 && sudo nv set router bgp router-id 10.254.254.101 && \
 sudo nv set vrf default router bgp peer-group underlay remote-as external && \
-sudo nv set vrf default router bgp peer swp1 peer-group underlay && \
-sudo nv set vrf default router bgp peer swp2 peer-group underlay && \
-sudo nv set vrf default router bgp peer swp3 peer-group underlay && \
-sudo nv set vrf default router bgp peer swp4 peer-group underlay && \
+sudo nv set vrf default router bgp peer swp1 peer-group underlay && sudo nv set vrf default router bgp peer swp2 peer-group underlay && \
+sudo nv set vrf default router bgp peer swp3 peer-group underlay && sudo nv set vrf default router bgp peer swp4 peer-group underlay && \
 sudo nv set vrf default router bgp address-family l2vpn-evpn enable on && \
 sudo nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on && \
 sudo nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on && \
-sudo nv config apply --assume-yes  && \
-sudo nv config save"
+sudo nv config apply --assume-yes && sudo nv config save"
 
 ### Spine switch s2 configuration
-netlab connect s2 "sudo systemctl enable nvued && \
-sudo systemctl start nvued && \
-sudo systemctl enable nvue-startup.service && \
-sudo systemctl start nvue-startup.service && \
-sudo nv set interface lo ip address 10.254.254.102/32 && \
-sudo nv set interface swp1-4 && \
-sudo nv set router bgp autonomous-system 65199 && \
-sudo nv set router bgp router-id 10.254.254.102 && \
+netlab connect s2 "sudo systemctl enable nvued && sudo systemctl start nvued && \
+sudo systemctl enable nvue-startup.service && sudo systemctl start nvue-startup.service && \
+sudo nv set interface lo ip address 10.254.254.102/32 && sudo nv set interface swp1-4 && \
+sudo nv set router bgp autonomous-system 65199 && sudo nv set router bgp router-id 10.254.254.102 && \
 sudo nv set vrf default router bgp peer-group underlay remote-as external && \
-sudo nv set vrf default router bgp peer swp1 peer-group underlay && \
-sudo nv set vrf default router bgp peer swp2 peer-group underlay && \
-sudo nv set vrf default router bgp peer swp3 peer-group underlay && \
-sudo nv set vrf default router bgp peer swp4 peer-group underlay && \
+sudo nv set vrf default router bgp peer swp1 peer-group underlay && sudo nv set vrf default router bgp peer swp2 peer-group underlay && \
+sudo nv set vrf default router bgp peer swp3 peer-group underlay && sudo nv set vrf default router bgp peer swp4 peer-group underlay && \
 sudo nv set vrf default router bgp address-family l2vpn-evpn enable on && \
 sudo nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on && \
 sudo nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on && \
-sudo nv config apply --assume-yes  && \
-sudo nv config save"
+sudo nv config apply --assume-yes && sudo nv config save"
 
 ### Leaf switch l1 configuration
-netlab connect l1 "sudo systemctl enable nvued && \
-sudo systemctl start nvued && \
-sudo systemctl enable nvue-startup.service && \
-sudo systemctl start nvue-startup.service && \
-sudo nv set interface lo ip address 10.254.254.1/32 && \
-sudo nv set interface swp3-5,swp1-2 && \
-sudo nv set interface bond1 bond member swp3 && \
-sudo nv set interface bond2 bond member swp4 && \
-sudo nv set interface bond3 bond member swp5 && \
-sudo nv set interface bond1 bond lacp-bypass on && \
-sudo nv set interface bond2 bond lacp-bypass on && \
-sudo nv set interface bond3 bond lacp-bypass on && \
-sudo nv set interface bond1 link mtu 9000 && \
-sudo nv set interface bond2 link mtu 9000 && \
-sudo nv set interface bond3 link mtu 9000 && \
-sudo nv set interface bond1-3 bridge domain br_default && \
-sudo nv set interface bond1 bridge domain br_default access 10 && \
-sudo nv set interface bond2 bridge domain br_default access 20 && \
-sudo nv set interface bond3 bridge domain br_default access 30 && \
-sudo nv set bridge domain br_default vlan 10,20,30 && \
-sudo nv set interface vlan10 ip address 10.10.10.2/24 && \
-sudo nv set interface vlan10 ip vrr address 10.10.10.1/24 && \
-sudo nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10 && \
-sudo nv set interface vlan10 ip vrr state up && \
-sudo nv set interface vlan20 ip address 10.10.20.2/24 && \
-sudo nv set interface vlan20 ip vrr address 10.10.20.1/24 && \
-sudo nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20 && \
-sudo nv set interface vlan20 ip vrr state up && \
-sudo nv set interface vlan30 ip address 10.10.30.2/24 && \
-sudo nv set interface vlan30 ip vrr address 10.10.30.1/24 && \
-sudo nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30 && \
-sudo nv set interface vlan30 ip vrr state up && \
-sudo nv set vrf RED && \
-sudo nv set vrf BLUE && \
-sudo nv set bridge domain br_default vlan 10 vni 10 && \
-sudo nv set bridge domain br_default vlan 20 vni 20 && \
-sudo nv set bridge domain br_default vlan 30 vni 30 && \
-sudo nv set interface vlan10 ip vrf RED && \
-sudo nv set interface vlan20 ip vrf RED && \
-sudo nv set interface vlan30 ip vrf BLUE && \
-sudo nv set nve vxlan source address 10.254.254.1 && \
-sudo nv set nve vxlan arp-nd-suppress on && \
-sudo nv set vrf RED evpn vni 4001 && \
-sudo nv set vrf BLUE evpn vni 4002 && \
-sudo nv set system global anycast-mac 44:38:39:BE:EF:AA && \
-sudo nv set evpn enable on && \
-sudo nv set router bgp autonomous-system 65101 && \
-sudo nv set router bgp router-id 10.254.254.1 && \
+netlab connect l1 "sudo systemctl enable nvued && sudo systemctl start nvued && \
+sudo systemctl enable nvue-startup.service && sudo systemctl start nvue-startup.service && \
+sudo nv set interface lo ip address 10.254.254.1/32 && sudo nv set interface swp3-5,swp1-2 && \
+sudo nv set interface bond1 bond member swp3 && sudo nv set interface bond2 bond member swp4 && sudo nv set interface bond3 bond member swp5 && \
+sudo nv set interface bond1 bond lacp-bypass on && sudo nv set interface bond2 bond lacp-bypass on && sudo nv set interface bond3 bond lacp-bypass on && \
+sudo nv set interface bond1 link mtu 9000 && sudo nv set interface bond2 link mtu 9000 && sudo nv set interface bond3 link mtu 9000 && \
+sudo nv set interface bond1-3 bridge domain br_default && sudo nv set interface bond1 bridge domain br_default access 10 && \
+sudo nv set interface bond2 bridge domain br_default access 20 && sudo nv set interface bond3 bridge domain br_default access 30 && \
+sudo nv set bridge domain br_default vlan 10,20,30 && sudo nv set interface vlan10 ip address 10.10.10.2/24 && \
+sudo nv set interface vlan10 ip vrr address 10.10.10.1/24 && sudo nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10 && \
+sudo nv set interface vlan10 ip vrr state up && sudo nv set interface vlan20 ip address 10.10.20.2/24 && \
+sudo nv set interface vlan20 ip vrr address 10.10.20.1/24 && sudo nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20 && \
+sudo nv set interface vlan20 ip vrr state up && sudo nv set interface vlan30 ip address 10.10.30.2/24 && \
+sudo nv set interface vlan30 ip vrr address 10.10.30.1/24 && sudo nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30 && \
+sudo nv set interface vlan30 ip vrr state up && sudo nv set vrf RED && sudo nv set vrf BLUE && \
+sudo nv set bridge domain br_default vlan 10 vni 10 && sudo nv set bridge domain br_default vlan 20 vni 20 && \
+sudo nv set bridge domain br_default vlan 30 vni 30 && sudo nv set interface vlan10 ip vrf RED && \
+sudo nv set interface vlan20 ip vrf RED && sudo nv set interface vlan30 ip vrf BLUE && sudo nv set nve vxlan source address 10.254.254.1 && \
+sudo nv set nve vxlan arp-nd-suppress on && sudo nv set vrf RED evpn vni 4001 && sudo nv set vrf BLUE evpn vni 4002 && \
+sudo nv set system global anycast-mac 44:38:39:BE:EF:AA && sudo nv set evpn enable on && \
+sudo nv set router bgp autonomous-system 65101 && sudo nv set router bgp router-id 10.254.254.1 && \
 sudo nv set vrf default router bgp peer-group underlay remote-as external && \
-sudo nv set vrf default router bgp peer swp1 peer-group underlay && \
-sudo nv set vrf default router bgp peer swp2 peer-group underlay && \
+sudo nv set vrf default router bgp peer swp1 peer-group underlay && sudo nv set vrf default router bgp peer swp2 peer-group underlay && \
 sudo nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on && \
 sudo nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on && \
-sudo nv set vrf RED router bgp autonomous-system 65101 && \
-sudo nv set vrf RED router bgp router-id 10.254.254.1 && \
+sudo nv set vrf RED router bgp autonomous-system 65101 && sudo nv set vrf RED router bgp router-id 10.254.254.1 && \
 sudo nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on && \
 sudo nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on && \
 sudo nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn && \
-sudo nv set vrf BLUE router bgp autonomous-system 65101 && \
-sudo nv set vrf BLUE router bgp router-id 10.254.254.1 && \
+sudo nv set vrf BLUE router bgp autonomous-system 65101 && sudo nv set vrf BLUE router bgp router-id 10.254.254.1 && \
 sudo nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on && \
 sudo nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on && \
 sudo nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn && \
-sudo nv set evpn multihoming enable on && \
-sudo nv set interface bond1 evpn multihoming segment local-id 1 && \
-sudo nv set interface bond2 evpn multihoming segment local-id 2 && \
-sudo nv set interface bond3 evpn multihoming segment local-id 3 && \
+sudo nv set evpn multihoming enable on && sudo nv set interface bond1 evpn multihoming segment local-id 1 && \
+sudo nv set interface bond2 evpn multihoming segment local-id 2 && sudo nv set interface bond3 evpn multihoming segment local-id 3 && \
 sudo nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA && \
 sudo nv set interface bond1-3 evpn multihoming segment df-preference 50000 && \
-sudo nv set interface swp1-2 evpn multihoming uplink on && \
-sudo nv config apply --assume-yes  && \
-sudo nv config save"
+sudo nv set interface swp1-2 evpn multihoming uplink on && sudo nv config apply --assume-yes && sudo nv config save"
 
 ### Leaf switch l2 configuration
-netlab connect l2 "sudo systemctl enable nvued && \
-sudo systemctl start nvued && \
-sudo systemctl enable nvue-startup.service && \
-sudo systemctl start nvue-startup.service && \
-sudo nv set interface lo ip address 10.254.254.2/32 && \
-sudo nv set interface swp3-5,swp1-2 && \
-sudo nv set interface bond1 bond member swp3 && \
-sudo nv set interface bond2 bond member swp4 && \
-sudo nv set interface bond3 bond member swp5 && \
-sudo nv set interface bond1 bond lacp-bypass on && \
-sudo nv set interface bond2 bond lacp-bypass on && \
-sudo nv set interface bond3 bond lacp-bypass on && \
-sudo nv set interface bond1 link mtu 9000 && \
-sudo nv set interface bond2 link mtu 9000 && \
-sudo nv set interface bond3 link mtu 9000 && \
-sudo nv set interface bond1-3 bridge domain br_default && \
-sudo nv set interface bond1 bridge domain br_default access 10 && \
-sudo nv set interface bond2 bridge domain br_default access 20 && \
-sudo nv set interface bond3 bridge domain br_default access 30 && \
-sudo nv set bridge domain br_default vlan 10,20,30 && \
-sudo nv set interface vlan10 ip address 10.10.10.3/24 && \
-sudo nv set interface vlan10 ip vrr address 10.10.10.1/24 && \
-sudo nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10 && \
-sudo nv set interface vlan10 ip vrr state up && \
-sudo nv set interface vlan20 ip address 10.10.20.3/24 && \
-sudo nv set interface vlan20 ip vrr address 10.10.20.1/24 && \
-sudo nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20 && \
-sudo nv set interface vlan20 ip vrr state up && \
-sudo nv set interface vlan30 ip address 10.10.30.3/24 && \
-sudo nv set interface vlan30 ip vrr address 10.10.30.1/24 && \
-sudo nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30 && \
-sudo nv set interface vlan30 ip vrr state up && \
-sudo nv set vrf RED && \
-sudo nv set vrf BLUE && \
-sudo nv set bridge domain br_default vlan 10 vni 10 && \
-sudo nv set bridge domain br_default vlan 20 vni 20 && \
-sudo nv set bridge domain br_default vlan 30 vni 30 && \
-sudo nv set interface vlan10 ip vrf RED && \
-sudo nv set interface vlan20 ip vrf RED && \
-sudo nv set interface vlan30 ip vrf BLUE && \
-sudo nv set nve vxlan source address 10.254.254.2 && \
-sudo nv set nve vxlan arp-nd-suppress on && \
-sudo nv set vrf RED evpn vni 4001 && \
-sudo nv set vrf BLUE evpn vni 4002 && \
-sudo nv set system global anycast-mac 44:38:39:BE:EF:AA && \
-sudo nv set evpn enable on && \
-sudo nv set router bgp autonomous-system 65102 && \
-sudo nv set router bgp router-id 10.254.254.2 && \
+netlab connect l2 "sudo systemctl enable nvued && sudo systemctl start nvued && sudo systemctl enable nvue-startup.service && \
+sudo systemctl start nvue-startup.service && sudo nv set interface lo ip address 10.254.254.2/32 && \
+sudo nv set interface swp3-5,swp1-2 && sudo nv set interface bond1 bond member swp3 && \
+sudo nv set interface bond2 bond member swp4 && sudo nv set interface bond3 bond member swp5 && \
+sudo nv set interface bond1 bond lacp-bypass on && sudo nv set interface bond2 bond lacp-bypass on && sudo nv set interface bond3 bond lacp-bypass on && \
+sudo nv set interface bond1 link mtu 9000 && sudo nv set interface bond2 link mtu 9000 && sudo nv set interface bond3 link mtu 9000 && \
+sudo nv set interface bond1-3 bridge domain br_default && sudo nv set interface bond1 bridge domain br_default access 10 && \
+sudo nv set interface bond2 bridge domain br_default access 20 && sudo nv set interface bond3 bridge domain br_default access 30 && \
+sudo nv set bridge domain br_default vlan 10,20,30 && sudo nv set interface vlan10 ip address 10.10.10.3/24 && \
+sudo nv set interface vlan10 ip vrr address 10.10.10.1/24 && sudo nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10 && \
+sudo nv set interface vlan10 ip vrr state up && sudo nv set interface vlan20 ip address 10.10.20.3/24 && \
+sudo nv set interface vlan20 ip vrr address 10.10.20.1/24 && sudo nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20 && \
+sudo nv set interface vlan20 ip vrr state up && sudo nv set interface vlan30 ip address 10.10.30.3/24 && \
+sudo nv set interface vlan30 ip vrr address 10.10.30.1/24 && sudo nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30 && \
+sudo nv set interface vlan30 ip vrr state up && sudo nv set vrf RED && sudo nv set vrf BLUE && \
+sudo nv set bridge domain br_default vlan 10 vni 10 && sudo nv set bridge domain br_default vlan 20 vni 20 && \
+sudo nv set bridge domain br_default vlan 30 vni 30 && sudo nv set interface vlan10 ip vrf RED && \
+sudo nv set interface vlan20 ip vrf RED && sudo nv set interface vlan30 ip vrf BLUE && \
+sudo nv set nve vxlan source address 10.254.254.2 && sudo nv set nve vxlan arp-nd-suppress on && \
+sudo nv set vrf RED evpn vni 4001 && sudo nv set vrf BLUE evpn vni 4002 && \
+sudo nv set system global anycast-mac 44:38:39:BE:EF:AA && sudo nv set evpn enable on && \
+sudo nv set router bgp autonomous-system 65102 && sudo nv set router bgp router-id 10.254.254.2 && \
 sudo nv set vrf default router bgp peer-group underlay remote-as external && \
-sudo nv set vrf default router bgp peer swp1 peer-group underlay && \
-sudo nv set vrf default router bgp peer swp2 peer-group underlay && \
+sudo nv set vrf default router bgp peer swp1 peer-group underlay && sudo nv set vrf default router bgp peer swp2 peer-group underlay && \
 sudo nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on && \
 sudo nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on && \
-sudo nv set vrf RED router bgp autonomous-system 65102 && \
-sudo nv set vrf RED router bgp router-id 10.254.254.2 && \
+sudo nv set vrf RED router bgp autonomous-system 65102 && sudo nv set vrf RED router bgp router-id 10.254.254.2 && \
 sudo nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on && \
 sudo nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on && \
 sudo nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn && \
-sudo nv set vrf BLUE router bgp autonomous-system 65102 && \
-sudo nv set vrf BLUE router bgp router-id 10.254.254.2 && \
+sudo nv set vrf BLUE router bgp autonomous-system 65102 && sudo nv set vrf BLUE router bgp router-id 10.254.254.2 && \
 sudo nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on && \
 sudo nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on && \
 sudo nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn && \
-sudo nv set evpn multihoming enable on && \
-sudo nv set interface bond1 evpn multihoming segment local-id 1 && \
-sudo nv set interface bond2 evpn multihoming segment local-id 2 && \
-sudo nv set interface bond3 evpn multihoming segment local-id 3 && \
+sudo nv set evpn multihoming enable on && sudo nv set interface bond1 evpn multihoming segment local-id 1 && \
+sudo nv set interface bond2 evpn multihoming segment local-id 2 && sudo nv set interface bond3 evpn multihoming segment local-id 3 && \
 sudo nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA && \
-sudo nv set interface bond1-3 evpn multihoming segment df-preference 50000 && \
-sudo nv set interface swp1-2 evpn multihoming uplink on && \
-sudo nv config apply --assume-yes  && \
-sudo nv config save"
+sudo nv set interface bond1-3 evpn multihoming segment df-preference 50000 && sudo nv set interface swp1-2 evpn multihoming uplink on && \
+sudo nv config apply --assume-yes && sudo nv config save"
 
 ### Leaf switch l3 configuration
-netlab connect l3 "sudo systemctl enable nvued && \
-sudo systemctl start nvued && \
-sudo systemctl enable nvue-startup.service && \
-sudo systemctl start nvue-startup.service && \
-sudo nv set interface lo ip address 10.254.254.3/32 && \
-sudo nv set interface swp3-5,swp1-2 && \
-sudo nv set interface bond1 bond member swp3 && \
-sudo nv set interface bond2 bond member swp4 && \
-sudo nv set interface bond3 bond member swp5 && \
-sudo nv set interface bond1 bond lacp-bypass on && \
-sudo nv set interface bond2 bond lacp-bypass on && \
-sudo nv set interface bond3 bond lacp-bypass on && \
-sudo nv set interface bond1 link mtu 9000 && \
-sudo nv set interface bond2 link mtu 9000 && \
-sudo nv set interface bond3 link mtu 9000 && \
-sudo nv set interface bond1-3 bridge domain br_default && \
-sudo nv set interface bond1 bridge domain br_default access 10 && \
-sudo nv set interface bond2 bridge domain br_default access 20 && \
-sudo nv set interface bond3 bridge domain br_default access 30 && \
-sudo nv set bridge domain br_default vlan 10,20,30 && \
-sudo nv set interface vlan10 ip address 10.10.10.4/24 && \
-sudo nv set interface vlan10 ip vrr address 10.10.10.1/24 && \
-sudo nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10 && \
-sudo nv set interface vlan10 ip vrr state up && \
-sudo nv set interface vlan20 ip address 10.10.20.4/24 && \
-sudo nv set interface vlan20 ip vrr address 10.10.20.1/24 && \
-sudo nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20 && \
-sudo nv set interface vlan20 ip vrr state up && \
-sudo nv set interface vlan30 ip address 10.10.30.4/24 && \
-sudo nv set interface vlan30 ip vrr address 10.10.30.1/24 && \
-sudo nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30 && \
-sudo nv set interface vlan30 ip vrr state up && \
-sudo nv set vrf RED && \
-sudo nv set vrf BLUE && \
-sudo nv set bridge domain br_default vlan 10 vni 10 && \
-sudo nv set bridge domain br_default vlan 20 vni 20 && \
-sudo nv set bridge domain br_default vlan 30 vni 30 && \
-sudo nv set interface vlan10 ip vrf RED && \
-sudo nv set interface vlan20 ip vrf RED && \
-sudo nv set interface vlan30 ip vrf BLUE && \
-sudo nv set nve vxlan source address 10.254.254.3 && \
-sudo nv set nve vxlan arp-nd-suppress on && \
-sudo nv set vrf RED evpn vni 4001 && \
-sudo nv set vrf BLUE evpn vni 4002 && \
-sudo nv set system global anycast-mac 44:38:39:BE:EF:AA && \
-sudo nv set evpn enable on && \
-sudo nv set router bgp autonomous-system 65103 && \
-sudo nv set router bgp router-id 10.254.254.3 && \
+netlab connect l3 "sudo systemctl enable nvued && sudo systemctl start nvued && sudo systemctl enable nvue-startup.service && \
+sudo systemctl start nvue-startup.service && sudo nv set interface lo ip address 10.254.254.3/32 && \
+sudo nv set interface swp3-5,swp1-2 && sudo nv set interface bond1 bond member swp3 && \
+sudo nv set interface bond2 bond member swp4 && sudo nv set interface bond3 bond member swp5 && \
+sudo nv set interface bond1 bond lacp-bypass on && sudo nv set interface bond2 bond lacp-bypass on && sudo nv set interface bond3 bond lacp-bypass on && \
+sudo nv set interface bond1 link mtu 9000 && sudo nv set interface bond2 link mtu 9000 && sudo nv set interface bond3 link mtu 9000 && \
+sudo nv set interface bond1-3 bridge domain br_default && sudo nv set interface bond1 bridge domain br_default access 10 && \
+sudo nv set interface bond2 bridge domain br_default access 20 && sudo nv set interface bond3 bridge domain br_default access 30 && \
+sudo nv set bridge domain br_default vlan 10,20,30 && sudo nv set interface vlan10 ip address 10.10.10.4/24 && \
+sudo nv set interface vlan10 ip vrr address 10.10.10.1/24 && sudo nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10 && \
+sudo nv set interface vlan10 ip vrr state up && sudo nv set interface vlan20 ip address 10.10.20.4/24 && \
+sudo nv set interface vlan20 ip vrr address 10.10.20.1/24 && sudo nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20 && \
+sudo nv set interface vlan20 ip vrr state up && sudo nv set interface vlan30 ip address 10.10.30.4/24 && \
+sudo nv set interface vlan30 ip vrr address 10.10.30.1/24 && sudo nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30 && \
+sudo nv set interface vlan30 ip vrr state up && sudo nv set vrf RED && sudo nv set vrf BLUE && \
+sudo nv set bridge domain br_default vlan 10 vni 10 && sudo nv set bridge domain br_default vlan 20 vni 20 && \
+sudo nv set bridge domain br_default vlan 30 vni 30 && sudo nv set interface vlan10 ip vrf RED && \
+sudo nv set interface vlan20 ip vrf RED && sudo nv set interface vlan30 ip vrf BLUE && \
+sudo nv set nve vxlan source address 10.254.254.3 && sudo nv set nve vxlan arp-nd-suppress on && \
+sudo nv set vrf RED evpn vni 4001 && sudo nv set vrf BLUE evpn vni 4002 && \
+sudo nv set system global anycast-mac 44:38:39:BE:EF:AA && sudo nv set evpn enable on && \
+sudo nv set router bgp autonomous-system 65103 && sudo nv set router bgp router-id 10.254.254.3 && \
 sudo nv set vrf default router bgp peer-group underlay remote-as external && \
-sudo nv set vrf default router bgp peer swp1 peer-group underlay && \
-sudo nv set vrf default router bgp peer swp2 peer-group underlay && \
+sudo nv set vrf default router bgp peer swp1 peer-group underlay && sudo nv set vrf default router bgp peer swp2 peer-group underlay && \
 sudo nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on && \
 sudo nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on && \
-sudo nv set vrf RED router bgp autonomous-system 65103 && \
-sudo nv set vrf RED router bgp router-id 10.254.254.3 && \
+sudo nv set vrf RED router bgp autonomous-system 65103 && sudo nv set vrf RED router bgp router-id 10.254.254.3 && \
 sudo nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on && \
 sudo nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on && \
 sudo nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn && \
-sudo nv set vrf BLUE router bgp autonomous-system 65103 && \
-sudo nv set vrf BLUE router bgp router-id 10.254.254.3 && \
+sudo nv set vrf BLUE router bgp autonomous-system 65103 && sudo nv set vrf BLUE router bgp router-id 10.254.254.3 && \
 sudo nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on && \
 sudo nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on && \
 sudo nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn && \
-sudo nv set evpn multihoming enable on && \
-sudo nv set interface bond1 evpn multihoming segment local-id 1 && \
-sudo nv set interface bond2 evpn multihoming segment local-id 2 && \
-sudo nv set interface bond3 evpn multihoming segment local-id 3 && \
+sudo nv set evpn multihoming enable on && sudo nv set interface bond1 evpn multihoming segment local-id 1 && \
+sudo nv set interface bond2 evpn multihoming segment local-id 2 && sudo nv set interface bond3 evpn multihoming segment local-id 3 && \
 sudo nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:BB && \
-sudo nv set interface bond1-3 evpn multihoming segment df-preference 50000 && \
-sudo nv set interface swp1-2 evpn multihoming uplink on && \
-sudo nv config apply --assume-yes  && \
-sudo nv config save"
+sudo nv set interface bond1-3 evpn multihoming segment df-preference 50000 && sudo nv set interface swp1-2 evpn multihoming uplink on && \
+sudo nv config apply --assume-yes && sudo nv config save"
 
 ### Leaf switch l4 configuration
-netlab connect l4 "sudo systemctl enable nvued && \
-sudo systemctl start nvued && \
-sudo systemctl enable nvue-startup.service && \
-sudo systemctl start nvue-startup.service && \
-sudo nv set interface lo ip address 10.254.254.4/32 && \
-sudo nv set interface swp3-5,swp1-2 && \
-sudo nv set interface bond1 bond member swp3 && \
-sudo nv set interface bond2 bond member swp4 && \
-sudo nv set interface bond3 bond member swp5 && \
-sudo nv set interface bond1 bond lacp-bypass on && \
-sudo nv set interface bond2 bond lacp-bypass on && \
-sudo nv set interface bond3 bond lacp-bypass on && \
-sudo nv set interface bond1 link mtu 9000 && \
-sudo nv set interface bond2 link mtu 9000 && \
-sudo nv set interface bond3 link mtu 9000 && \
-sudo nv set interface bond1-3 bridge domain br_default && \
-sudo nv set interface bond1 bridge domain br_default access 10 && \
-sudo nv set interface bond2 bridge domain br_default access 20 && \
-sudo nv set interface bond3 bridge domain br_default access 30 && \
-sudo nv set bridge domain br_default vlan 10,20,30 && \
-sudo nv set interface vlan10 ip address 10.10.10.5/24 && \
-sudo nv set interface vlan10 ip vrr address 10.10.10.1/24 && \
-sudo nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10 && \
-sudo nv set interface vlan10 ip vrr state up && \
-sudo nv set interface vlan20 ip address 10.10.20.5/24 && \
-sudo nv set interface vlan20 ip vrr address 10.10.20.1/24 && \
-sudo nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20 && \
-sudo nv set interface vlan20 ip vrr state up && \
-sudo nv set interface vlan30 ip address 10.10.30.5/24 && \
-sudo nv set interface vlan30 ip vrr address 10.10.30.1/24 && \
-sudo nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30 && \
-sudo nv set interface vlan30 ip vrr state up && \
-sudo nv set vrf RED && \
-sudo nv set vrf BLUE && \
-sudo nv set bridge domain br_default vlan 10 vni 10 && \
-sudo nv set bridge domain br_default vlan 20 vni 20 && \
-sudo nv set bridge domain br_default vlan 30 vni 30 && \
-sudo nv set interface vlan10 ip vrf RED && \
-sudo nv set interface vlan20 ip vrf RED && \
-sudo nv set interface vlan30 ip vrf BLUE && \
-sudo nv set nve vxlan source address 10.254.254.4 && \
-sudo nv set nve vxlan arp-nd-suppress on && \
-sudo nv set vrf RED evpn vni 4001 && \
-sudo nv set vrf BLUE evpn vni 4002 && \
-sudo nv set system global anycast-mac 44:38:39:BE:EF:AA && \
-sudo nv set evpn enable on && \
-sudo nv set router bgp autonomous-system 65104 && \
-sudo nv set router bgp router-id 10.254.254.4 && \
+netlab connect l4 "sudo systemctl enable nvued && sudo systemctl start nvued && \
+sudo systemctl enable nvue-startup.service && sudo systemctl start nvue-startup.service && \
+sudo nv set interface lo ip address 10.254.254.4/32 && sudo nv set interface swp3-5,swp1-2 && \
+sudo nv set interface bond1 bond member swp3 && sudo nv set interface bond2 bond member swp4 && sudo nv set interface bond3 bond member swp5 && \
+sudo nv set interface bond1 bond lacp-bypass on && sudo nv set interface bond2 bond lacp-bypass on && sudo nv set interface bond3 bond lacp-bypass on && \
+sudo nv set interface bond1 link mtu 9000 && sudo nv set interface bond2 link mtu 9000 && sudo nv set interface bond3 link mtu 9000 && \
+sudo nv set interface bond1-3 bridge domain br_default && sudo nv set interface bond1 bridge domain br_default access 10 && \
+sudo nv set interface bond2 bridge domain br_default access 20 && sudo nv set interface bond3 bridge domain br_default access 30 && \
+sudo nv set bridge domain br_default vlan 10,20,30 && sudo nv set interface vlan10 ip address 10.10.10.5/24 && \
+sudo nv set interface vlan10 ip vrr address 10.10.10.1/24 && sudo nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10 && \
+sudo nv set interface vlan10 ip vrr state up && sudo nv set interface vlan20 ip address 10.10.20.5/24 && \
+sudo nv set interface vlan20 ip vrr address 10.10.20.1/24 && sudo nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20 && \
+sudo nv set interface vlan20 ip vrr state up && sudo nv set interface vlan30 ip address 10.10.30.5/24 && \
+sudo nv set interface vlan30 ip vrr address 10.10.30.1/24 && sudo nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30 && \
+sudo nv set interface vlan30 ip vrr state up && sudo nv set vrf RED && sudo nv set vrf BLUE && \
+sudo nv set bridge domain br_default vlan 10 vni 10 && sudo nv set bridge domain br_default vlan 20 vni 20 && \
+sudo nv set bridge domain br_default vlan 30 vni 30 && sudo nv set interface vlan10 ip vrf RED && \
+sudo nv set interface vlan20 ip vrf RED && sudo nv set interface vlan30 ip vrf BLUE && \
+sudo nv set nve vxlan source address 10.254.254.4 && sudo nv set nve vxlan arp-nd-suppress on && \
+sudo nv set vrf RED evpn vni 4001 && sudo nv set vrf BLUE evpn vni 4002 && \
+sudo nv set system global anycast-mac 44:38:39:BE:EF:AA && sudo nv set evpn enable on && \
+sudo nv set router bgp autonomous-system 65104 && sudo nv set router bgp router-id 10.254.254.4 && \
 sudo nv set vrf default router bgp peer-group underlay remote-as external && \
-sudo nv set vrf default router bgp peer swp1 peer-group underlay && \
-sudo nv set vrf default router bgp peer swp2 peer-group underlay && \
+sudo nv set vrf default router bgp peer swp1 peer-group underlay && sudo nv set vrf default router bgp peer swp2 peer-group underlay && \
 sudo nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on && \
 sudo nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on && \
-sudo nv set vrf RED router bgp autonomous-system 65104 && \
-sudo nv set vrf RED router bgp router-id 10.254.254.4 && \
+sudo nv set vrf RED router bgp autonomous-system 65104 && sudo nv set vrf RED router bgp router-id 10.254.254.4 && \
 sudo nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on && \
 sudo nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on && \
 sudo nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn && \
-sudo nv set vrf BLUE router bgp autonomous-system 65104 && \
-sudo nv set vrf BLUE router bgp router-id 10.254.254.4 && \
+sudo nv set vrf BLUE router bgp autonomous-system 65104 && sudo nv set vrf BLUE router bgp router-id 10.254.254.4 && \
 sudo nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on && \
 sudo nv set vrf BLUE router bgp peer-group underlay address-family l2vpn-evpn enable on && \
 sudo nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn && \
-sudo nv set evpn multihoming enable on && \
-sudo nv set interface bond1 evpn multihoming segment local-id 1 && \
-sudo nv set interface bond2 evpn multihoming segment local-id 2 && \
-sudo nv set interface bond3 evpn multihoming segment local-id 3 && \
+sudo nv set evpn multihoming enable on && sudo nv set interface bond1 evpn multihoming segment local-id 1 && \
+sudo nv set interface bond2 evpn multihoming segment local-id 2 && sudo nv set interface bond3 evpn multihoming segment local-id 3 && \
 sudo nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:BB && \
-sudo nv set interface bond1-3 evpn multihoming segment df-preference 50000 && \
-sudo nv set interface swp1-2 evpn multihoming uplink on && \
-sudo nv config apply --assume-yes  && \
-sudo nv config save"
+sudo nv set interface bond1-3 evpn multihoming segment df-preference 50000 && sudo nv set interface swp1-2 evpn multihoming uplink on && \
+sudo nv config apply --assume-yes && sudo nv config save"
 
 netlab connect h1 "sudo net add bridge br1 ports swp1-2 && sudo net add bridge br1 ip address 10.10.10.11/24 && sudo net pending && sudo net commit" && \
 netlab connect h2 "sudo net add bridge br1 ports swp1-2 && sudo net add bridge br1 ip address 10.10.20.11/24 && sudo net pending && sudo net commit" && \
@@ -959,257 +812,139 @@ ANSIBLE_STDOUT_CALLBACK=dense netlab initial
 
 ########## Primary Data Center ###########################################################################################################
 ### Primary Spine switch ps1 configuration
-netlab connect ps1 "sudo net add interface swp1 ipv6 nd ra-interval 5 && \
-sudo net del interface swp1 ipv6 nd suppress-ra && \
-sudo net add interface swp2 ipv6 nd ra-interval 5 && \
-sudo net del interface swp2 ipv6 nd suppress-ra && \
-sudo net add interface swp3 ipv6 nd ra-interval 5 && \
-sudo net del interface swp3 ipv6 nd suppress-ra && \
-sudo net add loopback lo ip address 10.254.1.1/32 && \
-sudo net add bgp autonomous-system 65001 && \
-sudo net add bgp router-id 10.254.1.1 && \
-sudo net add bgp bestpath as-path multipath-relax && \
-sudo net add bgp bestpath compare-routerid && \
-sudo net add bgp neighbor fabric peer-group && \
-sudo net add bgp neighbor fabric remote-as external && \
-sudo net add bgp neighbor fabric description Internal Fabric Network && \
-sudo net add bgp neighbor fabric capability extended-nexthop && \
-sudo net add bgp neighbor swp1 interface peer-group fabric && \
-sudo net add bgp neighbor swp2 interface peer-group fabric && \
-sudo net add bgp neighbor swp3 interface peer-group fabric && \
-sudo net add bgp ipv4 unicast network 10.254.1.1/32 && \
-sudo net add bgp ipv6 unicast neighbor fabric activate && \
-sudo net add bgp l2vpn evpn neighbor fabric activate && \
-sudo net add bgp l2vpn evpn advertise-all-vni && \
-sudo net commit"
+netlab connect ps1 "sudo net add interface swp1 ipv6 nd ra-interval 5 && sudo net del interface swp1 ipv6 nd suppress-ra && \
+sudo net add interface swp2 ipv6 nd ra-interval 5 && sudo net del interface swp2 ipv6 nd suppress-ra && \
+sudo net add interface swp3 ipv6 nd ra-interval 5 && sudo net del interface swp3 ipv6 nd suppress-ra && \
+sudo net add loopback lo ip address 10.254.1.1/32 && sudo net add bgp autonomous-system 65001 && \
+sudo net add bgp router-id 10.254.1.1 && sudo net add bgp bestpath as-path multipath-relax && \
+sudo net add bgp bestpath compare-routerid && sudo net add bgp neighbor fabric peer-group && \
+sudo net add bgp neighbor fabric remote-as external && sudo net add bgp neighbor fabric description Internal Fabric Network && \
+sudo net add bgp neighbor fabric capability extended-nexthop && sudo net add bgp neighbor swp1 interface peer-group fabric && \
+sudo net add bgp neighbor swp2 interface peer-group fabric && sudo net add bgp neighbor swp3 interface peer-group fabric && \
+sudo net add bgp ipv4 unicast network 10.254.1.1/32 && sudo net add bgp ipv6 unicast neighbor fabric activate && \
+sudo net add bgp l2vpn evpn neighbor fabric activate && sudo net add bgp l2vpn evpn advertise-all-vni && sudo net commit"
 
 ### Primary Spine switch ps2 configuration
-netlab connect ps2 "sudo net add interface swp1 ipv6 nd ra-interval 5 && \
-sudo net del interface swp1 ipv6 nd suppress-ra && \
-sudo net add interface swp2 ipv6 nd ra-interval 5 && \
-sudo net del interface swp2 ipv6 nd suppress-ra && \
-sudo net add interface swp3 ipv6 nd ra-interval 5 && \
-sudo net del interface swp3 ipv6 nd suppress-ra && \
-sudo net add loopback lo ip address 10.254.1.2/32 && \
-sudo net add bgp autonomous-system 65001 && \
-sudo net add bgp router-id 10.254.1.2 && \
-sudo net add bgp bestpath as-path multipath-relax && \
-sudo net add bgp bestpath compare-routerid && \
-sudo net add bgp neighbor fabric peer-group && \
-sudo net add bgp neighbor fabric remote-as external && \
-sudo net add bgp neighbor fabric description Internal Fabric Network && \
-sudo net add bgp neighbor fabric capability extended-nexthop && \
-sudo net add bgp neighbor swp1 interface peer-group fabric && \
-sudo net add bgp neighbor swp2 interface peer-group fabric && \
-sudo net add bgp neighbor swp3 interface peer-group fabric && \
-sudo net add bgp ipv4 unicast network 10.254.1.2/32 && \
-sudo net add bgp ipv6 unicast neighbor fabric activate && \
-sudo net add bgp l2vpn evpn neighbor fabric activate && \
-sudo net add bgp l2vpn evpn advertise-all-vni && \
-sudo net commit"
+netlab connect ps2 "sudo net add interface swp1 ipv6 nd ra-interval 5 && sudo net del interface swp1 ipv6 nd suppress-ra && \
+sudo net add interface swp2 ipv6 nd ra-interval 5 && sudo net del interface swp2 ipv6 nd suppress-ra && \
+sudo net add interface swp3 ipv6 nd ra-interval 5 && sudo net del interface swp3 ipv6 nd suppress-ra && \
+sudo net add loopback lo ip address 10.254.1.2/32 && sudo net add bgp autonomous-system 65001 && \
+sudo net add bgp router-id 10.254.1.2 && sudo net add bgp bestpath as-path multipath-relax && \
+sudo net add bgp bestpath compare-routerid && sudo net add bgp neighbor fabric peer-group && \
+sudo net add bgp neighbor fabric remote-as external && sudo net add bgp neighbor fabric description Internal Fabric Network && \
+sudo net add bgp neighbor fabric capability extended-nexthop && sudo net add bgp neighbor swp1 interface peer-group fabric && \
+sudo net add bgp neighbor swp2 interface peer-group fabric && sudo net add bgp neighbor swp3 interface peer-group fabric && \
+sudo net add bgp ipv4 unicast network 10.254.1.2/32 && sudo net add bgp ipv6 unicast neighbor fabric activate && \
+sudo net add bgp l2vpn evpn neighbor fabric activate && sudo net add bgp l2vpn evpn advertise-all-vni && sudo net commit"
 
 ### Primary Leaf switch pl1 configuration
-netlab connect pl1 "sudo net add interface swp1 ipv6 nd ra-interval 5 && \
-sudo net del interface swp1 ipv6 nd suppress-ra && \
-sudo net add interface swp2 ipv6 nd ra-interval 5 && \
-sudo net del interface swp2 ipv6 nd suppress-ra && \
-sudo net add loopback lo ip address 10.254.1.11/32 && \
-sudo net add interface swp3 bridge access 10 && \
-sudo net add bgp autonomous-system 65011 && \
-sudo net add bgp router-id 10.254.1.11 && \
-sudo net add bgp bestpath as-path multipath-relax && \
-sudo net add bgp bestpath compare-routerid && \
-sudo net add bgp neighbor fabric peer-group && \
-sudo net add bgp neighbor fabric remote-as external && \
-sudo net add bgp neighbor fabric description Internal Fabric Network && \
-sudo net add bgp neighbor fabric capability extended-nexthop && \
-sudo net add bgp neighbor swp1 interface peer-group fabric && \
-sudo net add bgp neighbor swp2 interface peer-group fabric && \
-sudo net add bgp ipv4 unicast network 10.254.1.11/32 && \
-sudo net add bgp ipv6 unicast neighbor fabric activate && \
-sudo net add bgp l2vpn evpn neighbor fabric activate && \
-sudo net add bgp l2vpn evpn advertise-all-vni && \
-sudo net add vxlan vni-10 vxlan id 10 && \
-sudo net add vxlan vni-10 vxlan local-tunnelip 10.254.1.11 && \
-sudo net add vxlan vni-10 bridge access 10 && \
-sudo net commit"
+netlab connect pl1 "sudo net add interface swp1 ipv6 nd ra-interval 5 && sudo net del interface swp1 ipv6 nd suppress-ra && \
+sudo net add interface swp2 ipv6 nd ra-interval 5 && sudo net del interface swp2 ipv6 nd suppress-ra && \
+sudo net add loopback lo ip address 10.254.1.11/32 && sudo net add interface swp3 bridge access 10 && \
+sudo net add bgp autonomous-system 65011 && sudo net add bgp router-id 10.254.1.11 && \
+sudo net add bgp bestpath as-path multipath-relax && sudo net add bgp bestpath compare-routerid && \
+sudo net add bgp neighbor fabric peer-group && sudo net add bgp neighbor fabric remote-as external && \
+sudo net add bgp neighbor fabric description Internal Fabric Network && sudo net add bgp neighbor fabric capability extended-nexthop && \
+sudo net add bgp neighbor swp1 interface peer-group fabric && sudo net add bgp neighbor swp2 interface peer-group fabric && \
+sudo net add bgp ipv4 unicast network 10.254.1.11/32 && sudo net add bgp ipv6 unicast neighbor fabric activate && \
+sudo net add bgp l2vpn evpn neighbor fabric activate && sudo net add bgp l2vpn evpn advertise-all-vni && \
+sudo net add vxlan vni-10 vxlan id 10 && sudo net add vxlan vni-10 vxlan local-tunnelip 10.254.1.11 && \
+sudo net add vxlan vni-10 bridge access 10 && sudo net commit"
 
 ### Primary Leaf switch pl2 configuration
-netlab connect pl2 "sudo net add interface swp1 ipv6 nd ra-interval 5 && \
-sudo net del interface swp1 ipv6 nd suppress-ra && \
-sudo net add interface swp2 ipv6 nd ra-interval 5 && \
-sudo net del interface swp2 ipv6 nd suppress-ra && \
-sudo net add loopback lo ip address 10.254.1.12/32 && \
-sudo net add interface swp3 bridge access 10 && \
-sudo net add bgp autonomous-system 65012 && \
-sudo net add bgp router-id 10.254.1.12 && \
-sudo net add bgp bestpath as-path multipath-relax && \
-sudo net add bgp bestpath compare-routerid && \
-sudo net add bgp neighbor fabric peer-group && \
-sudo net add bgp neighbor fabric remote-as external && \
-sudo net add bgp neighbor fabric description Internal Fabric Network && \
-sudo net add bgp neighbor fabric capability extended-nexthop && \
-sudo net add bgp neighbor swp1 interface peer-group fabric && \
-sudo net add bgp neighbor swp2 interface peer-group fabric && \
-sudo net add bgp ipv4 unicast network 10.254.1.12/32 && \
-sudo net add bgp ipv6 unicast neighbor fabric activate && \
-sudo net add bgp l2vpn evpn neighbor fabric activate && \
-sudo net add bgp l2vpn evpn advertise-all-vni && \
-sudo net add vxlan vni-10 vxlan id 10 && \
-sudo net add vxlan vni-10 vxlan local-tunnelip 10.254.1.12 && \
-sudo net add vxlan vni-10 bridge access 10 && \
-sudo net commit"
+netlab connect pl2 "sudo net add interface swp1 ipv6 nd ra-interval 5 && sudo net del interface swp1 ipv6 nd suppress-ra && \
+sudo net add interface swp2 ipv6 nd ra-interval 5 && sudo net del interface swp2 ipv6 nd suppress-ra && \
+sudo net add loopback lo ip address 10.254.1.12/32 && sudo net add interface swp3 bridge access 10 && \
+sudo net add bgp autonomous-system 65012 && sudo net add bgp router-id 10.254.1.12 && \
+sudo net add bgp bestpath as-path multipath-relax && sudo net add bgp bestpath compare-routerid && \
+sudo net add bgp neighbor fabric peer-group && sudo net add bgp neighbor fabric remote-as external && \
+sudo net add bgp neighbor fabric description Internal Fabric Network && sudo net add bgp neighbor fabric capability extended-nexthop && \
+sudo net add bgp neighbor swp1 interface peer-group fabric && sudo net add bgp neighbor swp2 interface peer-group fabric && \
+sudo net add bgp ipv4 unicast network 10.254.1.12/32 && sudo net add bgp ipv6 unicast neighbor fabric activate && \
+sudo net add bgp l2vpn evpn neighbor fabric activate && sudo net add bgp l2vpn evpn advertise-all-vni && \
+sudo net add vxlan vni-10 vxlan id 10 && sudo net add vxlan vni-10 vxlan local-tunnelip 10.254.1.12 && \
+sudo net add vxlan vni-10 bridge access 10 && sudo net commit"
 
 ### Primary DCI switch pd1 configuration
-netlab connect pd1 "sudo net add interface swp1 ipv6 nd ra-interval 5 && \
-sudo net del interface swp1 ipv6 nd suppress-ra && \
-sudo net add interface swp2 ipv6 nd ra-interval 5 && \
-sudo net del interface swp2 ipv6 nd suppress-ra && \
-sudo net add interface swp3 ipv6 nd ra-interval 5 && \
-sudo net add loopback lo ip address 10.254.1.13/32 && \
-sudo net add bgp autonomous-system 65013 && \
-sudo net add bgp router-id 10.254.1.13 && \
-sudo net add bgp bestpath as-path multipath-relax && \
-sudo net add bgp bestpath compare-routerid && \
-sudo net add bgp neighbor fabric peer-group && \
-sudo net add bgp neighbor fabric remote-as external && \
-sudo net add bgp neighbor fabric description Internal Fabric Network && \
-sudo net add bgp neighbor fabric capability extended-nexthop && \
-sudo net add bgp neighbor swp1 interface peer-group fabric && \
-sudo net add bgp neighbor swp2 interface peer-group fabric && \
-sudo net add bgp neighbor swp3 interface peer-group fabric && \
-sudo net add bgp ipv4 unicast network 10.254.1.13/32 && \
-sudo net add bgp ipv6 unicast neighbor fabric activate && \
-sudo net add bgp l2vpn evpn neighbor fabric activate && \
-sudo net add bgp l2vpn evpn advertise-all-vni && \
-sudo net commit"
+netlab connect pd1 "sudo net add interface swp1 ipv6 nd ra-interval 5 && sudo net del interface swp1 ipv6 nd suppress-ra && \
+sudo net add interface swp2 ipv6 nd ra-interval 5 && sudo net del interface swp2 ipv6 nd suppress-ra && \
+sudo net add interface swp3 ipv6 nd ra-interval 5 && sudo net add loopback lo ip address 10.254.1.13/32 && \
+sudo net add bgp autonomous-system 65013 && sudo net add bgp router-id 10.254.1.13 && \
+sudo net add bgp bestpath as-path multipath-relax && sudo net add bgp bestpath compare-routerid && \
+sudo net add bgp neighbor fabric peer-group && sudo net add bgp neighbor fabric remote-as external && \
+sudo net add bgp neighbor fabric description Internal Fabric Network && sudo net add bgp neighbor fabric capability extended-nexthop && \
+sudo net add bgp neighbor swp1 interface peer-group fabric && sudo net add bgp neighbor swp2 interface peer-group fabric && \
+sudo net add bgp neighbor swp3 interface peer-group fabric && sudo net add bgp ipv4 unicast network 10.254.1.13/32 && \
+sudo net add bgp ipv6 unicast neighbor fabric activate && sudo net add bgp l2vpn evpn neighbor fabric activate && \
+sudo net add bgp l2vpn evpn advertise-all-vni && sudo net commit"
 
 ########## Secondary Data Center ###########################################################################################################
 ### Secondary Spine switch ss1 configuration
-netlab connect ss1 "sudo net add interface swp1 ipv6 nd ra-interval 5 && \
-sudo net del interface swp1 ipv6 nd suppress-ra && \
-sudo net add interface swp2 ipv6 nd ra-interval 5 && \
-sudo net del interface swp2 ipv6 nd suppress-ra && \
-sudo net add interface swp3 ipv6 nd ra-interval 5 && \
-sudo net del interface swp3 ipv6 nd suppress-ra && \
-sudo net add loopback lo ip address 10.254.2.1/32 && \
-sudo net add bgp autonomous-system 65002 && \
-sudo net add bgp router-id 10.254.2.1 && \
-sudo net add bgp bestpath as-path multipath-relax && \
-sudo net add bgp bestpath compare-routerid && \
-sudo net add bgp neighbor fabric peer-group && \
-sudo net add bgp neighbor fabric remote-as external && \
-sudo net add bgp neighbor fabric description Internal Fabric Network && \
-sudo net add bgp neighbor fabric capability extended-nexthop && \
-sudo net add bgp neighbor swp1 interface peer-group fabric && \
-sudo net add bgp neighbor swp2 interface peer-group fabric && \
-sudo net add bgp neighbor swp3 interface peer-group fabric && \
-sudo net add bgp ipv4 unicast network 10.254.2.1/32 && \
-sudo net add bgp ipv6 unicast neighbor fabric activate && \
-sudo net add bgp l2vpn evpn neighbor fabric activate && \
-sudo net add bgp l2vpn evpn advertise-all-vni && \
-sudo net commit"
+netlab connect ss1 "sudo net add interface swp1 ipv6 nd ra-interval 5 && sudo net del interface swp1 ipv6 nd suppress-ra && \
+sudo net add interface swp2 ipv6 nd ra-interval 5 && sudo net del interface swp2 ipv6 nd suppress-ra && \
+sudo net add interface swp3 ipv6 nd ra-interval 5 && sudo net del interface swp3 ipv6 nd suppress-ra && \
+sudo net add loopback lo ip address 10.254.2.1/32 && sudo net add bgp autonomous-system 65002 && \
+sudo net add bgp router-id 10.254.2.1 && sudo net add bgp bestpath as-path multipath-relax && \
+sudo net add bgp bestpath compare-routerid && sudo net add bgp neighbor fabric peer-group && \
+sudo net add bgp neighbor fabric remote-as external && sudo net add bgp neighbor fabric description Internal Fabric Network && \
+sudo net add bgp neighbor fabric capability extended-nexthop && sudo net add bgp neighbor swp1 interface peer-group fabric && \
+sudo net add bgp neighbor swp2 interface peer-group fabric && sudo net add bgp neighbor swp3 interface peer-group fabric && \
+sudo net add bgp ipv4 unicast network 10.254.2.1/32 && sudo net add bgp ipv6 unicast neighbor fabric activate && \
+sudo net add bgp l2vpn evpn neighbor fabric activate && sudo net add bgp l2vpn evpn advertise-all-vni && sudo net commit"
 
 ### Secondary Spine switch ss2 configuration
-netlab connect ss2 "sudo net add interface swp1 ipv6 nd ra-interval 5 && \
-sudo net del interface swp1 ipv6 nd suppress-ra && \
-sudo net add interface swp2 ipv6 nd ra-interval 5 && \
-sudo net del interface swp2 ipv6 nd suppress-ra && \
-sudo net add interface swp3 ipv6 nd ra-interval 5 && \
-sudo net del interface swp3 ipv6 nd suppress-ra && \
-sudo net add loopback lo ip address 10.254.2.2/32 && \
-sudo net add bgp autonomous-system 65002 && \
-sudo net add bgp router-id 10.254.2.2 && \
-sudo net add bgp bestpath as-path multipath-relax && \
-sudo net add bgp bestpath compare-routerid && \
-sudo net add bgp neighbor fabric peer-group && \
-sudo net add bgp neighbor fabric remote-as external && \
-sudo net add bgp neighbor fabric description Internal Fabric Network && \
-sudo net add bgp neighbor fabric capability extended-nexthop && \
-sudo net add bgp neighbor swp1 interface peer-group fabric && \
-sudo net add bgp neighbor swp2 interface peer-group fabric && \
-sudo net add bgp neighbor swp3 interface peer-group fabric && \
-sudo net add bgp ipv4 unicast network 10.254.2.2/32 && \
-sudo net add bgp ipv6 unicast neighbor fabric activate && \
-sudo net add bgp l2vpn evpn neighbor fabric activate && \
-sudo net add bgp l2vpn evpn advertise-all-vni && \
-sudo net commit"
+netlab connect ss2 "sudo net add interface swp1 ipv6 nd ra-interval 5 && sudo net del interface swp1 ipv6 nd suppress-ra && \
+sudo net add interface swp2 ipv6 nd ra-interval 5 && sudo net del interface swp2 ipv6 nd suppress-ra && \
+sudo net add interface swp3 ipv6 nd ra-interval 5 && sudo net del interface swp3 ipv6 nd suppress-ra && \
+sudo net add loopback lo ip address 10.254.2.2/32 && sudo net add bgp autonomous-system 65002 && \
+sudo net add bgp router-id 10.254.2.2 && sudo net add bgp bestpath as-path multipath-relax && \
+sudo net add bgp bestpath compare-routerid && sudo net add bgp neighbor fabric peer-group && \
+sudo net add bgp neighbor fabric remote-as external && sudo net add bgp neighbor fabric description Internal Fabric Network && \
+sudo net add bgp neighbor fabric capability extended-nexthop && sudo net add bgp neighbor swp1 interface peer-group fabric && \
+sudo net add bgp neighbor swp2 interface peer-group fabric && sudo net add bgp neighbor swp3 interface peer-group fabric && \
+sudo net add bgp ipv4 unicast network 10.254.2.2/32 && sudo net add bgp ipv6 unicast neighbor fabric activate && \
+sudo net add bgp l2vpn evpn neighbor fabric activate && sudo net add bgp l2vpn evpn advertise-all-vni && sudo net commit"
 
 ### Secondary Leaf switch sl1 configuration
-netlab connect sl1 "sudo net add interface swp1 ipv6 nd ra-interval 5 && \
-sudo net del interface swp1 ipv6 nd suppress-ra && \
-sudo net add interface swp2 ipv6 nd ra-interval 5 && \
-sudo net del interface swp2 ipv6 nd suppress-ra && \
-sudo net add loopback lo ip address 10.254.2.11/32 && \
-sudo net add interface swp3 bridge access 10 && \
-sudo net add bgp autonomous-system 65021 && \
-sudo net add bgp router-id 10.254.2.11 && \
-sudo net add bgp bestpath as-path multipath-relax && \
-sudo net add bgp bestpath compare-routerid && \
-sudo net add bgp neighbor fabric peer-group && \
-sudo net add bgp neighbor fabric remote-as external && \
-sudo net add bgp neighbor fabric description Internal Fabric Network && \
-sudo net add bgp neighbor fabric capability extended-nexthop && \
-sudo net add bgp neighbor swp1 interface peer-group fabric && \
-sudo net add bgp neighbor swp2 interface peer-group fabric && \
-sudo net add bgp ipv4 unicast network 10.254.2.11/32 && \
-sudo net add bgp ipv6 unicast neighbor fabric activate && \
-sudo net add bgp l2vpn evpn neighbor fabric activate && \
-sudo net add bgp l2vpn evpn advertise-all-vni && \
-sudo net add vxlan vni-10 vxlan id 10 && \
-sudo net add vxlan vni-10 vxlan local-tunnelip 10.254.2.11 && \
-sudo net add vxlan vni-10 bridge access 10 && \
-sudo net commit"
+netlab connect sl1 "sudo net add interface swp1 ipv6 nd ra-interval 5 && sudo net del interface swp1 ipv6 nd suppress-ra && \
+sudo net add interface swp2 ipv6 nd ra-interval 5 && sudo net del interface swp2 ipv6 nd suppress-ra && \
+sudo net add loopback lo ip address 10.254.2.11/32 && sudo net add interface swp3 bridge access 10 && \
+sudo net add bgp autonomous-system 65021 && sudo net add bgp router-id 10.254.2.11 && \
+sudo net add bgp bestpath as-path multipath-relax && sudo net add bgp bestpath compare-routerid && \
+sudo net add bgp neighbor fabric peer-group && sudo net add bgp neighbor fabric remote-as external && \
+sudo net add bgp neighbor fabric description Internal Fabric Network && sudo net add bgp neighbor fabric capability extended-nexthop && \
+sudo net add bgp neighbor swp1 interface peer-group fabric && sudo net add bgp neighbor swp2 interface peer-group fabric && \
+sudo net add bgp ipv4 unicast network 10.254.2.11/32 && sudo net add bgp ipv6 unicast neighbor fabric activate && \
+sudo net add bgp l2vpn evpn neighbor fabric activate && sudo net add bgp l2vpn evpn advertise-all-vni && \
+sudo net add vxlan vni-10 vxlan id 10 && sudo net add vxlan vni-10 vxlan local-tunnelip 10.254.2.11 && \
+sudo net add vxlan vni-10 bridge access 10 && sudo net commit"
 
 ### Secondary Leaf switch sl2 configuration
-netlab connect sl2 "sudo net add interface swp1 ipv6 nd ra-interval 5 && \
-sudo net del interface swp1 ipv6 nd suppress-ra && \
-sudo net add interface swp2 ipv6 nd ra-interval 5 && \
-sudo net del interface swp2 ipv6 nd suppress-ra && \
-sudo net add loopback lo ip address 10.254.2.12/32 && \
-sudo net add interface swp3 bridge access 10 && \
-sudo net add bgp autonomous-system 65022 && \
-sudo net add bgp router-id 10.254.2.12 && \
-sudo net add bgp bestpath as-path multipath-relax && \
-sudo net add bgp bestpath compare-routerid && \
-sudo net add bgp neighbor fabric peer-group && \
-sudo net add bgp neighbor fabric remote-as external && \
-sudo net add bgp neighbor fabric description Internal Fabric Network && \
-sudo net add bgp neighbor fabric capability extended-nexthop && \
-sudo net add bgp neighbor swp1 interface peer-group fabric && \
-sudo net add bgp neighbor swp2 interface peer-group fabric && \
-sudo net add bgp ipv4 unicast network 10.254.2.12/32 && \
-sudo net add bgp ipv6 unicast neighbor fabric activate && \
-sudo net add bgp l2vpn evpn neighbor fabric activate && \
-sudo net add bgp l2vpn evpn advertise-all-vni && \
-sudo net add vxlan vni-10 vxlan id 10 && \
-sudo net add vxlan vni-10 vxlan local-tunnelip 10.254.2.12 && \
-sudo net add vxlan vni-10 bridge access 10 && \
-sudo net commit"
+netlab connect sl2 "sudo net add interface swp1 ipv6 nd ra-interval 5 && sudo net del interface swp1 ipv6 nd suppress-ra && \
+sudo net add interface swp2 ipv6 nd ra-interval 5 && sudo net del interface swp2 ipv6 nd suppress-ra && \
+sudo net add loopback lo ip address 10.254.2.12/32 && sudo net add interface swp3 bridge access 10 && \
+sudo net add bgp autonomous-system 65022 && sudo net add bgp router-id 10.254.2.12 && \
+sudo net add bgp bestpath as-path multipath-relax && sudo net add bgp bestpath compare-routerid && \
+sudo net add bgp neighbor fabric peer-group && sudo net add bgp neighbor fabric remote-as external && \
+sudo net add bgp neighbor fabric description Internal Fabric Network && sudo net add bgp neighbor fabric capability extended-nexthop && \
+sudo net add bgp neighbor swp1 interface peer-group fabric && sudo net add bgp neighbor swp2 interface peer-group fabric && \
+sudo net add bgp ipv4 unicast network 10.254.2.12/32 && sudo net add bgp ipv6 unicast neighbor fabric activate && \
+sudo net add bgp l2vpn evpn neighbor fabric activate && sudo net add bgp l2vpn evpn advertise-all-vni && \
+sudo net add vxlan vni-10 vxlan id 10 && sudo net add vxlan vni-10 vxlan local-tunnelip 10.254.2.12 && \
+sudo net add vxlan vni-10 bridge access 10 && sudo net commit"
 
 ### Secondary DCI switch sd1 configuration
-netlab connect sd1 "sudo net add interface swp1 ipv6 nd ra-interval 5 && \
-sudo net del interface swp1 ipv6 nd suppress-ra && \
-sudo net add interface swp2 ipv6 nd ra-interval 5 && \
-sudo net del interface swp2 ipv6 nd suppress-ra && \
-sudo net add interface swp3 ipv6 nd ra-interval 5 && \
-sudo net add loopback lo ip address 10.254.2.13/32 && \
-sudo net add bgp autonomous-system 65023 && \
-sudo net add bgp router-id 10.254.2.13 && \
-sudo net add bgp bestpath as-path multipath-relax && \
-sudo net add bgp bestpath compare-routerid && \
-sudo net add bgp neighbor fabric peer-group && \
-sudo net add bgp neighbor fabric remote-as external && \
-sudo net add bgp neighbor fabric description Internal Fabric Network && \
-sudo net add bgp neighbor fabric capability extended-nexthop && \
-sudo net add bgp neighbor swp1 interface peer-group fabric && \
-sudo net add bgp neighbor swp2 interface peer-group fabric && \
-sudo net add bgp neighbor swp3 interface peer-group fabric && \
-sudo net add bgp ipv4 unicast network 10.254.2.13/32 && \
-sudo net add bgp ipv6 unicast neighbor fabric activate && \
-sudo net add bgp l2vpn evpn neighbor fabric activate && \
-sudo net add bgp l2vpn evpn advertise-all-vni && \
-sudo net commit"
+netlab connect sd1 "sudo net add interface swp1 ipv6 nd ra-interval 5 && sudo net del interface swp1 ipv6 nd suppress-ra && \
+sudo net add interface swp2 ipv6 nd ra-interval 5 && sudo net del interface swp2 ipv6 nd suppress-ra && \
+sudo net add interface swp3 ipv6 nd ra-interval 5 && sudo net add loopback lo ip address 10.254.2.13/32 && \
+sudo net add bgp autonomous-system 65023 && sudo net add bgp router-id 10.254.2.13 && \
+sudo net add bgp bestpath as-path multipath-relax && sudo net add bgp bestpath compare-routerid && \
+sudo net add bgp neighbor fabric peer-group && sudo net add bgp neighbor fabric remote-as external && \
+sudo net add bgp neighbor fabric description Internal Fabric Network && sudo net add bgp neighbor fabric capability extended-nexthop && \
+sudo net add bgp neighbor swp1 interface peer-group fabric && sudo net add bgp neighbor swp2 interface peer-group fabric && \
+sudo net add bgp neighbor swp3 interface peer-group fabric && sudo net add bgp ipv4 unicast network 10.254.2.13/32 && \
+sudo net add bgp ipv6 unicast neighbor fabric activate && sudo net add bgp l2vpn evpn neighbor fabric activate && \
+sudo net add bgp l2vpn evpn advertise-all-vni && sudo net commit"
 
 netlab connect ph1 "sudo net add bridge br1 ports swp1 && sudo net add bridge br1 ip address 10.100.100.11/24 && sudo net pending && sudo net commit" && \
 netlab connect ph2 "sudo net add bridge br1 ports swp1 && sudo net add bridge br1 ip address 10.100.100.12/24 && sudo net pending && sudo net commit" && \
