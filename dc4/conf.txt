@@ -210,6 +210,7 @@ sudo net add bgp neighbor swp3 interface peer-group fabric && sudo net add bgp i
 sudo net add bgp ipv6 unicast neighbor fabric activate && sudo net add bgp l2vpn evpn neighbor fabric activate && \
 sudo net add bgp l2vpn evpn advertise-all-vni && sudo net commit"
 
+### Hosts configuration
 netlab connect ph1 "sudo net add bridge br1 ports swp1-2 && sudo net add bridge br1 ip address 10.10.10.11/24 && sudo net pending && sudo net commit" && \
 netlab connect ph2 "sudo net add bridge br1 ports swp1-2 && sudo net add bridge br1 ip address 10.10.20.11/24 && sudo net pending && sudo net commit" && \
 netlab connect ph3 "sudo net add bridge br1 ports swp1-2 && sudo net add bridge br1 ip address 10.10.30.11/24 && sudo net pending && sudo net commit" && \
@@ -421,6 +422,7 @@ sudo net add bgp neighbor swp3 interface peer-group fabric && sudo net add bgp i
 sudo net add bgp ipv6 unicast neighbor fabric activate && sudo net add bgp l2vpn evpn neighbor fabric activate && \
 sudo net add bgp l2vpn evpn advertise-all-vni && sudo net commit"
 
+### Hosts configuration
 netlab connect sh1 "sudo net add bridge br1 ports swp1-2 && sudo net add bridge br1 ip address 10.10.10.21/24 && sudo net pending && sudo net commit" && \
 netlab connect sh2 "sudo net add bridge br1 ports swp1-2 && sudo net add bridge br1 ip address 10.10.20.21/24 && sudo net pending && sudo net commit" && \
 netlab connect sh3 "sudo net add bridge br1 ports swp1-2 && sudo net add bridge br1 ip address 10.10.30.21/24 && sudo net pending && sudo net commit" && \
