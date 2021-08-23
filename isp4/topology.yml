@@ -189,13 +189,9 @@ nodes:
         ipv6: 2001:db8:cafe::/48    
 # Client routers
   p1:
-    device: iosv 
-  p2:
-    device: iosv  
-  q1:
     device: iosv
-  q2:
-    device: iosv 
+  p2:
+    device: iosv
 
 links:
 # Core layer links
@@ -256,8 +252,6 @@ links:
 - n12-e8
 - n11-p1
 - n12-p2
-- p1-q1
-- p2-q2
 
 # Stub links
 - n1
@@ -274,5 +268,3 @@ links:
 - n12
 - p1
 - p2
-- q1
-- q2
