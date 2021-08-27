@@ -176,7 +176,17 @@ nodes:
       p2p:
         unnumbered: true
       loopback:
-        ipv6: 2001:db8:cafe::/48    
+        ipv6: 2001:db8:cafe::/48
+  n13:
+    device: iosv
+    module: [ bgp ]
+    bgp:
+      as: 65201
+  n14:
+    device: iosv
+    module: [ bgp ]
+    bgp:
+      as: 65201
 # Client routers
   p1:
     device: iosv
@@ -265,6 +275,8 @@ links:
 - n10-e3
 - n11-e7
 - n12-e8
+- n13-e5
+- n14-e6
 - n11-p1
 - n12-p2
 - ps1-pl1
@@ -283,6 +295,11 @@ links:
 - pl2-ph2
 - sl1-sh1
 - sl2-sh2
+- n13:
+  n14:
+  z1:
+  type: lan
+  prefix: 192.168.111.0/24
 
 # Stub links
 - n1
@@ -297,5 +314,7 @@ links:
 - n10
 - n11
 - n12
+- n13
+- n14
 - p1
 - p2
