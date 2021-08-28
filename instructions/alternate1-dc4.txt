@@ -1,5 +1,5 @@
 netlab connect pd1 "sudo systemctl enable nvued && sudo systemctl start nvued && sudo systemctl enable nvue-startup.service && \
-sudo systemctl start nvue-startup.service && sudo nv set interface lo ip address 10.254.1.13/32 && sudo nv set interface swp3-4,swp1-2 && \
+sudo systemctl start nvue-startup.service && sudo nv set interface lo ip address 10.254.1.13/32 && sudo nv set interface swp3,swp1-2 && \
 sudo nv set vrf RED && sudo nv set vrf BLUE && \
 sudo nv set nve vxlan source address 10.254.1.13 && \
 sudo nv set nve vxlan arp-nd-suppress on && sudo nv set vrf RED evpn vni 4001 && sudo nv set vrf BLUE evpn vni 4002 && \
@@ -19,7 +19,7 @@ sudo nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
 sudo nv config apply --assume-yes && sudo nv config save"
 
 netlab connect pd2 "sudo systemctl enable nvued && sudo systemctl start nvued && sudo systemctl enable nvue-startup.service && \
-sudo systemctl start nvue-startup.service && sudo nv set interface lo ip address 10.254.1.14/32 && sudo nv set interface swp3-4,swp1-2 && \
+sudo systemctl start nvue-startup.service && sudo nv set interface lo ip address 10.254.1.14/32 && sudo nv set interface swp3,swp1-2 && \
 sudo nv set vrf RED && sudo nv set vrf BLUE && \
 sudo nv set nve vxlan source address 10.254.1.14 && \
 sudo nv set nve vxlan arp-nd-suppress on && sudo nv set vrf RED evpn vni 4001 && sudo nv set vrf BLUE evpn vni 4002 && \
@@ -39,7 +39,7 @@ sudo nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
 sudo nv config apply --assume-yes && sudo nv config save"
 
 netlab connect sd1 "sudo systemctl enable nvued && sudo systemctl start nvued && sudo systemctl enable nvue-startup.service && \
-sudo systemctl start nvue-startup.service && sudo nv set interface lo ip address 10.254.2.13/32 && sudo nv set interface swp3-4,swp1-2 && \
+sudo systemctl start nvue-startup.service && sudo nv set interface lo ip address 10.254.2.13/32 && sudo nv set interface swp3,swp1-2 && \
 sudo nv set vrf RED && sudo nv set vrf BLUE && \
 sudo nv set nve vxlan source address 10.254.2.13 && \
 sudo nv set nve vxlan arp-nd-suppress on && sudo nv set vrf RED evpn vni 4001 && sudo nv set vrf BLUE evpn vni 4002 && \
@@ -59,7 +59,7 @@ sudo nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
 sudo nv config apply --assume-yes && sudo nv config save"
 
 netlab connect sd2 "sudo systemctl enable nvued && sudo systemctl start nvued && sudo systemctl enable nvue-startup.service && \
-sudo systemctl start nvue-startup.service && sudo nv set interface lo ip address 10.254.2.14/32 && sudo nv set interface swp3-4,swp1-2 && \
+sudo systemctl start nvue-startup.service && sudo nv set interface lo ip address 10.254.2.14/32 && sudo nv set interface swp3,swp1-2 && \
 sudo nv set vrf RED && sudo nv set vrf BLUE && \
 sudo nv set nve vxlan source address 10.254.2.14 && \
 sudo nv set nve vxlan arp-nd-suppress on && sudo nv set vrf RED evpn vni 4001 && sudo nv set vrf BLUE evpn vni 4002 && \
