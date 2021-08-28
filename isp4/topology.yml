@@ -133,8 +133,18 @@ nodes:
       as: 65002
   n3:
     device: cumulus
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
   n4:
     device: cumulus
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
   n5:
     device: eos
   n6:
@@ -197,20 +207,60 @@ nodes:
 # Data Center switches
   ps1:
     device: cumulus
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48    
   ps2:
     device: cumulus
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48   
   pl1:
     device: cumulus
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48   
   pl2:
     device: cumulus
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48   
   ss1:
     device: cumulus
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48   
   ss2:
     device: cumulus
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48   
   sl1:
     device: cumulus
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48   
   sl2:
     device: cumulus
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48   
   ph1:
     device: cumulus 
   ph2:
