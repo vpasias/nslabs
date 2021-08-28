@@ -192,6 +192,8 @@ nodes:
     device: iosv
   p2:
     device: iosv
+  z1:
+    device: iosv    
 # Data Center switches
   ps1:
     device: cumulus
