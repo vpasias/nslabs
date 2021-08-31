@@ -1,41 +1,21 @@
 service routing protocols model multi-agent
 !
-vlan 100
-!
-vrf definition A
-!
 interface Ethernet1
-   no switchport
-   ip address 10.100.111.2/24
-!
-interface Ethernet2
    no switchport
    ip address 172.16.1.1/24
 !
+interface Ethernet2
+   no switchport
+   ip address 10.100.12.2/24
+!
 interface Loopback0
-   ip address 10.254.1.11/32
+   ip address 10.254.1.12/32
 !
 interface Loopback1
-   ip address 10.254.1.111/32
+   ip address 10.254.1.112/32
 !
-interface Vlan100
-   vrf forwarding A
-   ip address 192.168.100.11/24
-   ip virtual-router address 192.168.100.1
-!
-interface Vxlan1
-   vxlan source-interface Loopback1
-   vxlan udp-port 4789
-   vxlan vlan 100 vni 1100
-   vxlan vrf A vni 1000
-!
-ip virtual-router mac-address 00:00:00:00:01:00
-!
-ip routing
-ip routing vrf A
-!
-router bgp 65101
-   router-id 10.254.1.11
+router bgp 65102
+   router-id 10.254.1.12
    neighbor EVPN_SPINE peer-group
    neighbor EVPN_SPINE remote-as 65100
    neighbor EVPN_SPINE update-source Loopback1
@@ -46,29 +26,25 @@ router bgp 65101
    neighbor SPINE peer-group
    neighbor SPINE remote-as 65100
    neighbor SPINE allowas-in 1
-   neighbor SPINE maximum-routes 12000 
+   neighbor SPINE maximum-routes 12000
+   neighbor DCI peer-group
+   neighbor DCI remote-as 65202
+   neighbor DCI send-community extended
+   neighbor DCI maximum-routes 12000  
    neighbor 10.254.1.101 peer-group EVPN_SPINE
-   neighbor 10.100.11.1 peer-group SPINE
-   redistribute attached-host
-   !
-   vlan 100
-      rd 100:100
-      route-target both 100:100
-      redistribute learned
+   neighbor 10.100.12.1 peer-group SPINE
+   neighbor 172.16.1.2 peer-group DCI   
+   redistribute connected
    !
    address-family evpn
       neighbor EVPN_SPINE activate
+      neighbor DCI activate      
    !
    address-family ipv4
       neighbor SPINE active
       no neighbor EVPN_SPINE activate
-      network 10.254.1.11/32
-      network 10.254.1.111/32
-   !
-   vrf A
-      rd 100:100
-      route-target import evpn 100:100
-      route-target export evpn 100:100
-      redistribute connected
+      neighbor DCI activate      
+      network 10.254.1.12/32
+      network 10.254.1.112/32
    !
 !   
