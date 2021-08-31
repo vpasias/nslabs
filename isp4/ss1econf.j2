@@ -1,0 +1,42 @@
+service routing protocols model multi-agent
+!
+interface Ethernet1
+   switchport access vlan 100
+   no switchport
+!
+interface Ethernet2
+   no switchport
+   ip address 10.100.22.1/24
+!
+interface Loopback0
+   ip address 2.2.2.2/32
+!
+interface Loopback1
+   ip address 2.2.2.22/32
+!
+ip routing
+!
+router bgp 300
+   router-id 2.2.2.2 
+   neighbor EVPN_LEAF peer-group
+   neighbor EVPN_LEAF remote-as 300
+   neighbor EVPN_LEAF next-hop-unchanged
+   neighbor EVPN_LEAF update-source Loopback1
+   neighbor EVPN_LEAF ebgp-multihop 2
+   neighbor EVPN_LEAF send-community extended
+   neighbor EVPN_LEAF maximum-routes 12000 
+   neighbor LEAF peer-group
+   neighbor LEAF remote-as 300
+   neighbor LEAF maximum-routes 12000 
+   neighbor 10.100.22.11 peer-group LEAF
+   neighbor 22.22.22.222 peer-group EVPN_LEAF
+   redistribute connected
+   !
+   address-family evpn
+      neighbor EVPN_LEAF activate
+   !
+   address-family ipv4
+      neighbor LEAF activate
+      no neighbor EVPN_LEAF activate
+      network 2.2.2.2/32
+      network 2.2.2.22/32
