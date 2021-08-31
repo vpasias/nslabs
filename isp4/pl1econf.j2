@@ -22,7 +22,7 @@ interface Loopback1
 !
 interface Vlan100
    vrf forwarding A
-   ip address 192.168.100.254/24
+   ip address 192.168.100.11/24
    ip virtual-router address 192.168.100.1
 !
 interface Vxlan1
@@ -30,7 +30,7 @@ interface Vxlan1
    vxlan udp-port 4789
    vxlan vlan 100 vni 1100
    vxlan vrf A vni 1000
-   vxlan flood vtep 12.12.12.112 151.1.1.3
+   vxlan flood vtep 22.22.22.222
 !
 ip virtual-router mac-address 00:00:00:00:01:00
 !
