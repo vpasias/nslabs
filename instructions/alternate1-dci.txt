@@ -1,5 +1,6 @@
 #######################################################################################################################################
 ### DCI interconnection
+# https://netmindblog.com/2019/01/25/arista-dci-evpnvxlan/
 # Nodes: e2, e4, n3, n4, ps1, pl1, ph1, ss1, sl1, sh1
 # Change e2 and e4 configurations if not alrady modified
 
