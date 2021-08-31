@@ -1,1 +1,26 @@
+#######################################################################################################################################
+### DCI interconnection
+# Nodes: e2, e4, n3, n4, ps1, pl1, ph1, ss1, sl1, sh1
+# Change e2 and e4 configurations if not alrady modified
 
+netlab config e2econf.j2 -l e2 && netlab config e4econf.j2 -l e4
+
+for i in {e2,e4}; do netlab connect $i "wr mem"; done && for i in {e2,e4}; do netlab connect $i "reload now"; done
+
+netlab connect e2
+show bgp ipv4 unicast summary
+show bgp evpn summary
+show bgp evpn extcommunity rt 65100:234
+exit
+
+netlab config n3econf.j2 -l n3 && netlab config n4econf.j2 -l n4
+
+for i in {n3,n4}; do netlab connect $i "wr mem"; done && for i in {n3,n4}; do netlab connect $i "reload now"; done
+
+netlab config ps1econf.j2 -l ps1 && netlab config pl1econf.j2 -l pl1 && netlab config ss1econf.j2 -l ss1 && netlab config sl1econf.j2 -l sl1
+
+for i in {ps1,pl1}; do netlab connect $i "wr mem"; done && for i in {ps1,pl1}; do netlab connect $i "reload now"; done && \
+for i in {ss1,sl1}; do netlab connect $i "wr mem"; done && for i in {ss1,sl1}; do netlab connect $i "reload now";
+
+netlab connect ph1 "sudo net add bridge br1 ports swp1 && sudo net add bridge br1 ip address 100.1.1.11/24 && sudo net pending && sudo net commit" && \
+netlab connect sh1 "sudo net add bridge br1 ports swp1 && sudo net add bridge br1 ip address 100.1.1.21/24 && sudo net pending && sudo net commit"
