@@ -24,4 +24,4 @@ for i in {ps1,pl1}; do netlab connect $i "wr mem"; done && for i in {ps1,pl1}; d
 for i in {ss1,sl1}; do netlab connect $i "wr mem"; done && for i in {ss1,sl1}; do netlab connect $i "reload now";
 
 netlab connect ph1 "sudo net add bridge br1 ports swp1 && sudo net add bridge br1 ip address 192.168.100.5/24 && sudo net pending && sudo net commit" && \
-netlab connect sh1 "sudo net add bridge br1 ports swp1 && sudo net add bridge br1 ip address 192.168.200.5/24 && sudo net pending && sudo net commit"
+netlab connect sh1 "sudo net add bridge br1 ports swp1 && sudo net add bridge br1 ip address 192.168.100.6/24 && sudo net pending && sudo net commit"
