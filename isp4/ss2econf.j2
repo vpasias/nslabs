@@ -1,0 +1,59 @@
+service routing protocols model multi-agent
+!
+interface Ethernet1
+   no switchport
+   ip address 10.200.22.1/24
+!
+interface Ethernet2
+   no switchport
+   ip address 10.200.21.1/24
+!
+interface Loopback0
+   ip address 10.254.2.2/32
+!
+interface Loopback1
+   ip address 10.254.2.102/32
+!
+ip routing
+!
+router bgp 65200
+   router-id 10.254.2.1
+   neighbor EVPN_LEAF1 peer-group
+   neighbor EVPN_LEAF1 remote-as 65201
+   neighbor EVPN_LEAF1 next-hop-unchanged
+   neighbor EVPN_LEAF1 update-source Loopback1
+   neighbor EVPN_LEAF1 ebgp-multihop 2
+   neighbor EVPN_LEAF1 send-community extended
+   neighbor EVPN_LEAF1 maximum-routes 12000
+   neighbor EVPN_BORDER1 peer-group
+   neighbor EVPN_BORDER1 remote-as 65202
+   neighbor EVPN_BORDER1 next-hop-unchanged
+   neighbor EVPN_BORDER1 update-source Loopback1
+   neighbor EVPN_BORDER1 ebgp-multihop 2
+   neighbor EVPN_BORDER1 send-community extended
+   neighbor EVPN_BORDER1 maximum-routes 12000   
+   neighbor LEAF1 peer-group
+   neighbor LEAF1 remote-as 65201
+   neighbor LEAF1 maximum-routes 12000
+   neighbor BORDER1 peer-group
+   neighbor BORDER1 remote-as 65202
+   neighbor BORDER1 maximum-routes 12000    
+   neighbor 10.200.21.2 peer-group LEAF1
+   neighbor 10.254.2.111 peer-group EVPN_LEAF1
+   neighbor 10.200.22.2 peer-group BORDER1
+   neighbor 10.254.2.112 peer-group EVPN_BORDER1   
+   redistribute connected
+   !
+   address-family evpn
+      neighbor EVPN_LEAF1 activate
+      neighbor EVPN_BORDER1 activate      
+   !
+   address-family ipv4
+      neighbor LEAF1 activate
+      no neighbor EVPN_LEAF1 activate
+      neighbor BORDER1 activate
+      no neighbor EVPN_BORDER1 activate      
+      network 10.254.2.1/32
+      network 10.254.2.101/32
+   !
+!
