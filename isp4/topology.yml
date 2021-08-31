@@ -196,13 +196,17 @@ nodes:
     device: iosv    
 # Data Center devices
   ps1:
-    device: eos   
+    device: eos
+  ps2:
+    device: eos
   pl1:
-    device: eos  
+    device: eos
   ss1:
-    device: eos     
+    device: eos
+  ss2:
+    device: eos    
   sl1:
-    device: eos 
+    device: eos
   ph1:
     device: cumulus 
   sh1:
@@ -271,8 +275,12 @@ links:
 - n12-p2
 - ps1-n3
 - ps1-pl1
+- ps2-n3
+- ps2-pl1
 - ss1-n4
 - ss1-sl1
+- ss2-n4
+- ss2-sl1
 - pl1-ph1
 - sl1-sh1
 - n13:
