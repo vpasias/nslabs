@@ -132,19 +132,9 @@ nodes:
     bgp:
       as: 65002
   n3:
-    device: cumulus
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48
+    device: eos
   n4:
-    device: cumulus
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48
+    device: eos
   n5:
     device: eos
   n6:
@@ -204,71 +194,19 @@ nodes:
     device: iosv
   z1:
     device: iosv    
-# Data Center switches
+# Data Center devices
   ps1:
-    device: cumulus
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48    
-  ps2:
-    device: cumulus
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48   
+    device: eos   
   pl1:
-    device: cumulus
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48   
-  pl2:
-    device: cumulus
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48   
+    device: eos  
   ss1:
-    device: cumulus
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48   
-  ss2:
-    device: cumulus
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48   
+    device: eos     
   sl1:
-    device: cumulus
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48   
-  sl2:
-    device: cumulus
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48   
+    device: eos 
   ph1:
-    device: cumulus 
-  ph2:
     device: cumulus 
   sh1:
     device: cumulus 
-  sh2:
-    device: cumulus  
 
 links:
 # Core layer links
@@ -331,22 +269,12 @@ links:
 - n14-e6
 - n11-p1
 - n12-p2
-- ps1-pl1
-- ps1-pl2
-- ps2-pl1
-- ps2-pl2
 - ps1-n3
-- ps2-n3
-- ss1-sl1
-- ss1-sl2
-- ss2-sl1
-- ss2-sl2
+- ps1-pl1
 - ss1-n4
-- ss2-n4
+- ss1-sl1
 - pl1-ph1
-- pl2-ph2
 - sl1-sh1
-- sl2-sh2
 - n13:
   n14:
   z1:
