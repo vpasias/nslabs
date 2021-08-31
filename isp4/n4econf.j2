@@ -8,6 +8,10 @@ interface Ethernet2
    no switchport
    ip address 10.200.12.2/24
 !
+interface Ethernet3
+   no switchport
+   ip address 10.200.22.2/24
+!
 interface Loopback0
    ip address 10.254.2.12/32
 !
@@ -32,7 +36,9 @@ router bgp 65202
    neighbor DCI send-community extended
    neighbor DCI maximum-routes 12000  
    neighbor 10.254.2.101 peer-group EVPN_SPINE
+   neighbor 10.254.2.102 peer-group EVPN_SPINE   
    neighbor 10.200.12.1 peer-group SPINE
+   neighbor 10.200.22.1 peer-group SPINE   
    neighbor 172.16.1.1 peer-group DCI   
    redistribute connected
    !
