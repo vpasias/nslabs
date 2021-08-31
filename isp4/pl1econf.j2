@@ -6,7 +6,7 @@ vrf definition A
 !
 interface Ethernet1
    no switchport
-   ip address 10.100.11.11/24
+   ip address 10.100.11.2/24
 !
 interface Ethernet2
    switchport
@@ -15,10 +15,10 @@ interface Ethernet2
    switchport access vlan 100
 !
 interface Loopback0
-   ip address 11.11.11.11/32
+   ip address 10.254.1.11/32
 !
 interface Loopback1
-   ip address 11.11.11.111/32
+   ip address 10.254.1.111/32
 !
 interface Vlan100
    vrf forwarding A
@@ -30,27 +30,26 @@ interface Vxlan1
    vxlan udp-port 4789
    vxlan vlan 100 vni 1100
    vxlan vrf A vni 1000
-   vxlan flood vtep 22.22.22.222
 !
 ip virtual-router mac-address 00:00:00:00:01:00
 !
 ip routing
 ip routing vrf A
 !
-router bgp 200
-   router-id 11.11.11.11
+router bgp 65101
+   router-id 10.254.1.11
    neighbor EVPN_SPINE peer-group
-   neighbor EVPN_SPINE remote-as 100
+   neighbor EVPN_SPINE remote-as 65100
    neighbor EVPN_SPINE update-source Loopback1
    neighbor EVPN_SPINE allowas-in 1
    neighbor EVPN_SPINE ebgp-multihop 2
    neighbor EVPN_SPINE send-community extended
    neighbor EVPN_SPINE maximum-routes 12000 
    neighbor SPINE peer-group
-   neighbor SPINE remote-as 100
+   neighbor SPINE remote-as 65100
    neighbor SPINE allowas-in 1
    neighbor SPINE maximum-routes 12000 
-   neighbor 1.1.1.11 peer-group EVPN_SPINE
+   neighbor 10.254.1.101 peer-group EVPN_SPINE
    neighbor 10.100.11.1 peer-group SPINE
    redistribute attached-host
    !
@@ -65,8 +64,8 @@ router bgp 200
    address-family ipv4
       neighbor SPINE active
       no neighbor EVPN_SPINE activate
-      network 11.11.11.11/32
-      network 11.11.11.111/32
+      network 10.254.1.11/32
+      network 10.254.1.111/32
    !
    vrf A
       rd 100:100
