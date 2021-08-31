@@ -4,12 +4,15 @@ service routing protocols model multi-agent
 vlan 22
    name CUST234
 !
+vlan 44
+   name CUST567
+!
 interface Ethernet3
    switchport
 !
 interface Ethernet3
-   switchport trunk allowed vlan 22
-   switchport mode trunk
+   switchport access vlan 44
+   switchport mode access
 !
 interface Ethernet4
    switchport
@@ -37,6 +40,11 @@ router bgp 65100
    vlan 22
       rd 10.0.0.12:234
       route-target both 65100:234
+      redistribute learned
+   !
+   vlan 44
+      rd 10.0.0.12:567
+      route-target both 65100:567
       redistribute learned
    !
 !
