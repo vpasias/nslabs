@@ -2,11 +2,11 @@ service routing protocols model multi-agent
 !
 interface Ethernet1
    no switchport
-   ip address 10.100.22.1/24
+   ip address 10.200.12.1/24
 !
 interface Ethernet2
    no switchport
-   ip address 10.100.21.1/24
+   ip address 10.200.11.1/24
 !
 interface Loopback0
    ip address 10.254.2.1/32
@@ -38,9 +38,9 @@ router bgp 65200
    neighbor BORDER1 peer-group
    neighbor BORDER1 remote-as 65202
    neighbor BORDER1 maximum-routes 12000    
-   neighbor 10.100.21.2 peer-group LEAF1
+   neighbor 10.200.11.2 peer-group LEAF1
    neighbor 10.254.2.111 peer-group EVPN_LEAF1
-   neighbor 10.100.22.2 peer-group BORDER1
+   neighbor 10.200.12.2 peer-group BORDER1
    neighbor 10.254.2.112 peer-group EVPN_BORDER1   
    redistribute connected
    !
