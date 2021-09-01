@@ -570,7 +570,8 @@ show bgp evpn summary
 show bgp evpn extcommunity rt 65100:234
 exit
 
-netlab config n15econf.j2 -l n15 && netlab config n16econf.j2 -l n16 && netlab config z1econf.j2 -l z1
+# Change configuration files accordingly - change IP addresses
+netlab config n15econf.j2 -l n15 && netlab config n16econf.j2 -l n16
 
 #######################################################################################################################################
 ### Delete all
