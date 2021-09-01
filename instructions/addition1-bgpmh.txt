@@ -1,5 +1,5 @@
 #######################################################################################################################################
 ### BGP Multihoming
 # https://sites.google.com/site/amitsciscozone/bgp/bgp-multihoming
-# Nodes: e5, e6, n13, n14, z1
+# Nodes: e5, e6, n15, n16, z1
 # Change e5 and e6 configurations if not alrady modified
