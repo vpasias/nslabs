@@ -7,7 +7,7 @@ ISP4
                        X      /      n5 - e5   a5 - a6   e6 - n6     \      X
              xh2 - xl2 - xs2              II   |  X |    II             ys2 - yl2 - yh2
                                 n1 - e1 - a1 - c1 - c3 - a3 - e3 - n2
-                                n9 --'  X II X |  X |  X II X '-- n10
+                             n9 -----/  X II X |  X |  X II X  \----- n10
               ph1 - pl1 - ps1 - n3 - e2 - a2 - c2 - c4 - a4 - e4 - n4 - ss1 - sl1 - sh1
                         \     /     /                          \      \     /
                           ps2      n7                           n8      ss2 
