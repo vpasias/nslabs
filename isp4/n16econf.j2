@@ -1,0 +1,12 @@
+router bgp 65201
+ neighbor 10.2.2.2 route-map APPEND_AS out
+!
+ip as-path access-list 10 permit ^$
+!
+route-map APPEND_AS permit 10
+ match as-path 10
+ set as-path prepend 65201 65201 65201
+!
+router ospf 1
+ default-information originate always metric 100
+!
