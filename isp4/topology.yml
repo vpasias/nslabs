@@ -195,7 +195,7 @@ nodes:
       as: 65201
     ospf:
       area: 1
-# Data Center/Enterprise network devices
+# Data Center/Campus/Enterprise network devices
   p1:
     device: iosv
   p2:
@@ -214,12 +214,36 @@ nodes:
   ss1:
     device: eos
   ss2:
-    device: eos    
+    device: eos
   sl1:
     device: eos
   ph1:
-    device: cumulus 
+    device: cumulus
   sh1:
+    device: cumulus
+  xs1:
+    device: cumulus
+  xs2:
+    device: cumulus
+  xl1:
+    device: cumulus
+  xl2:
+    device: cumulus
+  ys1:
+    device: cumulus
+  ys2:
+    device: cumulus
+  yl1:
+    device: cumulus
+  yl2:
+    device: cumulus    
+  xh1:
+    device: cumulus
+  xh2:
+    device: cumulus
+  yh1:
+    device: cumulus
+  yh2:
     device: cumulus 
 
 links:
@@ -300,6 +324,22 @@ links:
   z1:
   type: lan
   prefix: 192.168.111.0/24
+- xs1-n13
+- xs1-xl1
+- xs1-xl2
+- xs2-n13
+- xs2-xl1
+- xs2-xl2
+- ys1-n14
+- ys1-yl1
+- ys1-yl2
+- ys2-n14
+- ys2-yl1
+- ys2-yl2
+- xl1-xh1
+- xl2-xh2
+- yl1-yh1
+- yl2-yh2
 
 # Stub links
 - n1
