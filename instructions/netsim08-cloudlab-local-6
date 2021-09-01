@@ -560,6 +560,18 @@ vagrant destroy -f && vagrant destroy -f && cd
 # Nodes: e5, e6, n15, n16, z1
 # Change e5 and e6 configurations if not alrady modified
 
+netlab config e5econf.j2 -l e5 && netlab config e6econf.j2 -l e6
+
+for i in {e5,e6}; do netlab connect $i "wr mem"; done && for i in {e5,e6}; do netlab connect $i "reload now"; done
+
+netlab connect e5
+show bgp ipv4 unicast summary
+show bgp evpn summary
+show bgp evpn extcommunity rt 65100:234
+exit
+
+netlab config n15econf.j2 -l n15 && netlab config n16econf.j2 -l n16 && netlab config z1econf.j2 -l z1
+
 #######################################################################################################################################
 ### Delete all
 vagrant destroy -f && vagrant destroy -f && cd
