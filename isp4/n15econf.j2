@@ -1,0 +1,17 @@
+router bgp 65201
+ neighbor 10.1.1.2 filter-list 10 out
+ neighbor 192.168.111.2 route-map LOCAL_PREF out 
+!
+ip as-path access-list 10 permit ^$
+!
+route-map LOCAL_PREF permit 10
+ set local-preference 150
+!
+router ospf 1
+ default-information originate always metric 10 route-map Primary_Link
+!
+access-list 10 permit 10.1.1.0 0.0.0.255
+!
+route-map Primary_Link permit 10
+ match ip address 10
+!
