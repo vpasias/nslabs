@@ -157,12 +157,12 @@ nodes:
     device: iosv
     module: [ bgp ]
     bgp:
-      as: 65003    
+      as: 65003
   n10:
     device: iosv
     module: [ bgp ]
     bgp:
-      as: 65004    
+      as: 65004
   n11:
     device: iosv
     addressing:
@@ -178,23 +178,33 @@ nodes:
       loopback:
         ipv6: 2001:db8:cafe::/48
   n13:
-    device: iosv
-    module: [ bgp ]
-    bgp:
-      as: 65201
+    device: cumulus
   n14:
+    device: cumulus
+  n15:
     device: iosv
-    module: [ bgp ]
+    module: [ bgp, ospf ]
     bgp:
       as: 65201
-# Client routers
+    ospf:
+      area: 1
+  n16:
+    device: iosv
+    module: [ bgp, ospf ]
+    bgp:
+      as: 65201
+    ospf:
+      area: 1
+# Data Center/Enterprise network devices
   p1:
     device: iosv
   p2:
     device: iosv
   z1:
-    device: iosv    
-# Data Center devices
+    device: iosv
+    module: [ ospf ]
+    ospf:
+      area: 1
   ps1:
     device: eos
   ps2:
@@ -271,6 +281,8 @@ links:
 - n12-e8
 - n13-e5
 - n14-e6
+- n15-e5
+- n16-e6
 - n11-p1
 - n12-p2
 - ps1-n3
@@ -283,8 +295,8 @@ links:
 - ss2-sl1
 - pl1-ph1
 - sl1-sh1
-- n13:
-  n14:
+- n15:
+  n16:
   z1:
   type: lan
   prefix: 192.168.111.0/24
@@ -304,5 +316,8 @@ links:
 - n12
 - n13
 - n14
+- n15
+- n16
 - p1
 - p2
+- z1
