@@ -120,6 +120,14 @@ nodes:
     module: [ sr, isis, bgp ]
     bgp:
       as: 65300
+  e9:
+    module: [ sr, isis, bgp ]
+    bgp:
+      as: 65000
+  e10:
+    module: [ sr, isis, bgp ]
+    bgp:
+      as: 65000
 # Customer routers - CE routers - leaf/ToR switches
   n1:
     device: iosv
@@ -185,14 +193,14 @@ nodes:
     device: iosv
     module: [ bgp, ospf ]
     bgp:
-      as: 65201
+      as: 65011
     ospf:
       area: 1
   n16:
     device: iosv
     module: [ bgp, ospf ]
     bgp:
-      as: 65201
+      as: 65012
     ospf:
       area: 1
 # Data Center/Campus/Enterprise network devices
@@ -289,6 +297,10 @@ links:
 - e7-a6
 - e8-a5
 - e8-a6
+- e9-a2
+- e9-a4
+- e10-a2
+- e10-a4
 
 # External links
 - n1-e1
@@ -305,8 +317,8 @@ links:
 - n12-e8
 - n13-e5
 - n14-e6
-- n15-e5
-- n16-e6
+- n15-e9
+- n16-e10
 - n11-p1
 - n12-p2
 - ps1-n3
