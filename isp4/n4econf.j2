@@ -47,7 +47,7 @@ router bgp 65202
       neighbor DCI activate      
    !
    address-family ipv4
-      neighbor SPINE active
+      neighbor SPINE activate
       no neighbor EVPN_SPINE activate
       neighbor DCI activate      
       network 10.254.2.12/32
