@@ -20,18 +20,18 @@ interface Loopback1
 !
 router bgp 65202
    router-id 10.254.2.12
-   neighbor EVPN_SPINE peer-group
+   neighbor EVPN_SPINE peer group
    neighbor EVPN_SPINE remote-as 65200
    neighbor EVPN_SPINE update-source Loopback1
    neighbor EVPN_SPINE allowas-in 1
    neighbor EVPN_SPINE ebgp-multihop 2
    neighbor EVPN_SPINE send-community extended
    neighbor EVPN_SPINE maximum-routes 12000 
-   neighbor SPINE peer-group
+   neighbor SPINE peer group
    neighbor SPINE remote-as 65200
    neighbor SPINE allowas-in 1
    neighbor SPINE maximum-routes 12000
-   neighbor DCI peer-group
+   neighbor DCI peer group
    neighbor DCI remote-as 65102
    neighbor DCI send-community extended
    neighbor DCI maximum-routes 12000  
