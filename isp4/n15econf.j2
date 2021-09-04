@@ -9,6 +9,7 @@ route-map LOCAL_PREF permit 10
 !
 router ospf 1
  default-information originate always metric 10 route-map Primary_Link
+ network 192.168.111.0 0.0.0.255 area 1
 !
 access-list 10 permit 10.1.0.0 0.0.0.255
 !
