@@ -35,11 +35,11 @@ router bgp 65202
    neighbor DCI remote-as 65102
    neighbor DCI send-community extended
    neighbor DCI maximum-routes 12000  
-   neighbor 10.254.2.101 peer-group EVPN_SPINE
-   neighbor 10.254.2.102 peer-group EVPN_SPINE   
-   neighbor 10.200.12.1 peer-group SPINE
-   neighbor 10.200.22.1 peer-group SPINE   
-   neighbor 172.16.1.1 peer-group DCI   
+   neighbor 10.254.2.101 peer group EVPN_SPINE
+   neighbor 10.254.2.102 peer group EVPN_SPINE   
+   neighbor 10.200.12.1 peer group SPINE
+   neighbor 10.200.22.1 peer group SPINE   
+   neighbor 172.16.1.1 peer group DCI   
    redistribute connected
    !
    address-family evpn
