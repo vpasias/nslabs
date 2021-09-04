@@ -61,31 +61,31 @@ interface Vlan34
 ip virtual-router mac-address 00:00:00:00:00:0a
 !
 router bgp 65200
-   router-id 10.0.0.15
+   router-id 10.0.0.16
    no bgp default ipv4-unicast
    timers bgp 10 30
    maximum-paths 128 ecmp 128
-   neighbor 10.0.0.16 remote-as 65200
-   neighbor 10.0.0.16 update-source Loopback0
-   neighbor 10.0.0.16 fall-over bfd
-   neighbor 10.0.0.16 send-community standard extended
-   neighbor 10.0.0.16 maximum-routes 12000
+   neighbor 10.0.0.17 remote-as 65200
+   neighbor 10.0.0.17 update-source Loopback0
+   neighbor 10.0.0.17 fall-over bfd
+   neighbor 10.0.0.17 send-community standard extended
+   neighbor 10.0.0.17 maximum-routes 12000
    !
    address-family evpn
-      neighbor 10.0.0.16 activate
-      network 10.0.0.15/32
+      neighbor 10.0.0.17 activate
+      network 10.0.0.16/32
    !
    no address-family ipv4
-      no network 10.0.0.15/32
+      no network 10.0.0.16/32
    !
    vrf CUST-C
-      rd 10.0.0.15:123
+      rd 10.0.0.16:123
       route-target import evpn 123:1230
       route-target export evpn 123:1230
       redistribute connected
    !
    vrf GATEWAY
-      rd 10.0.0.15:9999
+      rd 10.0.0.16:9999
       route-target import evpn 99:9999
       route-target export evpn 99:9999
       redistribute connected
