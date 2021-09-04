@@ -68,7 +68,7 @@ router bgp 65201
       neighbor EVPN_SPINE activate
    !
    address-family ipv4
-      neighbor SPINE active
+      neighbor SPINE activate
       no neighbor EVPN_SPINE activate
       network 10.254.2.11/32
       network 10.254.2.111/32
