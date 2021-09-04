@@ -18,30 +18,30 @@ ip routing
 !
 router bgp 65100
    router-id 10.254.1.2
-   neighbor EVPN_LEAF1 peer-group
+   neighbor EVPN_LEAF1 peer group
    neighbor EVPN_LEAF1 remote-as 65101
    neighbor EVPN_LEAF1 next-hop-unchanged
    neighbor EVPN_LEAF1 update-source Loopback1
    neighbor EVPN_LEAF1 ebgp-multihop 2
    neighbor EVPN_LEAF1 send-community extended
    neighbor EVPN_LEAF1 maximum-routes 12000
-   neighbor EVPN_BORDER1 peer-group
+   neighbor EVPN_BORDER1 peer group
    neighbor EVPN_BORDER1 remote-as 65102
    neighbor EVPN_BORDER1 next-hop-unchanged
    neighbor EVPN_BORDER1 update-source Loopback1
    neighbor EVPN_BORDER1 ebgp-multihop 2
    neighbor EVPN_BORDER1 send-community extended
    neighbor EVPN_BORDER1 maximum-routes 12000   
-   neighbor LEAF1 peer-group
+   neighbor LEAF1 peer group
    neighbor LEAF1 remote-as 65101
    neighbor LEAF1 maximum-routes 12000
-   neighbor BORDER1 peer-group
+   neighbor BORDER1 peer group
    neighbor BORDER1 remote-as 65102
    neighbor BORDER1 maximum-routes 12000    
-   neighbor 10.100.21.2 peer-group LEAF1
-   neighbor 10.254.1.111 peer-group EVPN_LEAF1
-   neighbor 10.100.22.2 peer-group BORDER1
-   neighbor 10.254.1.112 peer-group EVPN_BORDER1   
+   neighbor 10.100.21.2 peer group LEAF1
+   neighbor 10.254.1.111 peer group EVPN_LEAF1
+   neighbor 10.100.22.2 peer group BORDER1
+   neighbor 10.254.1.112 peer group EVPN_BORDER1   
    redistribute connected
    !
    address-family evpn
