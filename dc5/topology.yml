@@ -1,1 +1,65 @@
+#
+# Data Center with Seperate Networks, EVPN Multihoming and VXLAN
+# A: Application Network, C: Cluster Network, S: Storage Network 
+#
+# Defaults      
+defaults:
+  device: cumulus
 
+nodes:
+  as1:
+  as2:
+  al1:
+  al2:
+  al3:
+  al4:
+  cs1:
+  cs2:
+  cl1:
+  cl2:
+  ss1:
+  ss2:
+  sl1:
+  sl2: 
+  n1:
+  n2:
+  n3:
+  g1:
+
+links:
+- as1-al1
+- as1-al2
+- as1-al3
+- as1-al4
+- as2-al1
+- as2-al2
+- as2-al3
+- as2-al4
+- cs1-cl1
+- cs1-cl2
+- cs2-cl1
+- cs2-cl2
+- ss1-sl1
+- ss1-sl2
+- ss2-sl1
+- ss2-sl2
+- al1-n1
+- al1-n2
+- al1-n3
+- al2-n1
+- al2-n2
+- al2-n3
+- cl1-n1
+- cl1-n2
+- cl1-n3
+- cl2-n1
+- cl2-n2
+- cl2-n3
+- sl1-n1
+- sl1-n2
+- sl1-n3
+- sl2-n1
+- sl2-n2
+- sl2-n3
+- al3-g1
+- al4-g1
