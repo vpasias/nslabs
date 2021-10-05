@@ -1,0 +1,46 @@
+module: [ bgp ]
+
+defaults:
+  device: cumulus
+
+nodes:
+  s1:
+    bgp:
+      as: 65000
+  s2:
+    bgp:
+      as: 65000
+  l1:
+    bgp:
+      as: 65101
+  l2:
+    bgp:
+      as: 65102
+  l3:
+    bgp:
+      as: 65103
+  l4:
+    bgp:
+      as: 65104      
+  n1:
+    device: linux
+  n2:
+    device: linux
+  n3:
+    device: linux
+  n4:
+    device: linux
+
+links:
+- s1-l1
+- s1-l2
+- s2-l1
+- s2-l2
+- s1-l3
+- s1-l4
+- s2-l3
+- s2-l4
+- l1-n1
+- l2-n2
+- l3-n3
+- l4-n4
