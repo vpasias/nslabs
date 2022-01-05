@@ -7,6 +7,23 @@
 
 provider: clab
 
+name: isp
+
+addressing:
+  loopback:
+    ipv4: 10.255.255.0/24
+    ipv6: 2001:db8:0::/48
+  lan:
+    ipv4: 172.16.0.0/16
+    ipv6: 2001:db8:1::/48
+  p2p:
+    ipv4: 10.250.0.0/16
+    ipv6: 2001:db8:2::/48
+  mgmt:
+    ipv4: 192.168.121.0/24
+    start: 100
+    mac: 08-4F-A9-00-00-00
+
 defaults:
   device: srlinux
   sr.extra_attributes.global: [ srgb_range_start, srgb_range_size ]
@@ -174,7 +191,15 @@ links:
 - x4-e4
 
 # Stub links
-- x1
-- x2
-- x3
-- x4
+- x1:
+  name: isp_x1
+    ipv4: 192.168.31.1
+- x2:
+  name: isp_x2  
+    ipv4: 192.168.32.1
+- x3:
+  name: isp_x3
+    ipv4: 192.168.33.1
+- x4:
+  name: isp_x4  
+    ipv4: 192.168.34.1
