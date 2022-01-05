@@ -81,7 +81,7 @@ topology:
           system_ip: 10.0.0.14
           as: 65014
     #-----------------------------------------------------#
-    sros-client:
+    sr-client:
       kind: srl
       type: ixrd2
   #-----------------------------------------------------#
@@ -90,27 +90,27 @@ topology:
     #######################################################
     ################## DCGW - Spine #######################
     #######################################################
-    - endpoints: ["dcgw1:e1-51", "spine1:e1-31"]
+    - endpoints: ["dcgw1:e1-11", "spine1:e1-31"]
       vars:
-        port: [ethernet-1/51, ethernet-1/31]
+        port: [ethernet-1/11, ethernet-1/31]
         clab_link_ip: 100.31.21.1/30
         bgp_underlay: true
     #-----------------------------------------------------#
-    - endpoints: ["dcgw1:e1-52", "spine2:e1-31"]
+    - endpoints: ["dcgw1:e1-12", "spine2:e1-31"]
       vars:
-        port: [ethernet-1/52, ethernet-1/31]
+        port: [ethernet-1/12, ethernet-1/31]
         clab_link_ip: 100.31.22.1/30
         bgp_underlay: true
     #-----------------------------------------------------#
-    - endpoints: ["dcgw2:e1-51", "spine1:e1-32"]
+    - endpoints: ["dcgw2:e1-11", "spine1:e1-32"]
       vars:
-        port: [ethernet-1/51, ethernet-1/32]
+        port: [ethernet-1/11, ethernet-1/32]
         clab_link_ip: 100.32.21.1/30
         bgp_underlay: true
     #-----------------------------------------------------#
-    - endpoints: ["dcgw2:e1-52", "spine2:e1-32"]
+    - endpoints: ["dcgw2:e1-12", "spine2:e1-32"]
       vars:
-        port: [ethernet-1/52, ethernet-1/32]
+        port: [ethernet-1/12, ethernet-1/32]
         clab_link_ip: 100.32.22.1/30
         bgp_underlay: true
 
@@ -173,11 +173,11 @@ topology:
     #######################################################
     ################ Leaf - Client/Host ###################
     #######################################################
-    - endpoints: ["leaf1:e1-1", "sros-client:e1-1"]
-    - endpoints: ["leaf1:e1-2", "sros-client:e1-2"]
-    - endpoints: ["leaf2:e1-1", "sros-client:e1-3"]
-    - endpoints: ["leaf2:e1-2", "sros-client:e1-4"]
-    - endpoints: ["leaf3:e1-1", "sros-client:e1-5"]
-    - endpoints: ["leaf3:e1-2", "sros-client:e1-6"]
-    - endpoints: ["leaf4:e1-1", "sros-client:e1-7"]
-    - endpoints: ["leaf4:e1-2", "sros-client:e1-8"]
+    - endpoints: ["leaf1:e1-1", "sr-client:e1-1"]
+    - endpoints: ["leaf1:e1-2", "sr-client:e1-2"]
+    - endpoints: ["leaf2:e1-1", "sr-client:e1-3"]
+    - endpoints: ["leaf2:e1-2", "sr-client:e1-4"]
+    - endpoints: ["leaf3:e1-1", "sr-client:e1-5"]
+    - endpoints: ["leaf3:e1-2", "sr-client:e1-6"]
+    - endpoints: ["leaf4:e1-1", "sr-client:e1-7"]
+    - endpoints: ["leaf4:e1-2", "sr-client:e1-8"]
