@@ -193,13 +193,13 @@ links:
 # Stub links
 - x1:
   name: isp_x1
-    ipv4: 192.168.31.1
+  prefix: 192.168.31.0/24
 - x2:
   name: isp_x2  
-    ipv4: 192.168.32.1
+  prefix: 192.168.32.0/24
 - x3:
   name: isp_x3
-    ipv4: 192.168.33.1
+  prefix: 192.168.33.0/24
 - x4:
   name: isp_x4  
-    ipv4: 192.168.34.1
+  prefix: 192.168.34.0/24
