@@ -156,7 +156,7 @@ network:
     ens3:
       dhcp4: true
       dhcp6: false     
-    ens10:
+    ens12:
       dhcp4: false
       dhcp6: false    
       addresses:
@@ -173,7 +173,7 @@ network:
     ens3:
       dhcp4: true
       dhcp6: false      
-    ens10:
+    ens12:
       dhcp4: false
       dhcp6: false      
       addresses:
@@ -190,7 +190,7 @@ network:
     ens3:
       dhcp4: true
       dhcp6: false      
-    ens11:
+    ens12:
       dhcp4: false
       dhcp6: false      
       addresses:
@@ -207,7 +207,7 @@ network:
     ens3:
       dhcp4: true
       dhcp6: false      
-    ens11:
+    ens12:
       dhcp4: false
       dhcp6: false      
       addresses:
