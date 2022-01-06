@@ -102,10 +102,10 @@ for i in {1..4}; do ./kvm-install-vm attach-disk -d 120 -s /mnt/extra/kvm-instal
 for i in {1..4}; do ./kvm-install-vm attach-disk -d 120 -s /mnt/extra/kvm-install-vm/vbdnode2$i.qcow2 -t vdc n$i; done
 for i in {1..4}; do ./kvm-install-vm attach-disk -d 120 -s /mnt/extra/kvm-install-vm/vbdnode3$i.qcow2 -t vdd n$i; done
 
-virsh attach-interface --domain n1 --type network --source isp_46 --model e1000 --mac 02:00:aa:0a:01:11 --config --live
-virsh attach-interface --domain n2 --type network --source isp_47 --model e1000 --mac 02:00:aa:0a:01:12 --config --live
-virsh attach-interface --domain n3 --type network --source isp_48 --model e1000 --mac 02:00:aa:0a:01:13 --config --live
-virsh attach-interface --domain n4 --type network --source isp_49 --model e1000 --mac 02:00:aa:0a:01:14 --config --live
+virsh attach-interface --domain n1 --type bridge --source isp_46 --model virtio --config --live
+virsh attach-interface --domain n2 --type bridge --source isp_47 --model virtio --config --live
+virsh attach-interface --domain n3 --type bridge --source isp_48 --model virtio --config --live
+virsh attach-interface --domain n4 --type bridge --source isp_49 --model virtio --config --live
 
 for i in {1..4}; do ssh -o "StrictHostKeyChecking=no" ubuntu@n$i "cat << EOF | sudo tee /etc/hosts
 127.0.0.1 localhost
