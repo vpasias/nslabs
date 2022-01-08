@@ -10,7 +10,7 @@ topology:
   #----------------------------------------------------#
   kinds:
     srl:
-      image: ghcr.io/nokia/srlinux:latest
+      image: ghcr.io/nokia/srlinux
 
   #######################################################
   nodes:
@@ -85,28 +85,28 @@ topology:
       kind: linux
       image: weaveworks/ignite-rockylinux
       runtime: ignite
-      memory: 16384mb
+#      memory: 16384mb
       cpu: 4
     #-----------------------------------------------------#
     s2:
       kind: linux
       image: weaveworks/ignite-rockylinux
       runtime: ignite
-      memory: 16384mb
+#      memory: 16384mb
       cpu: 4
     #-----------------------------------------------------#
     s3:
       kind: linux
       image: weaveworks/ignite-rockylinux
       runtime: ignite
-      memory: 16384mb
+#      memory: 16384mb
       cpu: 4
     #-----------------------------------------------------#
     s4:
       kind: linux
       image: weaveworks/ignite-rockylinux
       runtime: ignite
-      memory: 16384mb
+ #     memory: 16384mb
       cpu: 4
   #-----------------------------------------------------#
 
