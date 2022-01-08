@@ -10,7 +10,7 @@ topology:
   #----------------------------------------------------#
   kinds:
     srl:
-      image: ghcr.io/nokia/srlinux
+      image: ghcr.io/nokia/srlinux:latest
 
   #######################################################
   nodes:
@@ -81,29 +81,25 @@ topology:
           system_ip: 10.0.0.14
           as: 65014
     #-----------------------------------------------------#
-    l1s1:
-      kind: bridge
+    s1:
+      kind: linux
+      image: weaveworks/ignite-rockylinux
+      runtime: ignite
     #-----------------------------------------------------#
-    l2s1:
-      kind: bridge
+    s2:
+      kind: linux
+      image: weaveworks/ignite-rockylinux
+      runtime: ignite
     #-----------------------------------------------------#
-    l1s2:
-      kind: bridge
+    s3:
+      kind: linux
+      image: weaveworks/ignite-rockylinux
+      runtime: ignite
     #-----------------------------------------------------#
-    l2s2:
-      kind: bridge
-    #-----------------------------------------------------#
-    l3s3:
-      kind: bridge
-    #-----------------------------------------------------#
-    l4s3:
-      kind: bridge
-    #-----------------------------------------------------#     
-    l3s4:
-      kind: bridge
-    #-----------------------------------------------------#
-    l4s4:
-      kind: bridge     
+    s4:
+      kind: linux
+      image: weaveworks/ignite-rockylinux
+      runtime: ignite
   #-----------------------------------------------------#
 
   links:
@@ -193,11 +189,11 @@ topology:
     #######################################################
     ################ Leaf - Client/Host ###################
     #######################################################
-    - endpoints: ["leaf1:e1-1", "l1s1:int1"]
-    - endpoints: ["leaf1:e1-2", "l1s2:int2"]
-    - endpoints: ["leaf2:e1-1", "l2s1:int3"]
-    - endpoints: ["leaf2:e1-2", "l2s2:int4"]
-    - endpoints: ["leaf3:e1-1", "l3s3:int5"]
-    - endpoints: ["leaf3:e1-2", "l3s4:int6"]
-    - endpoints: ["leaf4:e1-1", "l4s3:int7"]
-    - endpoints: ["leaf4:e1-2", "l4s4:int8"]
+    - endpoints: ["leaf1:e1-1", "s1:eth1"]
+    - endpoints: ["leaf1:e1-2", "s1:eth2"]
+    - endpoints: ["leaf2:e1-1", "s2:eth1"]
+    - endpoints: ["leaf2:e1-2", "s2:eth2"]
+    - endpoints: ["leaf3:e1-1", "s3:eth1"]
+    - endpoints: ["leaf3:e1-2", "s3:eth2"]
+    - endpoints: ["leaf4:e1-1", "s4:eth1"]
+    - endpoints: ["leaf4:e1-2", "s4:eth2"]
