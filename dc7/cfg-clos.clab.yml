@@ -100,14 +100,14 @@ topology:
       image: weaveworks/ignite-rockylinux
       runtime: ignite
       memory: 16384mb
-      cpu: 4      
+      cpu: 4
     #-----------------------------------------------------#
     s4:
       kind: linux
       image: weaveworks/ignite-rockylinux
       runtime: ignite
       memory: 16384mb
-      cpu: 4      
+      cpu: 4
   #-----------------------------------------------------#
 
   links:
