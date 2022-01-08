@@ -83,29 +83,29 @@ topology:
     #-----------------------------------------------------#
     s1:
       kind: linux
-#      image: ubuntu:20.04
-#      runtime: ignite
+      image: networkop/host:ignite
+      runtime: ignite
       memory: 16384mb
       cpu: 4
     #-----------------------------------------------------#
     s2:
       kind: linux
-#      image: ubuntu:20.04
-#      runtime: ignite
+      image: networkop/host:ignite
+      runtime: ignite
       memory: 16384mb
       cpu: 4
     #-----------------------------------------------------#
     s3:
       kind: linux
-#      image: ubuntu:20.04
-#      runtime: ignite
+      image: networkop/host:ignite
+      runtime: ignite
       memory: 16384mb
       cpu: 4
     #-----------------------------------------------------#
     s4:
       kind: linux
-#      image: ubuntu:20.04
-#      runtime: ignite
+      image: networkop/host:ignite
+      runtime: ignite
       memory: 16384mb
       cpu: 4
   #-----------------------------------------------------#
