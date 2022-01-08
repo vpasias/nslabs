@@ -11,6 +11,8 @@ topology:
   kinds:
     srl:
       image: ghcr.io/nokia/srlinux
+    linux:
+      image: networkop/host:ifreload
 
   #######################################################
   nodes:
@@ -83,29 +85,25 @@ topology:
     #-----------------------------------------------------#
     s1:
       kind: linux
-      image: networkop/host:ignite
-      runtime: ignite
+#      runtime: ignite
       memory: 16384mb
       cpu: 4
     #-----------------------------------------------------#
     s2:
       kind: linux
-      image: networkop/host:ignite
-      runtime: ignite
+#      runtime: ignite
       memory: 16384mb
       cpu: 4
     #-----------------------------------------------------#
     s3:
       kind: linux
-      image: networkop/host:ignite
-      runtime: ignite
+#      runtime: ignite
       memory: 16384mb
       cpu: 4
     #-----------------------------------------------------#
     s4:
       kind: linux
-      image: networkop/host:ignite
-      runtime: ignite
+#      runtime: ignite
       memory: 16384mb
       cpu: 4
   #-----------------------------------------------------#
