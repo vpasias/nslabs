@@ -26,6 +26,10 @@ addressing:
 
 defaults:
   device: srlinux
+  isis:
+    bfd:
+      ipv4: True
+      ipv6: True
   sr.extra_attributes.global: [ srgb_range_start, srgb_range_size ]
   providers:
     clab:
@@ -50,67 +54,67 @@ groups:
 nodes:
   # CORE (no BGP)
   c1:
-    module: [ isis,sr ]
+    module: [ isis,sr,bfd ]
   c2:
-    module: [ isis,sr ]
+    module: [ isis,sr,bfd ]
   c3:
-    module: [ isis,sr ]
+    module: [ isis,sr,bfd ]
   c4:
-    module: [ isis,sr ]
+    module: [ isis,sr,bfd ]
 
   # AGGREGATION (no BGP)
   a1:
-    module: [ isis,sr ]
+    module: [ isis,sr,bfd ]
   a2:
-    module: [ isis,sr ]
+    module: [ isis,sr,bfd ]
   a3:
-    module: [ isis,sr ]
+    module: [ isis,sr,bfd ]
   a4:
-    module: [ isis,sr ]
+    module: [ isis,sr,bfd ]
   a5:
-    module: [ isis,sr ]
+    module: [ isis,sr,bfd ]
   a6:
-    module: [ isis,sr ]
+    module: [ isis,sr,bfd ]
 
   # EDGE
   e1:
-    module: [ isis, bgp, sr ]
+    module: [ isis, bgp, sr, bfd ]
     bgp:
       as: 65000
   e2:
-    module: [ isis, bgp, sr ]
+    module: [ isis, bgp, sr, bfd ]
     bgp:
       as: 65000
   e3:
-    module: [ isis, bgp, sr ]
+    module: [ isis, bgp, sr, bfd ]
     bgp:
       as: 65000
   e4:
-    module: [ isis, bgp, sr ]
+    module: [ isis, bgp, sr, bfd ]
     bgp:
       as: 65000
   e5:
-    module: [ isis, bgp, sr ]
+    module: [ isis, bgp, sr, bfd ]
     bgp:
       as: 65000
   e6:
-    module: [ isis, bgp, sr ]
+    module: [ isis, bgp, sr, bfd ]
     bgp:
       as: 65000
   e7:
-    module: [ isis, bgp, sr ]
+    module: [ isis, bgp, sr, bfd ]
     bgp:
       as: 65000
   e8:
-    module: [ isis, bgp, sr ]
+    module: [ isis, bgp, sr, bfd ]
     bgp:
       as: 65000
   e9:
-    module: [ isis, bgp, sr ]
+    module: [ isis, bgp, sr, bfd ]
     bgp:
       as: 65000
   e10:
-    module: [ isis, bgp, sr ]
+    module: [ isis, bgp, sr, bfd ]
     bgp:
       as: 65000
 
@@ -195,15 +199,19 @@ links:
   name: isp_x1
   type: lan
   prefix: 192.168.31.0/24
+  ipv4: 1
 - x2:
   name: isp_x2
   type: lan
   prefix: 192.168.32.0/24
+  ipv4: 1
 - x3:
   name: isp_x3
   type: lan  
   prefix: 192.168.33.0/24
+  ipv4: 1
 - x4:
   name: isp_x4
   type: lan  
   prefix: 192.168.34.0/24
+  ipv4: 1
