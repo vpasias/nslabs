@@ -197,21 +197,21 @@ links:
 # Stub links
 - x1:
   name: isp_x1
-  type: lan
+  type: stub
   prefix: 192.168.31.0/24
   ipv4: 1
 - x2:
   name: isp_x2
-  type: lan
+  type: stub
   prefix: 192.168.32.0/24
   ipv4: 1
 - x3:
   name: isp_x3
-  type: lan  
+  type: stub 
   prefix: 192.168.33.0/24
   ipv4: 1
 - x4:
   name: isp_x4
-  type: lan  
+  type: stub
   prefix: 192.168.34.0/24
   ipv4: 1
