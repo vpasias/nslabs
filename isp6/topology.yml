@@ -26,11 +26,8 @@ addressing:
 
 defaults:
   device: srlinux
-  isis:
-    bfd:
-      ipv4: True
-      ipv6: True
   sr.extra_attributes.global: [ srgb_range_start, srgb_range_size ]
+#  bridge_type: ovs-bridge
   providers:
     clab:
       devices:
@@ -55,26 +52,66 @@ nodes:
   # CORE (no BGP)
   c1:
     module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
   c2:
     module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
   c3:
     module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
   c4:
     module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
 
   # AGGREGATION (no BGP)
   a1:
     module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
   a2:
     module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
   a3:
     module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
   a4:
     module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
   a5:
     module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
   a6:
     module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
 
   # EDGE
   e1:
