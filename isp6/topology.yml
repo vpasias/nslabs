@@ -176,6 +176,12 @@ nodes:
     # type: ixrd2
     bgp:
       as: 65004
+  h1:
+    device: linux
+    module: []
+  h2:
+    device: linux
+    module: []
       
 links:
 # Core layer links
@@ -230,21 +236,21 @@ links:
 - x2-e2
 - x3-e3
 - x4-e4
+- type: lan
+  prefix: 192.168.31.0/24
+  x1:
+    ipv4: 1
+  h1:
+    ipv4: 10
+- type: lan
+  prefix: 192.168.32.0/24
+  x1:
+    ipv4: 1
+  h1:
+    ipv4: 10
 
 # Stub links
-- x1:
-  name: isp_x1
-  prefix: 192.168.31.0/24
-#    ipv4: 1
-- x2:
-  name: isp_x2
-  prefix: 192.168.32.0/24
-#    ipv4: 1
-- x3:
-  name: isp_x3
-  prefix: 192.168.33.0/24
-#    ipv4: 1
-- x4:
-  name: isp_x4
-  prefix: 192.168.34.0/24
-#    ipv4: 1
+- x1
+- x2
+- x3
+- x4
