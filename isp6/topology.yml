@@ -116,44 +116,84 @@ nodes:
   # EDGE
   e1:
     module: [ isis, bgp, sr, bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
     bgp:
-      as: 65000
+      as: 65000  
   e2:
     module: [ isis, bgp, sr, bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
     bgp:
       as: 65000
   e3:
     module: [ isis, bgp, sr, bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
     bgp:
       as: 65000
   e4:
     module: [ isis, bgp, sr, bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
     bgp:
       as: 65000
   e5:
     module: [ isis, bgp, sr, bfd ]
     bgp:
       as: 65000
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
   e6:
     module: [ isis, bgp, sr, bfd ]
     bgp:
       as: 65000
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
   e7:
     module: [ isis, bgp, sr, bfd ]
     bgp:
       as: 65000
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
   e8:
     module: [ isis, bgp, sr, bfd ]
     bgp:
       as: 65000
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
   e9:
     module: [ isis, bgp, sr, bfd ]
     bgp:
       as: 65000
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
   e10:
     module: [ isis, bgp, sr, bfd ]
     bgp:
       as: 65000
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
 
   # EXTERNAL PEERS
   x1:
