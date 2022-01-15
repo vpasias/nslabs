@@ -284,9 +284,9 @@ links:
     ipv4: 10
 - type: lan
   prefix: 192.168.32.0/24
-  x1:
+  x2:
     ipv4: 1
-  h1:
+  h2:
     ipv4: 10
 
 # Stub links
