@@ -76,7 +76,7 @@ ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt autoremove -y && sudo 
 
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "curl -O https://releases.hashicorp.com/vagrant/2.2.8/vagrant_2.2.8_x86_64.deb && sudo apt install -y ./vagrant_2.2.8_x86_64.deb --allow-downgrades"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt-get update && sudo apt-get install -y python3.9 && sudo apt-get install -y python3-pip"
-ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo python3 -m pip install netsim-tools"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo python3.9 -m pip install netsim-tools"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "netlab install ubuntu ansible libvirt -y -q"
 
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim 'sudo apt install apt-transport-https ca-certificates -y && sudo apt install -y curl software-properties-common && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && sudo apt update -y && sudo apt-cache policy docker-ce && sudo apt install -y docker-ce && sleep 10 && bash -c "$(curl -sL https://get-clab.srlinux.dev)"'
