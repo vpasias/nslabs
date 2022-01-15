@@ -216,10 +216,10 @@ nodes:
     # type: ixrd2
     bgp:
       as: 65004
-  h1:
+  z1:
     device: frr
     module: []
-  h2:
+  z2:
     device: frr
     module: []
       
@@ -280,13 +280,13 @@ links:
   prefix: 192.168.31.0/24
   x1:
     ipv4: 1
-  h1:
+  z1:
     ipv4: 10
 - type: lan
   prefix: 192.168.32.0/24
   x2:
     ipv4: 1
-  h2:
+  z2:
     ipv4: 10
 
 # Stub links
