@@ -217,10 +217,10 @@ nodes:
     bgp:
       as: 65004
   h1:
-    device: linux
+    device: frr
     module: []
   h2:
-    device: linux
+    device: frr
     module: []
       
 links:
