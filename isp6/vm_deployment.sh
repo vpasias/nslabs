@@ -75,10 +75,17 @@ ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo DEBIAN_FRONTEND=noninterac
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt autoremove -y && sudo apt --fix-broken install -y"
 
 #ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "curl -O https://releases.hashicorp.com/vagrant/2.2.8/vagrant_2.2.8_x86_64.deb && sudo apt install -y ./vagrant_2.2.8_x86_64.deb --allow-downgrades"
+#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt update && sudo apt -y install apt-transport-https ca-certificates curl software-properties-common"
+#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -"
+#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim 'sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"'
+#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt update -y && sudo apt install vagrant -y"
+
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt install software-properties-common -y && sudo add-apt-repository ppa:deadsnakes/ppa -y && sudo apt update -y"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt install python3.9 python3.9-dev python3.9-distutils -y"
+#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt install python3.8 python3.8-dev -y"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt-get update && sudo apt-get install -y python3-pip"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo python3.9 -m pip install netsim-tools"
+#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo python3.8 -m pip install netsim-tools"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "netlab install ubuntu ansible libvirt -y -q"
 
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim 'sudo apt install apt-transport-https ca-certificates -y && sudo apt install -y curl software-properties-common && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && sudo apt update -y && sudo apt-cache policy docker-ce && sudo apt install -y docker-ce && sleep 10 && bash -c "$(curl -sL https://get-clab.srlinux.dev)"'
