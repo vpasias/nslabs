@@ -219,10 +219,10 @@ nodes:
     bgp:
       as: 65004
   z1:
-    device: linux
+    device: cvx
     module: []
   z2:
-    device: linux
+    device: cvx
     module: []
       
 links:
