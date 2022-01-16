@@ -74,8 +74,10 @@ ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt update && sudo apt upg
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo DEBIAN_FRONTEND=noninteractive apt-get install linux-generic-hwe-20.04 --install-recommends -y"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt autoremove -y && sudo apt --fix-broken install -y"
 
-ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "curl -O https://releases.hashicorp.com/vagrant/2.2.8/vagrant_2.2.8_x86_64.deb && sudo apt install -y ./vagrant_2.2.8_x86_64.deb --allow-downgrades"
-ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt-get update && sudo apt-get install -y python3.9 && sudo apt-get install -y python3-pip"
+#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "curl -O https://releases.hashicorp.com/vagrant/2.2.8/vagrant_2.2.8_x86_64.deb && sudo apt install -y ./vagrant_2.2.8_x86_64.deb --allow-downgrades"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt install software-properties-common -y && sudo add-apt-repository ppa:deadsnakes/ppa -y && sudo apt update -y"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt install python3.9 python3.9-dev python3.9-distutils -y"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt-get update && sudo apt-get install -y python3-pip"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo python3.9 -m pip install netsim-tools"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "netlab install ubuntu ansible libvirt -y -q"
 
