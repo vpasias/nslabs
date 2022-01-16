@@ -94,6 +94,19 @@ ssh -o "StrictHostKeyChecking=no" ubuntu@netsim 'sudo apt install apt-transport-
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo usermod -aG libvirt ubuntu && sudo adduser ubuntu libvirt-qemu && sudo adduser ubuntu kvm && sudo adduser ubuntu libvirt-dnsmasq && sudo adduser ubuntu docker && echo 0 | sudo tee /sys/module/kvm/parameters/halt_poll_ns"
 #ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i 's/0770/0777/' /etc/libvirt/libvirtd.conf && echo 'security_driver = none' | sudo tee /etc/libvirt/qemu.conf"
 
-ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "ansible-galaxy collection install nokia.grpc && pip install google-cloud && pip install google-cloud-vision"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "ansible-galaxy collection install nokia.grpc && sudo python3.9 -m pip install google-cloud && sudo python3.9 -m pip install google-cloud-vision"
+#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "ansible-galaxy collection install nokia.grpc && sudo python3.8 -m pip install google-cloud && sudo python3.8 -m pip install google-cloud-vision"
+
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "vagrant box add vpasias/verouter && vagrant box add vpasias/cirouter && vagrant box add vpasias/routeros"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "mv /home/ubuntu/.vagrant.d/boxes/vpasias-VAGRANTSLASH-verouter/ /home/ubuntu/.vagrant.d/boxes/arista-VAGRANTSLASH-veos/"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "mv /home/ubuntu/.vagrant.d/boxes/vpasias-VAGRANTSLASH-cirouter/ /home/ubuntu/.vagrant.d/boxes/cisco-VAGRANTSLASH-iosv/"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "mv /home/ubuntu/.vagrant.d/boxes/vpasias-VAGRANTSLASH-routeros/ /home/ubuntu/.vagrant.d/boxes/mikrotik-VAGRANTSLASH-chr/"
+
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i 's/no ip domain-lookup/no ip domain lookup/' /usr/local/lib/python3.9/dist-packages/netsim/ansible/templates/initial/ios.j2"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i '1i service routing protocols model ribd' /usr/local/lib/python3.9/dist-packages/netsim/ansible/templates/initial/eos.j2"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i '2i !' /usr/local/lib/python3.9/dist-packages/netsim/ansible/templates/initial/eos.j2"
+#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i 's/no ip domain-lookup/no ip domain lookup/' /usr/local/lib/python3.8/dist-packages/netsim/ansible/templates/initial/ios.j2"
+#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i '1i service routing protocols model ribd' /usr/local/lib/python3.8/dist-packages/netsim/ansible/templates/initial/eos.j2"
+#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i '2i !' /usr/local/lib/python3.8/dist-packages/netsim/ansible/templates/initial/eos.j2"
 
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo reboot"
