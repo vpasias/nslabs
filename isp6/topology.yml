@@ -219,10 +219,10 @@ nodes:
     bgp:
       as: 65004
   z1:
-    device: cumulus
+    device: srlinux
     module: []
   z2:
-    device: cumulus
+    device: srlinux
     module: []
       
 links:
