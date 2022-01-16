@@ -33,6 +33,8 @@ defaults:
       devices:
         srlinux:
           provider_type: ixr6 # SR-MPLS only supported on 7250 IXR platform
+        linux:
+          image: docker.io/akpinar/alpine 
 
 # SR Global Block label range
 sr.srgb_range_start: 500000
@@ -218,7 +220,6 @@ nodes:
       as: 65004
   z1:
     device: linux
-      image: docker.io/akpinar/alpine 
     module: []
   z2:
     device: linux
