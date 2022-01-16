@@ -83,10 +83,10 @@ ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt autoremove -y && sudo 
 
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt install software-properties-common -y && sudo add-apt-repository ppa:deadsnakes/ppa -y && sudo apt update -y"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt install python3.9 python3.9-dev python3.9-distutils -y"
-#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt install python3.8 python3.8-dev -y"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt install python3.8 python3.8-dev -y"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt-get update && sudo apt-get install -y python3-pip"
-ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo python3.9 -m pip install netsim-tools"
-#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo python3.8 -m pip install netsim-tools"
+#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo python3.9 -m pip install netsim-tools"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo python3.8 -m pip install netsim-tools"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "netlab install ubuntu ansible libvirt -y -q"
 
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim 'sudo apt install apt-transport-https ca-certificates -y && sudo apt install -y curl software-properties-common && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && sudo apt update -y && sudo apt-cache policy docker-ce && sudo apt install -y docker-ce && sleep 10 && bash -c "$(curl -sL https://get-clab.srlinux.dev)"'
@@ -95,19 +95,19 @@ ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo usermod -aG libvirt ubuntu
 #ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i 's/0770/0777/' /etc/libvirt/libvirtd.conf && echo 'security_driver = none' | sudo tee /etc/libvirt/qemu.conf"
 
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "ansible-galaxy collection install nokia.grpc && sudo python3.9 -m pip install google-cloud && sudo python3.9 -m pip install google-cloud-vision"
-#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "ansible-galaxy collection install nokia.grpc && sudo python3.8 -m pip install google-cloud && sudo python3.8 -m pip install google-cloud-vision"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "ansible-galaxy collection install nokia.grpc && sudo python3.8 -m pip install google-cloud && sudo python3.8 -m pip install google-cloud-vision"
 
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "vagrant box add vpasias/verouter && vagrant box add vpasias/cirouter && vagrant box add vpasias/routeros"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "mv /home/ubuntu/.vagrant.d/boxes/vpasias-VAGRANTSLASH-verouter/ /home/ubuntu/.vagrant.d/boxes/arista-VAGRANTSLASH-veos/"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "mv /home/ubuntu/.vagrant.d/boxes/vpasias-VAGRANTSLASH-cirouter/ /home/ubuntu/.vagrant.d/boxes/cisco-VAGRANTSLASH-iosv/"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "mv /home/ubuntu/.vagrant.d/boxes/vpasias-VAGRANTSLASH-routeros/ /home/ubuntu/.vagrant.d/boxes/mikrotik-VAGRANTSLASH-chr/"
 
-ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i 's/no ip domain-lookup/no ip domain lookup/' /usr/local/lib/python3.9/dist-packages/netsim/ansible/templates/initial/ios.j2"
-ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i '1i service routing protocols model ribd' /usr/local/lib/python3.9/dist-packages/netsim/ansible/templates/initial/eos.j2"
-ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i '2i !' /usr/local/lib/python3.9/dist-packages/netsim/ansible/templates/initial/eos.j2"
-#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i 's/no ip domain-lookup/no ip domain lookup/' /usr/local/lib/python3.8/dist-packages/netsim/ansible/templates/initial/ios.j2"
-#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i '1i service routing protocols model ribd' /usr/local/lib/python3.8/dist-packages/netsim/ansible/templates/initial/eos.j2"
-#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i '2i !' /usr/local/lib/python3.8/dist-packages/netsim/ansible/templates/initial/eos.j2"
+#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i 's/no ip domain-lookup/no ip domain lookup/' /usr/local/lib/python3.9/dist-packages/netsim/ansible/templates/initial/ios.j2"
+#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i '1i service routing protocols model ribd' /usr/local/lib/python3.9/dist-packages/netsim/ansible/templates/initial/eos.j2"
+#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i '2i !' /usr/local/lib/python3.9/dist-packages/netsim/ansible/templates/initial/eos.j2"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i 's/no ip domain-lookup/no ip domain lookup/' /usr/local/lib/python3.8/dist-packages/netsim/ansible/templates/initial/ios.j2"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i '1i service routing protocols model ribd' /usr/local/lib/python3.8/dist-packages/netsim/ansible/templates/initial/eos.j2"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i '2i !' /usr/local/lib/python3.8/dist-packages/netsim/ansible/templates/initial/eos.j2"
 
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo reboot"
 
