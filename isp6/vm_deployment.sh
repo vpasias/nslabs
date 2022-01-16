@@ -92,7 +92,8 @@ ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "netlab install ubuntu ansible l
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim 'sudo apt install apt-transport-https ca-certificates -y && sudo apt install -y curl software-properties-common && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && sudo apt update -y && sudo apt-cache policy docker-ce && sudo apt install -y docker-ce && sleep 10 && bash -c "$(curl -sL https://get-clab.srlinux.dev)"'
 
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo usermod -aG libvirt ubuntu && sudo adduser ubuntu libvirt-qemu && sudo adduser ubuntu kvm && sudo adduser ubuntu libvirt-dnsmasq && sudo adduser ubuntu docker && echo 0 | sudo tee /sys/module/kvm/parameters/halt_poll_ns"
-#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i 's/0770/0777/' /etc/libvirt/libvirtd.conf && echo 'security_driver = none' | sudo tee /etc/libvirt/qemu.conf"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i 's/0770/0777/' /etc/libvirt/libvirtd.conf"
+#ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "echo 'security_driver = none' | sudo tee /etc/libvirt/qemu.conf"
 
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "ansible-galaxy collection install nokia.grpc && sudo python3.9 -m pip install google-cloud && sudo python3.9 -m pip install google-cloud-vision"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "ansible-galaxy collection install nokia.grpc && sudo python3.8 -m pip install google-cloud && sudo python3.8 -m pip install google-cloud-vision"
