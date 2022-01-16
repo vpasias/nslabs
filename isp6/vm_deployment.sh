@@ -75,6 +75,7 @@ ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo DEBIAN_FRONTEND=noninterac
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt autoremove -y && sudo apt --fix-broken install -y"
 
 #ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "curl -O https://releases.hashicorp.com/vagrant/2.2.8/vagrant_2.2.8_x86_64.deb && sudo apt install -y ./vagrant_2.2.8_x86_64.deb --allow-downgrades"
+
 #ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo apt update && sudo apt -y install apt-transport-https ca-certificates curl software-properties-common"
 #ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -"
 #ssh -o "StrictHostKeyChecking=no" ubuntu@netsim 'sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"'
