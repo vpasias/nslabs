@@ -219,4 +219,4 @@ ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "cat << EOF | tee /home/ubuntu/t
 </network>
 EOF"
 
-ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "virsh net-define /home/ubuntu/tmp/vagrant-libvirt.xml && virsh net-start vagrant-libvirt && virsh net-autostart vagrant-libvirt && virsh net-list && brctl show"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo virsh net-define /home/ubuntu/tmp/vagrant-libvirt.xml && sudo virsh net-start vagrant-libvirt && sudo virsh net-autostart vagrant-libvirt && sudo virsh net-list && sudo brctl show"
