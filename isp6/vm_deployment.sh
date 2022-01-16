@@ -110,3 +110,112 @@ ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i '2i !' /usr/local/l
 #ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i '2i !' /usr/local/lib/python3.8/dist-packages/netsim/ansible/templates/initial/eos.j2"
 
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo reboot"
+
+sleep 30
+
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo ip a"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "uname -a"
+
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "mkdir -p /home/ubuntu/tmp"
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "cat << EOF | tee /home/ubuntu/tmp/vagrant-libvirt.xml
+<network>
+  <name>vagrant-libvirt</name>
+  <uuid>7ed704dd-3901-452c-91d0-58ad75901b1d</uuid>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='virbr1' stp='on' delay='0'/>
+  <mac address='52:54:00:d8:3f:0d'/>
+  <ip address='192.168.121.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.121.2' end='192.168.121.99'/>
+      <host mac='08:4F:A9:00:00:01' ip='192.168.121.101'/>
+      <host mac='08:4F:A9:00:00:02' ip='192.168.121.102'/>
+      <host mac='08:4F:A9:00:00:03' ip='192.168.121.103'/>
+      <host mac='08:4F:A9:00:00:04' ip='192.168.121.104'/>
+      <host mac='08:4F:A9:00:00:05' ip='192.168.121.105'/>
+      <host mac='08:4F:A9:00:00:06' ip='192.168.121.106'/>
+      <host mac='08:4F:A9:00:00:07' ip='192.168.121.107'/>
+      <host mac='08:4F:A9:00:00:08' ip='192.168.121.108'/>
+      <host mac='08:4F:A9:00:00:09' ip='192.168.121.109'/>
+      <host mac='08:4F:A9:00:00:0A' ip='192.168.121.110'/>
+      <host mac='08:4F:A9:00:00:0B' ip='192.168.121.111'/>
+      <host mac='08:4F:A9:00:00:0C' ip='192.168.121.112'/>
+      <host mac='08:4F:A9:00:00:0D' ip='192.168.121.113'/>
+      <host mac='08:4F:A9:00:00:0E' ip='192.168.121.114'/>
+      <host mac='08:4F:A9:00:00:0F' ip='192.168.121.115'/>
+      <host mac='08:4F:A9:00:00:10' ip='192.168.121.116'/>
+      <host mac='08:4F:A9:00:00:11' ip='192.168.121.117'/>
+      <host mac='08:4F:A9:00:00:12' ip='192.168.121.118'/>
+      <host mac='08:4F:A9:00:00:13' ip='192.168.121.119'/>
+      <host mac='08:4F:A9:00:00:14' ip='192.168.121.120'/>
+      <host mac='08:4F:A9:00:00:15' ip='192.168.121.121'/>
+      <host mac='08:4F:A9:00:00:16' ip='192.168.121.122'/>
+      <host mac='08:4F:A9:00:00:17' ip='192.168.121.123'/>
+      <host mac='08:4F:A9:00:00:18' ip='192.168.121.124'/>
+      <host mac='08:4F:A9:00:00:19' ip='192.168.121.125'/>
+      <host mac='08:4F:A9:00:00:1A' ip='192.168.121.126'/>
+      <host mac='08:4F:A9:00:00:1B' ip='192.168.121.127'/>
+      <host mac='08:4F:A9:00:00:1C' ip='192.168.121.128'/>
+      <host mac='08:4F:A9:00:00:1D' ip='192.168.121.129'/>
+      <host mac='08:4F:A9:00:00:1E' ip='192.168.121.130'/>
+      <host mac='08:4F:A9:00:00:1F' ip='192.168.121.131'/>
+      <host mac='08:4F:A9:00:00:20' ip='192.168.121.132'/>
+      <host mac='08:4F:A9:00:00:21' ip='192.168.121.133'/>
+      <host mac='08:4F:A9:00:00:22' ip='192.168.121.134'/>
+      <host mac='08:4F:A9:00:00:23' ip='192.168.121.135'/>
+      <host mac='08:4F:A9:00:00:24' ip='192.168.121.136'/>
+      <host mac='08:4F:A9:00:00:25' ip='192.168.121.137'/>
+      <host mac='08:4F:A9:00:00:26' ip='192.168.121.138'/>
+      <host mac='08:4F:A9:00:00:27' ip='192.168.121.139'/>
+      <host mac='08:4F:A9:00:00:28' ip='192.168.121.140'/>
+      <host mac='08:4F:A9:00:00:29' ip='192.168.121.141'/>
+      <host mac='08:4F:A9:00:00:2A' ip='192.168.121.142'/>
+      <host mac='08:4F:A9:00:00:2B' ip='192.168.121.143'/>
+      <host mac='08:4F:A9:00:00:2C' ip='192.168.121.144'/>
+      <host mac='08:4F:A9:00:00:2D' ip='192.168.121.145'/>
+      <host mac='08:4F:A9:00:00:2E' ip='192.168.121.146'/>
+      <host mac='08:4F:A9:00:00:2F' ip='192.168.121.147'/>
+      <host mac='08:4F:A9:00:00:30' ip='192.168.121.148'/>
+      <host mac='08:4F:A9:00:00:31' ip='192.168.121.149'/>
+      <host mac='08:4F:A9:00:00:32' ip='192.168.121.150'/>
+      <host mac='08:4F:A9:00:00:33' ip='192.168.121.151'/>
+      <host mac='08:4F:A9:00:00:34' ip='192.168.121.152'/>
+      <host mac='08:4F:A9:00:00:35' ip='192.168.121.153'/>
+      <host mac='08:4F:A9:00:00:36' ip='192.168.121.154'/>
+      <host mac='08:4F:A9:00:00:37' ip='192.168.121.155'/>
+      <host mac='08:4F:A9:00:00:38' ip='192.168.121.156'/>
+      <host mac='08:4F:A9:00:00:39' ip='192.168.121.157'/>
+      <host mac='08:4F:A9:00:00:3A' ip='192.168.121.158'/>
+      <host mac='08:4F:A9:00:00:3B' ip='192.168.121.159'/>
+      <host mac='08:4F:A9:00:00:3C' ip='192.168.121.160'/>
+      <host mac='08:4F:A9:00:00:3D' ip='192.168.121.161'/>
+      <host mac='08:4F:A9:00:00:3E' ip='192.168.121.162'/>
+      <host mac='08:4F:A9:00:00:3F' ip='192.168.121.163'/>
+      <host mac='08:4F:A9:00:00:40' ip='192.168.121.164'/>
+      <host mac='08:4F:A9:00:00:41' ip='192.168.121.165'/>
+      <host mac='08:4F:A9:00:00:42' ip='192.168.121.166'/>
+      <host mac='08:4F:A9:00:00:43' ip='192.168.121.167'/>
+      <host mac='08:4F:A9:00:00:44' ip='192.168.121.168'/>
+      <host mac='08:4F:A9:00:00:45' ip='192.168.121.169'/>
+      <host mac='08:4F:A9:00:00:46' ip='192.168.121.170'/>
+      <host mac='08:4F:A9:00:00:47' ip='192.168.121.171'/>
+      <host mac='08:4F:A9:00:00:48' ip='192.168.121.172'/>
+      <host mac='08:4F:A9:00:00:49' ip='192.168.121.173'/>
+      <host mac='08:4F:A9:00:00:4A' ip='192.168.121.174'/>
+      <host mac='08:4F:A9:00:00:4B' ip='192.168.121.175'/>
+      <host mac='08:4F:A9:00:00:4C' ip='192.168.121.176'/>
+      <host mac='08:4F:A9:00:00:4D' ip='192.168.121.177'/>
+      <host mac='08:4F:A9:00:00:4E' ip='192.168.121.178'/>
+      <host mac='08:4F:A9:00:00:4F' ip='192.168.121.179'/>
+      <host mac='08:4F:A9:00:00:50' ip='192.168.121.180'/>      
+      <host mac='52:54:00:7A:00:01' ip='192.168.121.200'/>
+      <host mac='52:54:00:05:00:01' ip='192.168.121.201'/>
+    </dhcp>
+  </ip>
+</network>
+EOF"
+
+ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "virsh net-undefine vagrant-libvirt && virsh net-define /home/ubuntu/tmp/vagrant-libvirt.xml && virsh net-start vagrant-libvirt && virsh net-autostart vagrant-libvirt && virsh net-list && brctl show"
