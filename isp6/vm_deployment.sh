@@ -111,7 +111,7 @@ ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo sed -i '2i !' /usr/local/l
 
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo reboot"
 
-sleep 30
+sleep 60
 
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "sudo ip a"
 ssh -o "StrictHostKeyChecking=no" ubuntu@netsim "uname -a"
