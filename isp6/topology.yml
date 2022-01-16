@@ -217,10 +217,11 @@ nodes:
     bgp:
       as: 65004
   z1:
-    device: frr
+    device: linux
+      image: docker.io/akpinar/alpine 
     module: []
   z2:
-    device: frr
+    device: linux
     module: []
       
 links:
