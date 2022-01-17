@@ -1,0 +1,380 @@
+# Service Provider Network Topology
+#     
+# Defaults      
+defaults:
+  device: eos
+
+isis:
+ bfd:
+  ipv4: True
+  ipv6: True
+
+nodes:
+# Core routers - P routers - backbone super-spine switches
+  c1:
+    module: [ sr,isis,bfd ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48      
+  c2:
+    module: [ sr,isis,bfd ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  c3:
+    module: [ sr,isis,bfd ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48      
+  c4:
+    module: [ sr,isis,bfd ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48        
+# Agreggation routers - PE L1 routers - distribution super-spine switches
+  a1:
+    module: [ sr,isis,bfd ] 
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48     
+  a2:
+    module: [ sr,isis,bfd ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48     
+  a3:
+    module: [ sr,isis,bfd ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48     
+  a4:
+    module: [ sr,isis,bfd ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  a5:
+    module: [ sr,isis,bfd ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48     
+  a6:
+    module: [ sr,isis,bfd ]
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48        
+# Edge routers - PE L2 routers - access/spine switches
+  e1:
+    module: [ sr, isis, bgp, bfd ]
+    bgp:
+      as: 65000
+  e2:
+    module: [ sr, isis, bgp, bfd ]
+    bgp:
+      as: 65100
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  e3:
+    module: [ sr, isis, bgp, bfd ]
+    bgp:
+      as: 65000
+  e4:
+    module: [ sr, isis, bgp, bfd ]
+    bgp:
+      as: 65100
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  e5:
+    module: [ sr, isis, bgp, bfd ]
+    bgp:
+      as: 65200
+  e6:
+    module: [ sr, isis, bgp, bfd ]
+    bgp:
+      as: 65200
+  e7:
+    module: [ sr, isis, bgp, bfd ]
+    bgp:
+      as: 65300
+  e8:
+    module: [ sr, isis, bgp, bfd ]
+    bgp:
+      as: 65300
+  e9:
+    module: [ sr, isis, bgp, bfd ]
+    bgp:
+      as: 65000
+  e10:
+    module: [ sr, isis, bgp, bfd ]
+    bgp:
+      as: 65000
+# Customer routers - CE routers - leaf/ToR switches
+  n1:
+    device: iosv
+    module: [ bgp ]
+    bgp:
+      as: 65001
+  n2:
+    device: iosv
+    module: [ bgp ]
+    bgp:
+      as: 65002
+  n3:
+    device: eos
+  n4:
+    device: eos
+  n5:
+    device: eos
+  n6:
+    device: eos
+  n7:
+    device: cumulus
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48    
+  n8:
+    device: cumulus
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48    
+  n9:
+    device: iosv
+    module: [ bgp ]
+    bgp:
+      as: 65003
+  n10:
+    device: iosv
+    module: [ bgp ]
+    bgp:
+      as: 65004
+  n11:
+    device: iosv
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  n12:
+    device: iosv
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48
+  n13:
+    device: cumulus
+  n14:
+    device: cumulus
+  n15:
+    device: iosv
+    module: [ bgp, ospf ]
+    bgp:
+      as: 65011
+    ospf:
+      area: 1
+  n16:
+    device: iosv
+    module: [ bgp, ospf ]
+    bgp:
+      as: 65012
+    ospf:
+      area: 1
+# Data Center/Campus/Enterprise network devices
+  p1:
+    device: iosv
+  p2:
+    device: iosv
+  z1:
+    device: iosv
+    module: [ ospf ]
+    ospf:
+      area: 1
+  ps1:
+    device: eos
+  ps2:
+    device: eos
+  pl1:
+    device: eos
+  ss1:
+    device: eos
+  ss2:
+    device: eos
+  sl1:
+    device: eos
+  ph1:
+    device: cumulus
+  sh1:
+    device: cumulus
+  xs1:
+    device: cumulus
+  xs2:
+    device: cumulus
+  xl1:
+    device: cumulus
+  xl2:
+    device: cumulus
+  ys1:
+    device: cumulus
+  ys2:
+    device: cumulus
+  yl1:
+    device: cumulus
+  yl2:
+    device: cumulus    
+  xh1:
+    device: cumulus
+  xh2:
+    device: cumulus
+  yh1:
+    device: cumulus
+  yh2:
+    device: cumulus 
+
+links:
+# Core layer links
+- c1-c2
+- c1-c3
+- c2-c4
+- c3-c4
+- c1-c4
+- c2-c3
+
+# Agreggation layer links
+- a1-c1
+- a1-c2
+- a2-c1
+- a2-c2
+- a1-a2
+- a3-c3
+- a3-c4
+- a4-c3
+- a4-c4
+- a3-a4
+- a5-c1
+- a5-c3
+- a6-c1
+- a6-c3
+- a5-a6
+
+# Edge layer links
+- e1-a1
+- e1-a2
+- e2-a1
+- e2-a2
+- e3-a3
+- e3-a4
+- e4-a3
+- e4-a4
+- e5-a1
+- e5-a2
+- e6-a3
+- e6-a4
+- e7-a5
+- e7-a6
+- e8-a5
+- e8-a6
+- e9-a2
+- e9-a4
+- e10-a2
+- e10-a4
+
+# External links
+- n1-e1
+- n2-e3
+- n3-e2
+- n4-e4
+- n5-e5
+- n6-e6
+- n7-e2
+- n8-e4
+- n9-e1
+- n10-e3
+- n11-e7
+- n12-e8
+- n13-e5
+- n14-e6
+- n15-e9
+- n16-e10
+- n11-p1
+- n12-p2
+- ps1-n3
+- ps1-pl1
+- ps2-n3
+- ps2-pl1
+- ss1-n4
+- ss1-sl1
+- ss2-n4
+- ss2-sl1
+- pl1-ph1
+- sl1-sh1
+- n15:
+  n16:
+  z1:
+  type: lan
+  prefix: 192.168.111.0/24
+- xs1-n13
+- xs1-xl1
+- xs1-xl2
+- xs2-n13
+- xs2-xl1
+- xs2-xl2
+- ys1-n14
+- ys1-yl1
+- ys1-yl2
+- ys2-n14
+- ys2-yl1
+- ys2-yl2
+- xl1-xh1
+- xl2-xh2
+- yl1-yh1
+- yl2-yh2
+
+# Stub links
+- n1
+- n2
+- n3
+- n4
+- n5
+- n6
+- n7
+- n8
+- n9
+- n10
+- n11
+- n12
+- n13
+- n14
+- n15
+- n16
+- p1
+- p2
+- z1
