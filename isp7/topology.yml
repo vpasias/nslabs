@@ -1,0 +1,263 @@
+#
+# This topology combines SR-MPLS topology with IBGP session between AS-edge devices
+# and EBGP sessions with two external routers, using SR Linux 7250 IXR devices
+#
+# BGP-free core based on Segment Routing
+#
+
+provider: clab
+
+name: isp
+
+addressing:
+  loopback:
+    ipv4: 10.255.255.0/24
+    ipv6: 2001:db8:0::/48
+  lan:
+    ipv4: 172.16.0.0/16
+    ipv6: 2001:db8:1::/48
+  p2p:
+    ipv4: 10.250.0.0/16
+    ipv6: 2001:db8:2::/48
+  mgmt:
+    ipv4: 192.168.121.0/24
+    start: 100
+    mac: 08-4F-A9-00-00-00
+
+defaults:
+  device: srlinux
+  sr.extra_attributes.global: [ srgb_range_start, srgb_range_size ]
+#  bridge_type: ovs-bridge
+  providers:
+    clab:
+      devices:
+        srlinux:
+          provider_type: ixr6 # SR-MPLS only supported on 7250 IXR platform
+
+# SR Global Block label range
+sr.srgb_range_start: 500000
+sr.srgb_range_size: 1000
+
+groups:
+  core:
+    members: [ c1,c2,c3,c4 ]
+  aggr:
+    members: [ a1,a2,a3,a4 ]    
+  edge:
+    members: [ e1,e2,e3,e4,e5,e6,e7,e8 ]
+  external:
+    members: [ x1,x2,x3,x4 ]
+  remote:
+    members: [ za,zb ]  
+
+nodes:
+  # CORE (no BGP)
+  c1:
+    module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
+  c2:
+    module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
+  c3:
+    module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
+  c4:
+    module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
+
+  # AGGREGATION (no BGP)
+  a1:
+    module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
+  a2:
+    module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
+  a3:
+    module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
+  a4:
+    module: [ isis,sr,bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
+
+  # EDGE
+  e1:
+    module: [ isis, bgp, sr, bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
+    bgp:
+      as: 65000  
+  e2:
+    module: [ isis, bgp, sr, bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
+    bgp:
+      as: 65000
+  e3:
+    module: [ isis, bgp, sr, bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
+    bgp:
+      as: 65000
+  e4:
+    module: [ isis, bgp, sr, bfd ]
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
+    bgp:
+      as: 65000
+  e5:
+    module: [ isis, bgp, sr, bfd ]
+    bgp:
+      as: 65000
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
+  e6:
+    module: [ isis, bgp, sr, bfd ]
+    bgp:
+      as: 65000
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
+  e7:
+    module: [ isis, bgp, sr, bfd ]
+    bgp:
+      as: 65000
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
+  e8:
+    module: [ isis, bgp, sr, bfd ]
+    bgp:
+      as: 65000
+    isis:
+     bfd:
+      ipv4: True
+      ipv6: True
+
+  # EXTERNAL PEERS
+  x1:
+    module: [ bgp ]
+    # type: ixrd2
+    bgp:
+      as: 65001
+  x2:
+    module: [ bgp ]
+    # type: ixrd2
+    bgp:
+      as: 65002
+  x3:
+    module: [ bgp ]
+    # type: ixrd2
+    bgp:
+      as: 65003
+  x4:
+    module: [ bgp ]
+    # type: ixrd2
+    bgp:
+      as: 65004
+  za:
+    device: linux
+    module: []
+    runtime: ignite    
+  zb:
+    device: linux
+    module: []
+    runtime: ignite    
+      
+links:
+# Core layer links
+- c1-c2
+- c1-c3
+- c2-c4
+- c3-c4
+- c1-c4
+- c2-c3
+
+# Aggregation layer links
+- a1-c1
+- a1-c2
+- a2-c1
+- a2-c2
+- a1-a2
+- a3-c3
+- a3-c4
+- a4-c3
+- a4-c4
+- a3-a4
+
+# Edge layer links
+- e1-a1
+- e1-a2
+- e2-a1
+- e2-a2
+- e3-a3
+- e3-a4
+- e4-a3
+- e4-a4
+- e5-a1
+- e5-a2
+- e6-a1
+- e6-a2
+- e7-a3
+- e7-a4
+- e8-a3
+- e8-a4
+
+# External links
+- x1-e1
+- x2-e2
+- x3-e3
+- x4-e4
+- type: lan
+  prefix: 192.168.31.0/24
+  x1:
+    ipv4: 1
+  za:
+    ipv4: 10
+- type: lan
+  prefix: 192.168.33.0/24
+  x3:
+    ipv4: 1
+  zb:
+    ipv4: 10
+
+# Stub links
+- x1
+- x2
+- x3
+- x4
