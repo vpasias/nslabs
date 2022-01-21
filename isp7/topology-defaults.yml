@@ -1,0 +1,5 @@
+---
+devices:
+  linux:
+    image: weaveworks/ignite-ubuntu:latest
+    runtime: ignite
