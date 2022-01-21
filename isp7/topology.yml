@@ -193,13 +193,9 @@ nodes:
   za:
     device: linux
     module: []
-    image: weaveworks/ignite-ubuntu:latest
-    runtime: ignite
   zb:
     device: linux
     module: []
-    image: weaveworks/ignite-ubuntu:latest
-    runtime: ignite
       
 links:
 # Core layer links
