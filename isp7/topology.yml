@@ -189,10 +189,10 @@ nodes:
     bgp:
       as: 65004
   za:
-    device: cumulus
+    module: []
   zb:
-    device: cumulus
-      
+    module: []
+  
 links:
 # Core layer links
 - c1-c2
