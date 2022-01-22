@@ -189,9 +189,9 @@ nodes:
     bgp:
       as: 65004
   za:
-    device: linux
+    device: cumulus
   zb:
-    device: linux
+    device: cumulus
       
 links:
 # Core layer links
