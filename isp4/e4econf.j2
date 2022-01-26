@@ -22,28 +22,28 @@ interface Ethernet4
    switchport mode access
 !
 router bgp 65100
-   router-id 10.0.0.15
+   router-id 10.0.0.14
    maximum-paths 128 ecmp 128
-   neighbor 10.0.0.13 remote-as 65100
-   neighbor 10.0.0.13 update-source Loopback0
-   neighbor 10.0.0.13 fall-over bfd
-   neighbor 10.0.0.13 send-community standard extended
-   neighbor 10.0.0.13 maximum-routes 12000
+   neighbor 10.0.0.12 remote-as 65100
+   neighbor 10.0.0.12 update-source Loopback0
+   neighbor 10.0.0.12 fall-over bfd
+   neighbor 10.0.0.12 send-community standard extended
+   neighbor 10.0.0.12 maximum-routes 12000
    !
    address-family evpn
       neighbor default encapsulation mpls next-hop-self source-interface Loopback0
-      neighbor 10.0.0.13 activate
+      neighbor 10.0.0.12 activate
    !
    no address-family ipv4
-      no network 10.0.0.15/32
+      no network 10.0.0.14/32
    !
    vlan 22
-      rd 10.0.0.15:234
+      rd 10.0.0.14:234
       route-target both 65100:234
       redistribute learned
    !
    vlan 44
-      rd 10.0.0.15:567
+      rd 10.0.0.14:567
       route-target both 65100:567
       redistribute learned
    !    
