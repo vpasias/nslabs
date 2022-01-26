@@ -17,7 +17,7 @@ nodes:
       p2p:
         unnumbered: true
       loopback:
-        ipv6: 2001:db8:cafe::/48      
+        ipv6: 2001:db8:cafe::/48
   c2:
     module: [ sr,isis,bfd ]
     addressing:
@@ -31,14 +31,14 @@ nodes:
       p2p:
         unnumbered: true
       loopback:
-        ipv6: 2001:db8:cafe::/48      
+        ipv6: 2001:db8:cafe::/48
   c4:
     module: [ sr,isis,bfd ]
     addressing:
       p2p:
         unnumbered: true
       loopback:
-        ipv6: 2001:db8:cafe::/48        
+        ipv6: 2001:db8:cafe::/48
 # Agreggation routers - PE L1 routers - distribution super-spine switches
   a1:
     module: [ sr,isis,bfd ] 
@@ -46,21 +46,21 @@ nodes:
       p2p:
         unnumbered: true
       loopback:
-        ipv6: 2001:db8:cafe::/48     
+        ipv6: 2001:db8:cafe::/48
   a2:
     module: [ sr,isis,bfd ]
     addressing:
       p2p:
         unnumbered: true
       loopback:
-        ipv6: 2001:db8:cafe::/48     
+        ipv6: 2001:db8:cafe::/48
   a3:
     module: [ sr,isis,bfd ]
     addressing:
       p2p:
         unnumbered: true
       loopback:
-        ipv6: 2001:db8:cafe::/48     
+        ipv6: 2001:db8:cafe::/48
   a4:
     module: [ sr,isis,bfd ]
     addressing:
@@ -74,14 +74,14 @@ nodes:
       p2p:
         unnumbered: true
       loopback:
-        ipv6: 2001:db8:cafe::/48     
+        ipv6: 2001:db8:cafe::/48
   a6:
     module: [ sr,isis,bfd ]
     addressing:
       p2p:
         unnumbered: true
       loopback:
-        ipv6: 2001:db8:cafe::/48        
+        ipv6: 2001:db8:cafe::/48
 # Edge routers - PE L2 routers - access/spine switches
   e1:
     module: [ sr, isis, bgp, bfd ]
@@ -128,7 +128,7 @@ nodes:
   e9:
     device: csr
     module: [ sr, isis, bgp, bfd ]
-    bgp:
+    bgp:CumulusCommunity/cumulus-vx
       as: 65000
   e10:
     device: csr
@@ -160,14 +160,14 @@ nodes:
       p2p:
         unnumbered: true
       loopback:
-        ipv6: 2001:db8:cafe::/48    
+        ipv6: 2001:db8:cafe::/48
   n8:
     device: cumulus
     addressing:
       p2p:
         unnumbered: true
       loopback:
-        ipv6: 2001:db8:cafe::/48    
+        ipv6: 2001:db8:cafe::/48
   n9:
     device: iosv
     module: [ bgp ]
@@ -251,7 +251,7 @@ nodes:
   yl1:
     device: cumulus
   yl2:
-    device: cumulus    
+    device: cumulus
   xh1:
     device: cumulus
   xh2:
