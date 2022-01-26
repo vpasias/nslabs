@@ -126,12 +126,12 @@ nodes:
     bgp:
       as: 65300
   e9:
-    device: csr
+#    device: csr
     module: [ sr, isis, bgp, bfd ]
     bgp:
       as: 65000
   e10:
-    device: csr
+#    device: csr
     module: [ sr, isis, bgp, bfd ]
     bgp:
       as: 65000
