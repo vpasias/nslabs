@@ -128,7 +128,7 @@ nodes:
   e9:
     device: csr
     module: [ sr, isis, bgp, bfd ]
-    bgp:CumulusCommunity/cumulus-vx
+    bgp:
       as: 65000
   e10:
     device: csr
