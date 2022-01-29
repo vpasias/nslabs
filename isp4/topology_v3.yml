@@ -221,7 +221,7 @@ nodes:
     ospf:
       area: 1
   z2:
-    device: cumulus_nvue
+    device: cumulus
     module: [ ospf ]
     ospf:
       area: 1
