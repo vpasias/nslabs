@@ -198,16 +198,14 @@ nodes:
     device: eos
   n15:
     device: iosv
-    module: [ bgp, ospf ]
+    module: [ bgp ]
     bgp:
-      as: 65011
-    ospf:
-      area: 1
+      as: 65005
   n16:
     device: iosv
     module: [ bgp, ospf ]
     bgp:
-      as: 65012
+      as: 65006
     ospf:
       area: 1
 # Data Center/Campus/Enterprise network devices
@@ -216,12 +214,12 @@ nodes:
   p2:
     device: iosv
   z1:
+    device: linux    
+  z2:
     device: routeros
     module: [ ospf ]
     ospf:
       area: 1
-  z2:
-    device: linux
 
 links:
 # Core layer links
@@ -290,9 +288,8 @@ links:
 - n16-e10
 - n11-p1
 - n12-p2
-- n15:
-  n16:
-  z1:
+- n15-z1
+- n16:
   z2:
   type: lan
   prefix: 192.168.111.0/24
