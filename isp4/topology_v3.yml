@@ -126,7 +126,7 @@ nodes:
     bgp:
       as: 65300
   e9:
-    device: csr
+    device: vsrx
     module: [ sr, isis, bgp, bfd ]
     bgp:
       as: 65000
@@ -214,7 +214,7 @@ nodes:
   p2:
     device: iosv
   z1:
-    device: linux
+    device: routeros
   z2:
     device: routeros
     module: [ ospf ]
