@@ -208,7 +208,7 @@ nodes:
       as: 65006
     ospf:
       area: 1
-# Data Center/Campus/Enterprise network devices
+# Data Center/Campus/Enterprise devices
   p1:
     device: iosv
   p2:
@@ -216,7 +216,7 @@ nodes:
   z1:
     device: linux
   z2:
-    device: iosv
+    device: routeros
     module: [ ospf ]
     ospf:
       area: 1
