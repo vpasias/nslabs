@@ -214,7 +214,7 @@ nodes:
   p2:
     device: iosv
   z1:
-    device: cumulus_nvue
+    device: cumulus
     module: []    
   z2:
     device: routeros
