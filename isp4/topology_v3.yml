@@ -197,7 +197,7 @@ nodes:
   n14:
     device: eos
   n15:
-    device: vsrx
+    device: csr
     module: [ bgp ]
     bgp:
       as: 65005
@@ -214,10 +214,12 @@ nodes:
   p2:
     device: iosv
   z1:
-    device: routeros
-    module: []    
+    device: iosv
+    module: [ ospf ]
+    ospf:
+      area: 1 
   z2:
-    device: routeros
+    device: iosv
     module: [ ospf ]
     ospf:
       area: 1
