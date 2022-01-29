@@ -220,6 +220,11 @@ nodes:
     module: [ ospf ]
     ospf:
       area: 1
+  z2:
+    device: cumulus_nvue
+    module: [ ospf ]
+    ospf:
+      area: 1
 
 links:
 # Core layer links
@@ -291,6 +296,7 @@ links:
 - n15:
   n16:
   z1:
+  z2:
   type: lan
   prefix: 192.168.111.0/24
 
@@ -314,3 +320,4 @@ links:
 - p1
 - p2
 - z1
+- z2
