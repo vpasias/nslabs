@@ -198,9 +198,11 @@ nodes:
     device: eos
   n15:
     device: csr
-    module: [ bgp ]
+    module: [ bgp, ospf ]
     bgp:
       as: 65005
+    ospf:
+      area: 1      
   n16:
     device: csr
     module: [ bgp, ospf ]
@@ -292,10 +294,7 @@ links:
 - n11-p1
 - n12-p2
 - n15-z1
-- n16:
-  z2:
-  type: lan
-  prefix: 192.168.111.0/24
+- n16-z2
 
 # Stub links
 - n1
