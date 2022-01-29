@@ -126,7 +126,7 @@ nodes:
     bgp:
       as: 65300
   e9:
-    device: vsrx
+    device: csr
     module: [ sr, isis, bgp, bfd ]
     bgp:
       as: 65000
@@ -197,12 +197,12 @@ nodes:
   n14:
     device: eos
   n15:
-    device: iosv
+    device: vsrx
     module: [ bgp ]
     bgp:
       as: 65005
   n16:
-    device: iosv
+    device: vsrx
     module: [ bgp, ospf ]
     bgp:
       as: 65006
