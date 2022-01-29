@@ -216,7 +216,7 @@ nodes:
   p2:
     device: iosv
   z1:
-    device: chr
+    device: routeros
     module: [ ospf ]
     ospf:
       area: 1
