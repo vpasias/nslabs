@@ -216,7 +216,7 @@ nodes:
   p2:
     device: iosv
   z1:
-    device: iosv
+    device: chr
     module: [ ospf ]
     ospf:
       area: 1
