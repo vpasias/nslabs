@@ -215,6 +215,7 @@ nodes:
     device: iosv
   z1:
     device: linux
+    module: []    
   z2:
     device: routeros
     module: [ ospf ]
