@@ -202,7 +202,7 @@ nodes:
     bgp:
       as: 65005
   n16:
-    device: vsrx
+    device: csr
     module: [ bgp, ospf ]
     bgp:
       as: 65006
