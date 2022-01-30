@@ -25,4 +25,4 @@ groups:
 
 nodes: [ s1, s2, l1, l2, x1 ]
 
-links: [ s1-l1, s1-l2, s2-s1, s2-s2, s1-x1 ]
+links: [ s1-l1, s1-l2, s2-l1, s2-l2, s1-x1 ]
