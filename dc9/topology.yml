@@ -25,13 +25,13 @@ groups:
 
 nodes:
   s1:
-    module: [ bgp, evpn, bfd ]
+    module: [ isis, bgp, evpn, bfd ]
   s2:
-    module: [ bgp, evpn, bfd ]
+    module: [ isis, bgp, evpn, bfd ]
   l1:
-    module: [ bgp, evpn, bfd ]
+    module: [ isis, bgp, evpn, bfd ]
   l2:
-    module: [ bgp, evpn, bfd ]
+    module: [ isis, bgp, evpn, bfd ]
   h1:
     device: linux
     module: []
