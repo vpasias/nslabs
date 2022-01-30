@@ -6,9 +6,7 @@ provider: clab
 name: dc
 
 defaults:
- device: frr
-   frr.image.clab: frrouting/frr:v8.1.0
-# device: srlinux   
+  device: srlinux
 
 bgp.as_list:
   65000:
