@@ -1,5 +1,5 @@
 #
-# Using FRR on containerlab to make it fast
+# BGP Route Reflector with EBGP Session
 #
 provider: clab
 
