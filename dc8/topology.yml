@@ -2,6 +2,7 @@
 # Using FRR on containerlab to make it fast
 #
 defaults.device: frr
+frr.image.clab: frrouting/frr:v8.1.0
 provider: clab
 name: dc
 #
