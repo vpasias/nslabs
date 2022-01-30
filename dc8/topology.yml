@@ -6,8 +6,8 @@ provider: clab
 name: dc
 
 defaults:
-# device: srlinux
-  device: frr
+ device: srlinux
+#  device: frr
 # frr.image.clab: frrouting/frr:v8.1.0
 
 module: [ isis, bgp ]
