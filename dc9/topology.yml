@@ -12,11 +12,14 @@ bgp.as_list:
   65000:
     members: [ s1, s2, l1, l2 ]
     rr: [ s1, s2 ]
-    
+
+evpn:
+  use_ibgp: True
+
 groups:
   as65000:
     node_data:
-      bgp.advertise_loopback: True
+      bgp.advertise_loopback: all
   hosts:
     members: [ h1, h2 ]
 
