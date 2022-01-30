@@ -1,0 +1,23 @@
+#
+# Using FRR on containerlab to make it fast
+#
+defaults.device: frr
+provider: clab
+#
+module: [ isis, bgp ]
+
+bgp.as_list:
+  65000:
+    members: [ s1, s2, l1, l2 ]
+    rr: [ s1, s2 ]
+  65001:
+    members: [ x1 ]
+
+groups:
+  as65000:
+    node_data:
+      bgp.advertise_loopback: false
+
+nodes: [ s1, s2, l1, l2, x1 ]
+
+links: [ s1-l1, s1-l2, s2-s1, s2-s2, s1-x1 ]
