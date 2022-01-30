@@ -3,6 +3,7 @@
 #
 defaults.device: frr
 provider: clab
+name: dc
 #
 module: [ isis, bgp ]
 
