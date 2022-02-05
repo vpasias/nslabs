@@ -216,12 +216,12 @@ nodes:
   p2:
     device: iosv
   z1:
-    device: iosv
+    device: vyos
     module: [ ospf ]
     ospf:
       area: 1 
   z2:
-    device: iosv
+    device: vyos
     module: [ ospf ]
     ospf:
       area: 1
