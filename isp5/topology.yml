@@ -20,7 +20,11 @@ defaults:
 sr.srgb_range_start: 500000
 sr.srgb_range_size: 1000
 
-devices.srlinux.clab.node.type: ixr6
+devices:
+  srlinux:
+    clab:
+      node:
+        type: ixr6
 
 groups:
   core:
