@@ -1,0 +1,5 @@
+devices:
+  srlinux:
+    clab:
+      node:
+        type: ixr6
