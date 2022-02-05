@@ -15,11 +15,12 @@ defaults:
       devices:
         srlinux:
           provider_type: ixr6 # SR-MPLS only supported on 7250 IXR platform
-          clab.node.type: ixr6
 
 # SR Global Block label range
 sr.srgb_range_start: 500000
 sr.srgb_range_size: 1000
+
+devices.srlinux.clab.node.type: ixr6
 
 groups:
   core:
