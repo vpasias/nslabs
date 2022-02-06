@@ -219,12 +219,9 @@ nodes:
     device: vyos
     module: [ ospf ]
     ospf:
-      area: 1 
-  z2:
-    device: vyos
-    module: [ ospf ]
-    ospf:
       area: 1
+  z2:
+    device: linux
 
 links:
 # Core layer links
