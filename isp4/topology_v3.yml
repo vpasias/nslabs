@@ -221,7 +221,7 @@ nodes:
     ospf:
       area: 1
   z2:
-    device: vyos
+    device: routeros
     module: [ ospf ]
     ospf:
       area: 1    
