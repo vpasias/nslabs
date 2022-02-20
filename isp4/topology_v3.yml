@@ -221,10 +221,7 @@ nodes:
     ospf:
       area: 1
   z2:
-    device: routeros
-    module: [ ospf ]
-    ospf:
-      area: 1    
+    device: linux
 
 links:
 # Core layer links
