@@ -142,7 +142,7 @@ nodes:
   z1:
   z2:
   ssh: 
-    device: linux
+    device: cumulus
       
 links:
 # Core layer links
