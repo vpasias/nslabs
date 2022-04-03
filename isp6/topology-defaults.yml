@@ -7,5 +7,3 @@ devices:
     clab:
       image: netreplica/graphite:webssh2
       mtu: 1500
-      node:
-      kind: linux
