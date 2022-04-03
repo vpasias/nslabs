@@ -3,3 +3,19 @@ devices:
     clab:
       node:
         type: ixr6
+  linux:
+    clab:
+      image: netreplica/graphite:webssh2
+        env:
+          GRAPHITE_DEFAULT_TYPE: clab
+          GRAPHITE_DEFAULT_TOPO: simple
+          CLAB_SSH_CONNECTION: ${SSH_CONNECTION}
+        binds:
+          - .:/var/www/localhost/htdocs/clab
+        ports:
+          - 8080:80
+        exec:
+          - sh -c 'generate_offline_graph.sh'
+          - sh -c 'graphite_motd.sh 8080'
+        labels:
+          graph-hide: yes
