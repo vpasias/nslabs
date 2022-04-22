@@ -9,99 +9,136 @@ module: [ vrf,ospf,bgp,mpls ]
 bgp.as: 65000
 
 nodes:
-  p1:
+  c1:
     id: 1
     mpls.ldp: true
     module: [ ospf,mpls ]
-    bgp.as: 65000
-  p2:
+  c2:
     id: 2
     mpls.ldp: true
     module: [ ospf,mpls ]
-    bgp.as: 65000
-  p3:
+  c3:
     id: 3
     mpls.ldp: true
     module: [ ospf,mpls ]
-    bgp.as: 65000
-  p4:
+  c4:
     id: 4
+    mpls.ldp: true
+    module: [ ospf,mpls ]
+  a1:
+    id: 5
+    mpls.ldp: true
+    module: [ ospf,mpls ]
+    bgp.as: 65000
+  a2:
+    id: 6
+    mpls.ldp: true
+    module: [ ospf,mpls ]
+    bgp.as: 65000
+  a3:
+    id: 7
+    mpls.ldp: true
+    module: [ ospf,mpls ]
+    bgp.as: 65000
+  a4:
+    id: 8
     mpls.ldp: true
     module: [ ospf,mpls ]
     bgp.as: 65000
   rr1:
-    id: 8
-    mpls:
-      ldp: true
-      vpn: true
-    bgp.rr: true
-  rr2:
     id: 9
     mpls:
       ldp: true
       vpn: true
     bgp.rr: true
-  pe1:
+  rr2:
+    id: 10
+    mpls:
+      ldp: true
+      vpn: true
+    bgp.rr: true
+  e1:
     mpls:
       vpn: true
       ldp: true
     id: 11
-  pe2:
-     mpls:
-       vpn: true
-       ldp: true
-     id: 12
-  cb1:
+  e2:
+    mpls:
+      vpn: true
+      ldp: true
+    id: 12
+  x1:
     module: [ bgp ]
     bgp.as: 65101
     id: 21
-  cb2:
+  x2:
     module: [ bgp ]
     bgp.as: 65102
     id: 22
-  cb3:
+  x3:
     module: [ bgp ]
     bgp.as: 65103
     id: 23
-  cb4:
+  x4:
     module: [ bgp ]
     bgp.as: 65104
     id: 24
-  cb5:
+  x5:
     module: [ ospf ]
     id: 25
-  cb6:
+  x6:
     module: [ ospf ]
     id: 26
     
 links:
-- pe1:
-  p1:
-- pe2:
-  p1:
-- p1:
+# Core layer links
+- c1-c2
+- c1-c3
+- c2-c4
+- c3-c4
+- c1-c4
+- c2-c3
+
+# Agreggation layer links
+- a1-c1
+- a1-c2
+- a2-c1
+- a2-c2
+- a1-a2
+- a3-c3
+- a3-c4
+- a4-c3
+- a4-c4
+- a3-a4
+
+# Edge layer links
+- e1:
+  a1:
+- e2:
+  a1:
+- a1:
   rr1:
-- p1:
+- a1:
   rr2:
-- p2:
+- a2:
   rr1:
-- p2:
+- a2:
   rr2:  
-- pe1: { vrf: blue }
-  cb1:
-- pe2: { vrf: blue }
-  cb1:
-- pe1: { vrf: blue }
-  cb2:
-- pe2: { vrf: blue }
-  cb2:
-- pe1: { vrf: blue }
-  cb3:
-- pe2: { vrf: blue }
-  cb4:
-- pe1: { vrf: blue }
-  cb5:
+- e1: { vrf: blue }
+  x1:
+- e2: { vrf: blue }
+  x1:
+- e1: { vrf: blue }
+  x2:
+- e2: { vrf: blue }
+  x2:
+- e1: { vrf: blue }
+  x3:
+- e2: { vrf: blue }
+  x4:
+- e1: { vrf: blue }
+  x5:
   ospf.cost: 66
-- pe2: { vrf: blue }
-  cb6:
+- e2: { vrf: blue }
+  x6:
   ospf.cost: 66
