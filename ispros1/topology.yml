@@ -145,14 +145,14 @@ links:
 - e3: { vrf: blue }
   x3:
 - e3: { vrf: blue }
-  x4:  
+  x4:
 - e4: { vrf: blue }
   x3:
 - e4: { vrf: blue }
-  x4:  
+  x4:
 - e1: { vrf: blue }
   x5:
   ospf.cost: 66
-- e3: { vrf: blue }
+- e2: { vrf: blue }
   x6:
   ospf.cost: 66
