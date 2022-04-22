@@ -67,6 +67,16 @@ nodes:
       vpn: true
       ldp: true
     id: 12
+  e3:
+    mpls:
+      vpn: true
+      ldp: true
+    id: 13
+  e4:
+    mpls:
+      vpn: true
+      ldp: true
+    id: 14
   x1:
     module: [ bgp ]
     bgp.as: 65101
@@ -132,13 +142,17 @@ links:
   x2:
 - e2: { vrf: blue }
   x2:
-- e1: { vrf: blue }
+- e3: { vrf: blue }
   x3:
-- e2: { vrf: blue }
-  x4:
+- e3: { vrf: blue }
+  x4:  
+- e4: { vrf: blue }
+  x3:
+- e4: { vrf: blue }
+  x4:  
 - e1: { vrf: blue }
   x5:
   ospf.cost: 66
-- e2: { vrf: blue }
+- e3: { vrf: blue }
   x6:
   ospf.cost: 66
