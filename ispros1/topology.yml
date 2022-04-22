@@ -118,11 +118,11 @@ links:
   a1:
 - a1:
   rr1:
-- a1:
+- a2:
+  rr1:  
+- a3:
   rr2:
-- a2:
-  rr1:
-- a2:
+- a4:
   rr2:  
 - e1: { vrf: blue }
   x1:
