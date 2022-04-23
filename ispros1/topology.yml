@@ -103,12 +103,6 @@ nodes:
     device: linux
   x8:
     device: linux
-  z1:
-#    module: [ ospf ]
-#    id: 31
-  z2:
-#    module: [ ospf ]
-#    id: 32
     
 links:
 # Core layer links
@@ -171,10 +165,4 @@ links:
 - e3: { vrf: black }
   x7:
 - e4: { vrf: black }
-  x8:  
-- e1: { vrf: red }
-  z1:
-#  ospf.cost: 66
-- e2: { vrf: red }
-  z2:
-#  ospf.cost: 66
+  x8:
