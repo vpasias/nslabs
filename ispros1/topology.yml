@@ -3,7 +3,9 @@ defaults:
   device: routeros
 
 vrfs:
+  red:
   blue:
+  black:
 
 module: [ vrf,ospf,bgp,mpls ]
 bgp.as: 65000
@@ -94,11 +96,19 @@ nodes:
     bgp.as: 65104
     id: 24
   x5:
-    module: [ ospf ]
-    id: 25
+    device: linux
   x6:
+    device: linux
+  x7:
+    device: linux
+  x8:
+    device: linux    
+  z1:
     module: [ ospf ]
-    id: 26
+    id: 31
+  z2:
+    module: [ ospf ]
+    id: 31
     
 links:
 # Core layer links
@@ -154,9 +164,17 @@ links:
   x3:
 - e4: { vrf: blue }
   x4:
-- e1: { vrf: blue }
+- e1: { vrf: black }
   x5:
-  ospf.cost: 66
-- e2: { vrf: blue }
+- e2: { vrf: black }
   x6:
+- e3: { vrf: black }
+  x7:
+- e4: { vrf: black }
+  x8:  
+- e1: { vrf: red }
+  z1:
+  ospf.cost: 66
+- e2: { vrf: red }
+  z2:
   ospf.cost: 66
