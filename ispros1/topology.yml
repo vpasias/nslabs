@@ -3,9 +3,8 @@ defaults:
   device: routeros
 
 vrfs:
-  red:
   blue:
-  black:
+  red:
 
 module: [ vrf,ospf,bgp,mpls ]
 bgp.as: 65000
