@@ -157,11 +157,11 @@ links:
   x3:
 - e4: { vrf: blue }
   x4:
-- e1: { vrf: black }
+- e1: { vrf: red }
   x5:
-- e2: { vrf: black }
+- e2: { vrf: red }
   x6:
-- e3: { vrf: black }
+- e3: { vrf: red }
   x7:
-- e4: { vrf: black }
+- e4: { vrf: red }
   x8:
