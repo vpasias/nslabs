@@ -103,18 +103,22 @@ nodes:
     device: linux
     cpu: 4
     memory: 8192
+    id: 31
   z2:
     device: linux
     cpu: 4
     memory: 8192
+    id: 32
   z3:
     device: linux
     cpu: 4
     memory: 8192
+    id: 33
   z4:
     device: linux
     cpu: 4
     memory: 8192
+    id: 34
     
 links:
 # Core layer links
