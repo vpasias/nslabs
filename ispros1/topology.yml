@@ -101,12 +101,20 @@ nodes:
     id: 26
   z1:
     device: linux
+    cpu: 4
+    memory: 8192
   z2:
     device: linux
+    cpu: 4
+    memory: 8192
   z3:
     device: linux
+    cpu: 4
+    memory: 8192
   z4:
     device: linux
+    cpu: 4
+    memory: 8192
     
 links:
 # Core layer links
