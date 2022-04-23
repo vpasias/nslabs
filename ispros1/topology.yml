@@ -94,12 +94,18 @@ nodes:
     bgp.as: 65104
     id: 24
   x5:
-    device: linux
+    module: [ ospf ]
+    id: 25
   x6:
+    module: [ ospf ]
+    id: 26
+  z1:
     device: linux
-  x7:
+  z2:
     device: linux
-  x8:
+  z3:
+    device: linux
+  z4:
     device: linux
     
 links:
@@ -157,10 +163,16 @@ links:
 - e4: { vrf: blue }
   x4:
 - e1: { vrf: blue }
+  z1:
+- e2: { vrf: blue }
+  z2:
+- e3: { vrf: blue }
+  z3:
+- e4: { vrf: blue }
+  z4:
+- e1: { vrf: blue }
   x5:
+  ospf.cost: 66
 - e2: { vrf: blue }
   x6:
-- e3: { vrf: blue }
-  x7:
-- e4: { vrf: blue }
-  x8:
+  ospf.cost: 66
