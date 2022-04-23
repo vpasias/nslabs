@@ -108,7 +108,7 @@ nodes:
     id: 31
   z2:
     module: [ ospf ]
-    id: 31
+    id: 32
     
 links:
 # Core layer links
