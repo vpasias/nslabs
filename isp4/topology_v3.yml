@@ -211,10 +211,10 @@ nodes:
 #    ospf:
 #      area: 1
 # Data Center/Campus/Enterprise ICT devices
-#  p1:
-#    device: iosv
-#  p2:
-#    device: iosv
+  p1:
+    device: iosv
+  p2:
+    device: iosv
 #  z1:
 #    device: vyos
 #    module: [ ospf ]
