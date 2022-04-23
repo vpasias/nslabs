@@ -4,7 +4,6 @@ defaults:
 
 vrfs:
   blue:
-  red:
 
 module: [ vrf,ospf,bgp,mpls ]
 bgp.as: 65000
@@ -157,11 +156,11 @@ links:
   x3:
 - e4: { vrf: blue }
   x4:
-- e1: { vrf: red }
+- e1: { vrf: blue }
   x5:
-- e2: { vrf: red }
+- e2: { vrf: blue }
   x6:
-- e3: { vrf: red }
+- e3: { vrf: blue }
   x7:
-- e4: { vrf: red }
+- e4: { vrf: blue }
   x8:
