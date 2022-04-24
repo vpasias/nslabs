@@ -125,16 +125,16 @@ nodes:
     module: [ sr, isis, bgp, bfd ]
     bgp:
       as: 65300
-  e9:
-    device: csr
-    module: [ sr, isis, bgp, bfd ]
-    bgp:
-      as: 65000
-  e10:
-    device: csr
-    module: [ sr, isis, bgp, bfd ]
-    bgp:
-      as: 65000
+#  e9:
+#    device: csr
+#    module: [ sr, isis, bgp, bfd ]
+#    bgp:
+#      as: 65000
+#  e10:
+#    device: csr
+#    module: [ sr, isis, bgp, bfd ]
+#    bgp:
+#      as: 65000
 # Customer routers - CE routers - leaf/ToR switches
   n1:
     device: iosv
@@ -192,39 +192,39 @@ nodes:
         unnumbered: true
       loopback:
         ipv6: 2001:db8:cafe::/48
-  n13:
-    device: eos
-  n14:
-    device: eos
-  n15:
-    device: csr
-    module: [ bgp, ospf ]
-    bgp:
-      as: 65005
-    ospf:
-      area: 1
-  n16:
-    device: csr
-    module: [ bgp, ospf ]
-    bgp:
-      as: 65006
-    ospf:
-      area: 1
+#  n13:
+#    device: eos
+#  n14:
+#    device: eos
+#  n15:
+#    device: csr
+#    module: [ bgp, ospf ]
+#    bgp:
+#      as: 65005
+#    ospf:
+#      area: 1
+#  n16:
+#    device: csr
+#    module: [ bgp, ospf ]
+#    bgp:
+#      as: 65006
+#    ospf:
+#      area: 1
 # Data Center/Campus/Enterprise ICT devices
   p1:
     device: iosv
   p2:
     device: iosv
-  z1:
-    device: vyos
-    module: [ ospf ]
-    ospf:
-      area: 1
-  z2:
-    device: vyos
-    module: [ ospf ]
-    ospf:
-      area: 1
+#  z1:
+#    device: vyos
+#    module: [ ospf ]
+#    ospf:
+#      area: 1
+#  z2:
+#    device: vyos
+#    module: [ ospf ]
+#    ospf:
+#      area: 1
 
 links:
 # Core layer links
@@ -269,10 +269,10 @@ links:
 - e7-a6
 - e8-a5
 - e8-a6
-- e9-a2
-- e9-a4
-- e10-a2
-- e10-a4
+#- e9-a2
+#- e9-a4
+#- e10-a2
+#- e10-a4
 
 # External links
 - n1-e1
@@ -287,14 +287,14 @@ links:
 - n10-e3
 - n11-e7
 - n12-e8
-- n13-e5
-- n14-e6
-- n15-e9
-- n16-e10
+#- n13-e5
+#- n14-e6
+#- n15-e9
+#- n16-e10
 - n11-p1
 - n12-p2
-- n15-z1
-- n16-z2
+#- n15-z1
+#- n16-z2
 
 # Stub links
 - n1
@@ -309,11 +309,11 @@ links:
 - n10
 - n11
 - n12
-- n13
-- n14
-- n15
-- n16
+#- n13
+#- n14
+#- n15
+#- n16
 - p1
 - p2
-- z1
-- z2
+#- z1
+#- z2
