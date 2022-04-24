@@ -7,7 +7,7 @@ defaults:
 isis:
  bfd:
   ipv4: True
-  ipv6: True
+#  ipv6: True
 
 nodes:
 # Core routers - P routers - backbone super-spine switches
@@ -85,8 +85,8 @@ nodes:
 # Edge routers - PE L2 routers - access/spine switches
   e1:
     module: [ sr, isis, bgp, bfd ]
-#    bgp:
-#      as: 65000
+    bgp:
+      as: 65000
   e2:
     module: [ sr, isis, bgp, bfd ]
     bgp:
@@ -98,8 +98,8 @@ nodes:
         ipv6: 2001:db8:cafe::/48
   e3:
     module: [ sr, isis, bgp, bfd ]
-#    bgp:
-#      as: 65000
+    bgp:
+      as: 65000
   e4:
     module: [ sr, isis, bgp, bfd ]
     bgp:
