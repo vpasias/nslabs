@@ -4,10 +4,10 @@
 defaults:
   device: eos
 
-#isis:
-# bfd:
-#  ipv4: True
-#  ipv6: True
+isis:
+ bfd:
+  ipv4: True
+  ipv6: True
 
 nodes:
 # Core routers - P routers - backbone super-spine switches
@@ -87,6 +87,11 @@ nodes:
     module: [ sr, isis, bgp, bfd ]
     bgp:
       as: 65000
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48      
   e2:
     module: [ sr, isis, bgp, bfd ]
     bgp:
@@ -100,6 +105,11 @@ nodes:
     module: [ sr, isis, bgp, bfd ]
     bgp:
       as: 65000
+    addressing:
+      p2p:
+        unnumbered: true
+      loopback:
+        ipv6: 2001:db8:cafe::/48      
   e4:
     module: [ sr, isis, bgp, bfd ]
     bgp:
