@@ -86,12 +86,7 @@ nodes:
   e1:
     module: [ sr, isis, bgp, bfd ]
     bgp:
-      as: 65000
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48      
+      as: 65000   
   e2:
     module: [ sr, isis, bgp, bfd ]
     bgp:
@@ -104,12 +99,7 @@ nodes:
   e3:
     module: [ sr, isis, bgp, bfd ]
     bgp:
-      as: 65000
-    addressing:
-      p2p:
-        unnumbered: true
-      loopback:
-        ipv6: 2001:db8:cafe::/48      
+      as: 65000  
   e4:
     module: [ sr, isis, bgp, bfd ]
     bgp:
@@ -147,12 +137,12 @@ nodes:
 #      as: 65000
 # Customer routers - CE routers - leaf/ToR switches
   n1:
-    device: iosv
+    device: csr
     module: [ bgp ]
     bgp:
       as: 65001
   n2:
-    device: iosv
+    device: csr
     module: [ bgp ]
     bgp:
       as: 65002
