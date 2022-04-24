@@ -137,12 +137,12 @@ nodes:
 #      as: 65000
 # Customer routers - CE routers - leaf/ToR switches
   n1:
-    device: eos
+    device: iosv
     module: [ bgp ]
     bgp:
       as: 65001
   n2:
-    device: eos
+    device: iosv
     module: [ bgp ]
     bgp:
       as: 65002
