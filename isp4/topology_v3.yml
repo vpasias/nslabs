@@ -4,9 +4,9 @@
 defaults:
   device: eos
 
-isis:
- bfd:
-  ipv4: True
+#isis:
+# bfd:
+#  ipv4: True
 #  ipv6: True
 
 nodes:
