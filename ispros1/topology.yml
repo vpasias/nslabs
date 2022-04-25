@@ -26,99 +26,111 @@ nodes:
     mpls.ldp: true
     module: [ ospf,mpls ]
   a1:
-    id: 5
+    id: 11
     mpls.ldp: true
     module: [ ospf,mpls ]
     bgp.as: 65000
   a2:
-    id: 6
+    id: 12
     mpls.ldp: true
     module: [ ospf,mpls ]
     bgp.as: 65000
   a3:
-    id: 7
+    id: 13
     mpls.ldp: true
     module: [ ospf,mpls ]
     bgp.as: 65000
   a4:
-    id: 8
+    id: 14
     mpls.ldp: true
     module: [ ospf,mpls ]
     bgp.as: 65000
+  br1:
+    id: 21
+    mpls:
+      ldp: true
+      vpn: true
+    bgp.as: 65000
+  br2:
+    id: 22
+    mpls:
+      ldp: true
+      vpn: true
+    bgp.as: 65000
   rr1:
-    id: 9
+    id: 31
     mpls:
       ldp: true
       vpn: true
     bgp.rr: true
   rr2:
-    id: 10
+    id: 32
     mpls:
       ldp: true
       vpn: true
-    bgp.rr: true
+    bgp.rr: true    
   e1:
     mpls:
       vpn: true
       ldp: true
-    id: 11
+    id: 41
   e2:
     mpls:
       vpn: true
       ldp: true
-    id: 12
+    id: 42
   e3:
     mpls:
       vpn: true
       ldp: true
-    id: 13
+    id: 43
   e4:
     mpls:
       vpn: true
       ldp: true
-    id: 14
+    id: 44
   x1:
     module: [ bgp ]
     bgp.as: 65101
-    id: 21
+    id: 51
   x2:
     module: [ bgp ]
     bgp.as: 65102
-    id: 22
+    id: 52
   x3:
     module: [ bgp ]
     bgp.as: 65103
-    id: 23
+    id: 53
   x4:
     module: [ bgp ]
     bgp.as: 65104
-    id: 24
+    id: 54
   x5:
     module: [ ospf ]
-    id: 25
+    id: 55
   x6:
     module: [ ospf ]
-    id: 26
+    id: 56
   z1:
     device: linux
-    cpu: 4
-    memory: 8192
-    id: 31
+    cpu: 2
+    memory: 4096
+    id: 61
   z2:
     device: linux
-    cpu: 4
-    memory: 8192
-    id: 32
+    cpu: 2
+    memory: 4096
+    id: 62
   z3:
     device: linux
-    cpu: 4
-    memory: 8192
-    id: 33
+    cpu: 2
+    memory: 4096
+    id: 63
   z4:
     device: linux
-    cpu: 4
-    memory: 8192
-    id: 34
+    cpu: 2
+    memory: 4096
+    id: 64
     
 links:
 # Core layer links
@@ -128,6 +140,14 @@ links:
 - c3-c4
 - c1-c4
 - c2-c3
+- c1-br1
+- c2-br1
+- c3-br2
+- c4-br2
+- c1-rr1
+- c2-rr1
+- c3-rr2
+- c4-rr2
 
 # Agreggation layer links
 - a1-c1
@@ -144,20 +164,20 @@ links:
 # Edge layer links
 - e1:
   a1:
+- e1:
+  a2:
 - e2:
   a1:
+- e2:
+  a2:
 - e3:
   a3:
+- e3:
+  a4:
 - e4:
   a3:
-- a1:
-  rr1:
-- a2:
-  rr1:
-- a3:
-  rr2:
-- a4:
-  rr2:
+- e4:
+  a4:  
 - e1: { vrf: blue }
   x1:
 - e2: { vrf: blue }
@@ -188,3 +208,13 @@ links:
 - e2: { vrf: blue }
   x6:
   ospf.cost: 66
+
+# Stub links
+- br1
+- br2
+- x1
+- x2
+- x3
+- x4
+- x5
+- x6
