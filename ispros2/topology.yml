@@ -16,41 +16,41 @@ nodes:
     device: eos
     id: 1
     mpls.ldp: true
-    module: [ ospf,mpls ]
+    module: [ ospf,mpls,bgp ]
   c2:
     device: eos 
     id: 2
     mpls.ldp: true
-    module: [ ospf,mpls ]
+    module: [ ospf,mpls,bgp ]
   c3:
     device: eos  
     id: 3
     mpls.ldp: true
-    module: [ ospf,mpls ]
+    module: [ ospf,mpls,bgp ]
   c4:
     device: eos  
     id: 4
     mpls.ldp: true
-    module: [ ospf,mpls ]
+    module: [ ospf,mpls,bgp ]
   a1:
     id: 11
     mpls.ldp: true
-    module: [ ospf,mpls ]
+    module: [ ospf,mpls,bgp ]
     bgp.as: 65000
   a2:
     id: 12
     mpls.ldp: true
-    module: [ ospf,mpls ]
+    module: [ ospf,mpls,bgp ]
     bgp.as: 65000
   a3:
     id: 13
     mpls.ldp: true
-    module: [ ospf,mpls ]
+    module: [ ospf,mpls,bgp ]
     bgp.as: 65000
   a4:
     id: 14
     mpls.ldp: true
-    module: [ ospf,mpls ]
+    module: [ ospf,mpls,bgp ]
     bgp.as: 65000
   br1:
     id: 21
