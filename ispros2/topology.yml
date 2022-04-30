@@ -5,7 +5,7 @@ defaults:
 vrfs:
   blue:
 
-module: [ vrf,ospf,bgp,mpls,bfd,isis ]
+module: [ vrf,ospf,bgp,mpls ]
 bgp.as: 65000
 #mpls.bgp:
 #  ipv4: True
@@ -16,41 +16,41 @@ nodes:
     device: eos
     id: 1
     mpls.ldp: true
-    module: [ ospf,sr,bfd,mpls ]
+    module: [ ospf,mpls ]
   c2:
     device: eos 
     id: 2
     mpls.ldp: true
-    module: [ ospf,sr,bfd,mpls ]
+    module: [ ospf,mpls ]
   c3:
     device: eos  
     id: 3
     mpls.ldp: true
-    module: [ ospf,sr,bfd,mpls ]
+    module: [ ospf,mpls ]
   c4:
     device: eos  
     id: 4
     mpls.ldp: true
-    module: [ ospf,sr,bfd,mpls ]
+    module: [ ospf,mpls ]
   a1:
     id: 11
     mpls.ldp: true
-    module: [ ospf,mpls,bfd ]
+    module: [ ospf,mpls ]
     bgp.as: 65000
   a2:
     id: 12
     mpls.ldp: true
-    module: [ ospf,mpls,bfd ]
+    module: [ ospf,mpls ]
     bgp.as: 65000
   a3:
     id: 13
     mpls.ldp: true
-    module: [ ospf,mpls,bfd ]
+    module: [ ospf,mpls ]
     bgp.as: 65000
   a4:
     id: 14
     mpls.ldp: true
-    module: [ ospf,mpls,bfd ]
+    module: [ ospf,mpls ]
     bgp.as: 65000
   br1:
     id: 21
