@@ -5,7 +5,7 @@ defaults:
 vrfs:
   blue:
 
-module: [ vrf,ospf,bgp,mpls,bfd ]
+module: [ vrf,ospf,bgp,mpls,bfd,isis ]
 bgp.as: 65000
 #mpls.bgp:
 #  ipv4: True
