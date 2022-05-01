@@ -7,7 +7,7 @@ vrfs:
   red:
   black:
 
-module: [ isis, sr, mpls, bgp, bfd ]
+module: [ isis, sr, mpls, bgp, bfd, vrf ]
 bgp.as: 65000
 mpls.bgp:
   ipv4: True
@@ -85,51 +85,51 @@ nodes:
     bgp.rr: true
   e1:
     id: 41
-    module: [ isis, sr, mpls, bgp, bfd ]
+    module: [ isis, sr, mpls, bgp, bfd, vrf ]
     mpls:
       vpn: true
   e2:
     id: 42
-    module: [ isis, sr, mpls, bgp, bfd ]
+    module: [ isis, sr, mpls, bgp, bfd, vrf ]
     mpls:
       vpn: true
   e3:
     id: 43
-    module: [ isis, sr, mpls, bgp, bfd ]
+    module: [ isis, sr, mpls, bgp, bfd, vrf ]
     mpls:
       vpn: true
   e4:
     id: 44
-    module: [ isis, sr, mpls, bgp, bfd ]
+    module: [ isis, sr, mpls, bgp, bfd, vrf ]
     mpls:
       vpn: true
   x1:
     id: 51
-    module: [ bgp ]
+    module: [ bgp, vrf ]
     bgp.as: 65101
   x2:
     id: 52
     device: routeros
-    module: [ bgp ]
+    module: [ bgp, vrf ]
     bgp.as: 65102
   x3:
     id: 53
     device: routeros
-    module: [ bgp ]
+    module: [ bgp, vrf ]
     bgp.as: 65103
   x4:
     id: 54
     device: routeros
-    module: [ bgp ]
+    module: [ bgp, vrf ]
     bgp.as: 65104
   x5:
     id: 55
     device: routeros
-    module: [ ospf ]
+    module: [ ospf, vrf ]
   x6:
     id: 56
     device: routeros
-    module: [ ospf ]
+    module: [ ospf, vrf ]
   z1:
     device: linux
     cpu: 2
