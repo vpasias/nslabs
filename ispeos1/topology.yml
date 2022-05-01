@@ -7,16 +7,11 @@ vrfs:
   red:
   black:
 
-module: [ isis, sr, mpls, bgp, bfd, vrf ]
+module: [ isis, sr, mpls, bgp, vrf ]
 bgp.as: 65000
 mpls.bgp:
   ipv4: True
   explicit_null: True
-
-isis:
- bfd:
-  ipv4: True
-  ipv6: True
 
 nodes:
   c1:
