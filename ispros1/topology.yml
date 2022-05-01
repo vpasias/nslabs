@@ -12,19 +12,19 @@ nodes:
   c1:
     id: 1
     mpls.ldp: true
-    module: [ ospf,mpls,bfd ]
+    module: [ ospf,mpls ]
   c2:
     id: 2
     mpls.ldp: true
-    module: [ ospf,mpls,bfd ]
+    module: [ ospf,mpls ]
   c3:
     id: 3
     mpls.ldp: true
-    module: [ ospf,mpls,bfd ]
+    module: [ ospf,mpls ]
   c4:
     id: 4
     mpls.ldp: true
-    module: [ ospf,mpls,bfd ]
+    module: [ ospf,mpls ]
   a1:
     id: 11
     mpls.ldp: true
