@@ -1,0 +1,243 @@
+---
+defaults:
+  device: eos
+
+vrfs:
+  blue:
+  red:
+  black:
+
+module: [ isis, sr, mpls, bgp, bfd ]
+bgp.as: 65000
+mpls.bgp:
+  ipv4: True
+  explicit_null: True
+
+isis:
+ bfd:
+  ipv4: True
+  ipv6: True
+
+nodes:
+  c1:
+    id: 1
+    module: [ isis,sr,bfd ]
+    mpls.bgp: False
+    bgp.as: 65000
+  c2:
+    id: 2
+    module: [ isis,sr,bfd ]
+    mpls.bgp: False
+    bgp.as: 65000
+  c3:
+    id: 3
+    module: [ isis,sr,bfd ]
+    mpls.bgp: False
+    bgp.as: 65000
+  c4:
+    id: 4
+    module: [ isis,sr,bfd ]
+    mpls.bgp: False
+    bgp.as: 65000
+  a1:
+    id: 11
+    module: [ isis,sr,bfd ]
+    mpls.bgp: False
+    bgp.as: 65000
+  a2:
+    id: 12
+    module: [ isis,sr,bfd ]
+    mpls.bgp: False
+    bgp.as: 65000
+  a3:
+    id: 13
+    module: [ isis,sr,bfd ]
+    mpls.bgp: False
+    bgp.as: 65000
+  a4:
+    id: 14
+    module: [ isis,sr,bfd ]
+    mpls.bgp: False
+    bgp.as: 65000
+  br1:
+    id: 21
+    module: [ isis, sr, mpls, bgp, bfd ]
+    mpls:
+      vpn: true
+    bgp.as: 65000
+  br2:
+    id: 22
+    module: [ isis, sr, mpls, bgp, bfd ]
+    mpls:
+      vpn: true
+    bgp.as: 65000
+  rr1:
+    id: 31
+    module: [ isis, sr, mpls, bgp, bfd ]
+    mpls:
+      vpn: true
+    bgp.rr: true
+  rr2:
+    id: 32
+    module: [ isis, sr, mpls, bgp, bfd ]
+    mpls:
+      vpn: true
+    bgp.rr: true
+  e1:
+    id: 41
+    module: [ isis, sr, mpls, bgp, bfd ]
+    mpls:
+      vpn: true
+  e2:
+    id: 42
+    module: [ isis, sr, mpls, bgp, bfd ]
+    mpls:
+      vpn: true
+  e3:
+    id: 43
+    module: [ isis, sr, mpls, bgp, bfd ]
+    mpls:
+      vpn: true
+  e4:
+    id: 44
+    module: [ isis, sr, mpls, bgp, bfd ]
+    mpls:
+      vpn: true
+  x1:
+    id: 51
+    module: [ bgp ]
+    bgp.as: 65101
+  x2:
+    id: 52
+    device: routeros
+    module: [ bgp ]
+    bgp.as: 65102
+  x3:
+    id: 53
+    device: routeros
+    module: [ bgp ]
+    bgp.as: 65103
+  x4:
+    id: 54
+    device: routeros
+    module: [ bgp ]
+    bgp.as: 65104
+  x5:
+    id: 55
+    device: routeros
+    module: [ ospf ]
+  x6:
+    id: 56
+    device: routeros
+    module: [ ospf ]
+  z1:
+    device: linux
+    cpu: 2
+    memory: 4096
+    id: 61
+  z2:
+    device: linux
+    cpu: 2
+    memory: 4096
+    id: 62
+  z3:
+    device: linux
+    cpu: 2
+    memory: 4096
+    id: 63
+  z4:
+    device: linux
+    cpu: 2
+    memory: 4096
+    id: 64
+    
+links:
+# Core layer links
+- c1-c2
+- c1-c3
+- c2-c4
+- c3-c4
+- c1-c4
+- c2-c3
+- c1:
+  br1:
+- c2:
+  br1:
+- c3:
+  br2:
+- c4:
+  br2:
+- c1-rr1
+- c2-rr1
+- c3-rr2
+- c4-rr2
+
+# Agreggation layer links
+- a1-c1
+- a1-c2
+- a2-c1
+- a2-c2
+- a1-a2
+- a3-c3
+- a3-c4
+- a4-c3
+- a4-c4
+- a3-a4
+
+# Edge layer links
+- e1:
+  a1:
+- e1:
+  a2:
+- e2:
+  a1:
+- e2:
+  a2:
+- e3:
+  a3:
+- e3:
+  a4:
+- e4:
+  a3:
+- e4:
+  a4:  
+- e1: { vrf: blue }
+  x1:
+- e2: { vrf: blue }
+  x1:
+- e1: { vrf: blue }
+  x2:
+- e2: { vrf: blue }
+  x2:
+- e3: { vrf: blue }
+  x3:
+- e3: { vrf: blue }
+  x4:
+- e4: { vrf: blue }
+  x3:
+- e4: { vrf: blue }
+  x4:
+- e1: { vrf: red }
+  z1:
+- e2: { vrf: red }
+  z2:
+- e3: { vrf: red }
+  z3:
+- e4: { vrf: red }
+  z4:
+- e1: { vrf: black }
+  x5:
+  ospf.cost: 66
+- e2: { vrf: black }
+  x6:
+  ospf.cost: 66
+
+# Stub links
+- br1
+- br2
+- x1
+- x2
+- x3
+- x4
+- x5
+- x6
