@@ -63,13 +63,15 @@ nodes:
       ldp: true
       vpn: true
     bgp.rr: true
+    bgp.as: 65000
   rr2:
     id: 32
     module: [ vrf,ospf,bgp,mpls ]
     mpls:
       ldp: true
       vpn: true
-    bgp.rr: true    
+    bgp.rr: true
+    bgp.as: 65000
   e1:
     id: 41
     module: [ vrf,ospf,bgp,mpls ]
