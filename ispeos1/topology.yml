@@ -67,35 +67,35 @@ nodes:
   rr1:
     id: 31
     module: [ isis, sr, mpls, bgp, bfd, vrf ]
-    mpls:
-      vpn: true
     bgp.rr: true
   rr2:
     id: 32
     module: [ isis, sr, mpls, bgp, bfd, vrf ]
-    mpls:
-      vpn: true
     bgp.rr: true
   e1:
     id: 41
     module: [ isis, sr, mpls, bgp, bfd, vrf ]
     mpls:
       vpn: true
+      bgp: true
   e2:
     id: 42
     module: [ isis, sr, mpls, bgp, bfd, vrf ]
     mpls:
       vpn: true
+      bgp: true
   e3:
     id: 43
     module: [ isis, sr, mpls, bgp, bfd, vrf ]
     mpls:
       vpn: true
+      bgp: true
   e4:
     id: 44
     module: [ isis, sr, mpls, bgp, bfd, vrf ]
     mpls:
       vpn: true
+      bgp: true
   x1:
     id: 51
     module: [ bgp, vrf ]
