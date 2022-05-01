@@ -182,13 +182,13 @@ links:
   br2:
 - a4: { vrf: red }
   br2:
-- a1: { vrf: red }
+- a1:
   rr1:
-- a2: { vrf: red }
+- a2:
   rr1:
-- a3: { vrf: red }
+- a3:
   rr2:
-- a4: { vrf: red }
+- a4:
   rr2:
 
 # Edge layer links
