@@ -100,25 +100,31 @@ nodes:
       vpn: true
   x1:
     id: 51
+    device: routeros
     module: [ bgp, vrf ]
     bgp.as: 65101
   x2:
     id: 52
+    device: routeros
     module: [ bgp, vrf ]
     bgp.as: 65102
   x3:
     id: 53
+    device: routeros
     module: [ bgp, vrf ]
     bgp.as: 65103
   x4:
     id: 54
+    device: routeros
     module: [ bgp, vrf ]
     bgp.as: 65104
   x5:
     id: 55
+    device: routeros
     module: [ ospf, vrf ]
   x6:
     id: 56
+    device: routeros
     module: [ ospf, vrf ]
   z1:
     device: linux
