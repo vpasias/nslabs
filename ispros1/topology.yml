@@ -4,6 +4,7 @@ defaults:
 
 vrfs:
   blue:
+  red:
 
 module: [ vrf,ospf,bgp,mpls ]
 bgp.as: 65000
@@ -29,108 +30,112 @@ nodes:
     id: 11
     mpls.ldp: true
     module: [ ospf,mpls ]
-    bgp.as: 65000
   a2:
     id: 12
     mpls.ldp: true
     module: [ ospf,mpls ]
-    bgp.as: 65000
   a3:
     id: 13
     mpls.ldp: true
     module: [ ospf,mpls ]
-    bgp.as: 65000
   a4:
     id: 14
     mpls.ldp: true
     module: [ ospf,mpls ]
-    bgp.as: 65000
   br1:
     id: 21
+    module: [ vrf,ospf,bgp,mpls ]
     mpls:
       ldp: true
       vpn: true
     bgp.as: 65000
   br2:
     id: 22
+    module: [ vrf,ospf,bgp,mpls ]
     mpls:
       ldp: true
       vpn: true
     bgp.as: 65000
   rr1:
     id: 31
+    module: [ vrf,ospf,bgp,mpls ]
     mpls:
       ldp: true
       vpn: true
     bgp.rr: true
   rr2:
     id: 32
+    module: [ vrf,ospf,bgp,mpls ]
     mpls:
       ldp: true
       vpn: true
     bgp.rr: true    
   e1:
-    mpls:
-      vpn: true
-      ldp: true
     id: 41
+    module: [ vrf,ospf,bgp,mpls ]
+    mpls:
+      vpn: true
+      ldp: true
   e2:
-    mpls:
-      vpn: true
-      ldp: true
     id: 42
+    module: [ vrf,ospf,bgp,mpls ]
+    mpls:
+      vpn: true
+      ldp: true
   e3:
-    mpls:
-      vpn: true
-      ldp: true
     id: 43
-  e4:
+    module: [ vrf,ospf,bgp,mpls ]
     mpls:
       vpn: true
       ldp: true
+  e4:
     id: 44
+    module: [ vrf,ospf,bgp,mpls ]
+    mpls:
+      vpn: true
+      ldp: true
   x1:
-    module: [ bgp ]
-    bgp.as: 65101
     id: 51
+    module: [ bgp,vrf ]
+    bgp.as: 65101
   x2:
-    module: [ bgp ]
-    bgp.as: 65102
     id: 52
+    module: [ bgp,vrf ]
+    bgp.as: 65102
   x3:
-    module: [ bgp ]
-    bgp.as: 65103
     id: 53
+    module: [ bgp,vrf ]
+    bgp.as: 65103
   x4:
-    module: [ bgp ]
-    bgp.as: 65104
     id: 54
+    module: [ bgp,vrf ]
+    bgp.as: 65104
   x5:
-    module: [ ospf ]
     id: 55
+    module: [ ospf,vrf ]
   x6:
-    module: [ ospf ]
     id: 56
+    module: [ ospf,vrf ]
   z1:
-    device: linux
-    cpu: 2
-    memory: 4096
     id: 61
+    device: linux
+    cpu: 2
+    memory: 4096
   z2:
-    device: linux
-    cpu: 2
-    memory: 4096
     id: 62
+    device: linux
+    cpu: 2
+    memory: 4096
   z3:
-    device: linux
-    cpu: 2
-    memory: 4096
     id: 63
-  z4:
     device: linux
     cpu: 2
     memory: 4096
+  z4:
     id: 64
+    device: linux
+    cpu: 2
+    memory: 4096
     
 links:
 # Core layer links
@@ -206,10 +211,10 @@ links:
   z3:
 - e4: { vrf: blue }
   z4:
-- e1: { vrf: blue }
+- e1: { vrf: red }
   x5:
   ospf.cost: 66
-- e2: { vrf: blue }
+- e2: { vrf: red }
   x6:
   ospf.cost: 66
 
