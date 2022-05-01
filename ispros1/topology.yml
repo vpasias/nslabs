@@ -47,18 +47,12 @@ nodes:
     module: [ ospf,mpls,vrf ]
   br1:
     id: 21
-    module: [ vrf,ospf,bgp,mpls ]
-    mpls:
-      ldp: true
-      vpn: true
-    bgp.as: 65000
+    module: [ vrf,bgp ]
+    bgp.as: 65100
   br2:
     id: 22
-    module: [ vrf,ospf,bgp,mpls ]
-    mpls:
-      ldp: true
-      vpn: true
-    bgp.as: 65000
+    module: [ vrf,bgp ]
+    bgp.as: 65100
   rr1:
     id: 31
     module: [ vrf,ospf,bgp,mpls ]
