@@ -4,7 +4,10 @@ defaults:
 
 vrfs:
   blue:
+    import: [ blue, red ]
   red:
+    import: [ blue, red ]
+  black:    
 
 module: [ vrf,ospf,bgp,mpls ]
 bgp.as: 65000
@@ -29,19 +32,19 @@ nodes:
   a1:
     id: 11
     mpls.ldp: true
-    module: [ ospf,mpls ]
+    module: [ ospf,mpls,vrf ]
   a2:
     id: 12
     mpls.ldp: true
-    module: [ ospf,mpls ]
+    module: [ ospf,mpls,vrf ]
   a3:
     id: 13
     mpls.ldp: true
-    module: [ ospf,mpls ]
+    module: [ ospf,mpls,vrf ]
   a4:
     id: 14
     mpls.ldp: true
-    module: [ ospf,mpls ]
+    module: [ ospf,mpls,vrf ]
   br1:
     id: 21
     module: [ vrf,ospf,bgp,mpls ]
@@ -159,18 +162,6 @@ links:
 - c3-c4
 - c1-c4
 - c2-c3
-- c1:
-  br1:
-- c2:
-  br1:
-- c3:
-  br2:
-- c4:
-  br2:
-- c1-rr1
-- c2-rr1
-- c3-rr2
-- c4-rr2
 
 # Agreggation layer links
 - a1-c1
@@ -183,6 +174,22 @@ links:
 - a4-c3
 - a4-c4
 - a3-a4
+- a1: { vrf: red }
+  br1:
+- a2: { vrf: red }
+  br1:
+- a3: { vrf: red }
+  br2:
+- a4: { vrf: red }
+  br2:
+- a1: { vrf: red }
+  rr1:
+- a2: { vrf: red }
+  rr1:
+- a3: { vrf: red }
+  rr2:
+- a4: { vrf: red }
+  rr2:
 
 # Edge layer links
 - e1:
@@ -233,10 +240,10 @@ links:
   z3:
 - e4: { vrf: blue }
   z4:
-- e5: { vrf: red }
+- e5: { vrf: black }
   x5:
   ospf.cost: 66
-- e6: { vrf: red }
+- e6: { vrf: black }
   x6:
   ospf.cost: 66
 
