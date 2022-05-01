@@ -200,7 +200,15 @@ links:
 - e4:
   a3:
 - e4:
-  a4:  
+  a4:
+- e5:
+  a1:
+- e5:
+  a2:
+- e6:
+  a3:
+- e6:
+  a4:
 - e1: { vrf: blue }
   x1:
 - e2: { vrf: blue }
