@@ -31,20 +31,28 @@ nodes:
     module: [ ospf,mpls ]
   a1:
     id: 11
-    mpls.ldp: true
-    module: [ ospf,mpls,vrf ]
+    mpls:
+      vpn: true
+      ldp: true
+    module: [ vrf,ospf,bgp,mpls ]
   a2:
     id: 12
-    mpls.ldp: true
-    module: [ ospf,mpls,vrf ]
+    mpls:
+      vpn: true
+      ldp: true
+    module: [ vrf,ospf,bgp,mpls ]
   a3:
     id: 13
-    mpls.ldp: true
-    module: [ ospf,mpls,vrf ]
+    mpls:
+      vpn: true
+      ldp: true
+    module: [ vrf,ospf,bgp,mpls ]
   a4:
     id: 14
-    mpls.ldp: true
-    module: [ ospf,mpls,vrf ]
+    mpls:
+      vpn: true
+      ldp: true
+    module: [ vrf,ospf,bgp,mpls ]
   br1:
     id: 21
     module: [ vrf,bgp ]
