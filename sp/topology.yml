@@ -62,7 +62,7 @@ groups:
     module: [ isis,bgp,evpn,bfd ]
     node_data:
       bgp.rr: True
-      bgp.as: 65000
+      bgp.as: 64999
   leaves:
     members: [ dl1,dl2 ]
     module: [ vlan,vxlan,isis,bgp,evpn ]
