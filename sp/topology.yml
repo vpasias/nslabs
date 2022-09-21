@@ -6,6 +6,7 @@
 #
 
 provider: clab
+defaults.devices.linux.clab.node.kind: bridge
 
 name: isp
 
@@ -45,10 +46,19 @@ groups:
     members: [ a1,a2,a3,a4,a5,a6 ]    
   edge:
     members: [ e1,e2,e3,e4,e5,e6,e7,e8,e9,e10 ]
-  dc:
-    members: [ s1,s2,l1,l2 ]      
-  nodes:
-    members: [ n1,n2,n3,n4 ]   
+  spines:
+    members: [ s1,s2 ]
+    device: cumulus
+    module: [ ospf,bgp,evpn ]
+    node_data:
+      bgp.rr: True    
+  leaves:
+    members: [ l1,l2 ]
+    device: cumulus
+    module: [ vlan,vxlan,ospf,bgp,evpn ]  
+  hosts:
+    members: [ n1,n2,n3,n4 ]
+    device: linux     
   external:
     members: [ x1,x2,x3,x4 ]   
 
@@ -140,10 +150,7 @@ nodes:
     # type: ixrd2
     bgp:
       as: 65004
-  z1:
-  z2:
-  ssh: 
-    device: linux
+
       
 links:
 # Core layer links
@@ -198,18 +205,6 @@ links:
 - x2-e2
 - x3-e3
 - x4-e4
-- type: lan
-  prefix: 192.168.31.0/24
-  x1:
-    ipv4: 1
-  z1:
-    ipv4: 10
-- type: lan
-  prefix: 192.168.32.0/24
-  x2:
-    ipv4: 1
-  z2:
-    ipv4: 10
 
 # Stub links
 - x1
