@@ -54,17 +54,17 @@ groups:
     module: [ isis,sr,bfd ]
   edge:
     members: [ e1,e2,e3,e4 ]
-    module: [ isis, bgp, sr, bfd ]
+    module: [ isis, bgp, sr, bfd, evpn ]
     node_data:
       bgp.as: 65000 
   spines:
-    members: [ s1,s2 ]
-    module: [ isis,bgp,evpn ]
+    members: [ ds1,ds2 ]
+    module: [ isis,bgp,evpn,bfd ]
     node_data:
       bgp.rr: True
       bgp.as: 65000
   leaves:
-    members: [ l1,l2 ]
+    members: [ dl1,dl2 ]
     module: [ vlan,vxlan,isis,bgp,evpn ]
   hosts:
     members: [ n1,n2,n3,n4 ]
@@ -136,10 +136,10 @@ links:
 - e3-a4
 - e4-a3
 - e4-a4
-- s1-a1
-- s1-a2
-- s2-a1
-- s2-a2
+- ds1-a1
+- ds1-a2
+- ds2-a1
+- ds2-a2
 
 # External links
 - x1-e1
@@ -149,21 +149,21 @@ links:
 
 # DC links
 - n1:
-  l1:
+  dl1:
     vlan.access: red
 - n2:
-  l2:
+  dl2:
     vlan.access: red
 - n3:
-  l1:
+  dl1:
     vlan.access: red
 - n4:
-  l2:
+  dl2:
     vlan.access: red
-- l1-s1
-- l1-s2
-- l2-s1
-- l2-s2
+- dl1-ds1
+- dl1-ds2
+- dl2-ds1
+- dl2-ds2
 
 # Stub links
 - x1
