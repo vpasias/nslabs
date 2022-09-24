@@ -10,6 +10,35 @@ provider: clab
 
 name: sp
 
+addressing:
+  loopback:
+    ipv4: 10.255.255.0/24
+    ipv6: 2001:db8:0::/48
+  lan:
+    ipv4: 172.16.0.0/16
+    ipv6: 2001:db8:1::/48
+  p2p:
+    ipv4: 10.250.0.0/16
+    ipv6: 2001:db8:2::/48
+  mgmt:
+    ipv4: 192.168.121.0/24
+    start: 100
+    mac: 08-4F-A9-00-00-00
+
+defaults:
+  device: srlinux
+  sr.extra_attributes.global: [ srgb_range_start, srgb_range_size ]
+#  bridge_type: ovs-bridge
+  providers:
+    clab:
+      devices:
+        srlinux:
+          provider_type: ixr6 # SR-MPLS only supported on 7250 IXR platform
+        
+# SR Global Block label range
+sr.srgb_range_start: 500000
+sr.srgb_range_size: 1000
+
 vlans:
   red:
     mode: bridge
@@ -19,15 +48,12 @@ vlans:
 groups:
   core:
     members: [ a1,a2,a3,a4 ]
-    device: srlinux
     module: [ isis,sr,bfd ]
   aggr:
-    members: [ b1,b2,b3,b4,b5,b6 ]
-    device: srlinux    
+    members: [ b1,b2,b3,b4,b5,b6 ]   
     module: [ isis,sr,bfd ]
   edge:
-    members: [ e1,e2,e3,e4 ]
-    device: srlinux    
+    members: [ e1,e2,e3,e4 ] 
     module: [ isis, bgp, sr, bfd ]
     node_data:
       bgp.as: 65000 
@@ -48,8 +74,7 @@ groups:
     members: [ n1,n2,n3,n4 ]
     device: linux
   external:
-    members: [ x1,x2,x3,x4 ]
-    device: srlinux    
+    members: [ x1,x2,x3,x4 ] 
     module: [ bgp, bfd ]
 
 nodes:
