@@ -33,7 +33,7 @@ groups:
       bgp.as: 65000 
   spines:
     members: [ c1,c2 ]
-    module: [ isis,bgp,evpn,bfd ]
+    module: [ isis,bgp,evpn ]
     device: frr
     node_data:
       bgp.rr: True
