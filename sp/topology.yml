@@ -34,12 +34,14 @@ groups:
   spines:
     members: [ c1,c2 ]
     module: [ isis,bgp,evpn,bfd ]
+    device: frr
     node_data:
       bgp.rr: True
       bgp.as: 64999
   leaves:
     members: [ d1,d2 ]
     module: [ vlan,vxlan,isis,bgp,evpn ]
+    device: frr
     node_data:
       bgp.as: 64999
   hosts:
