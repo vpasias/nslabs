@@ -22,13 +22,13 @@ vlans:
 groups:
   core:
     members: [ a1,a2,a3,a4 ]
-    module: [ isis,sr ]
+    module: [ isis,sr,bfd ]
   aggr:
     members: [ b1,b2,b3,b4,b5,b6 ]   
-    module: [ isis,sr ]
+    module: [ isis,sr,bfd ]
   edge:
     members: [ e1,e2,e3,e4 ] 
-    module: [ isis, bgp, sr ]
+    module: [ isis, bgp, sr, bfd ]
     node_data:
       bgp.as: 65000 
   spines:
@@ -49,7 +49,7 @@ groups:
     device: linux
   external:
     members: [ x1,x2,x3,x4 ] 
-    module: [ bgp ]
+    module: [ bgp, bfd ]
 
 nodes:
   # CORE (no BGP)
