@@ -178,10 +178,10 @@ links:
     vlan.access: red
 - n2:
   d2:
-    vlan.access: blue
+    vlan.access: red
 - n3:
   d1:
-    vlan.access: red
+    vlan.access: blue
 - n4:
   d2:
     vlan.access: blue
