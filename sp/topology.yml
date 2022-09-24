@@ -12,17 +12,6 @@ name: sp
 
 defaults:
   device: srlinux
-  sr.extra_attributes.global: [ srgb_range_start, srgb_range_size ]
-#  bridge_type: ovs-bridge
-  providers:
-    clab:
-      devices:
-        srlinux:
-          provider_type: ixr6 # SR-MPLS only supported on 7250 IXR platform
-        
-# SR Global Block label range
-sr.srgb_range_start: 500000
-sr.srgb_range_size: 1000
 
 vlans:
   red:
