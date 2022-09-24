@@ -62,13 +62,15 @@ groups:
     module: [ isis,bgp,evpn,bfd ]
     node_data:
       bgp.rr: True
-      bgp.as: 65500
+      bgp.as: 64999
   leaves:
     members: [ d1,d2 ]
     module: [ vlan,vxlan,isis,bgp,evpn ]
+    node_data:
+      bgp.as: 64999
   hosts:
     members: [ n1,n2,n3,n4 ]
-    device: linux     
+    device: linux
   external:
     members: [ x1,x2,x3,x4 ]
     module: [ bgp, bfd ]
@@ -93,15 +95,15 @@ nodes:
   e2:
   e3:
   e4:
-  
+
   # SPINE
   c1:
   c2:
-  
+
   # LEAF
   d1:
   d2:
-  
+
   # HOST
   n1:
   n2:
