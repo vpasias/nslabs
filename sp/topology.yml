@@ -6,7 +6,7 @@
 #
 
 provider: clab
-defaults.devices.linux.clab.node.kind: bridge
+#defaults.devices.linux.clab.node.kind: bridge
 
 name: sp
 
@@ -47,24 +47,24 @@ vlans:
 
 groups:
   core:
-    members: [ c1,c2,c3,c4 ]
+    members: [ a1,a2,a3,a4 ]
     module: [ isis,sr,bfd ]
   aggr:
-    members: [ a1,a2,a3,a4 ]
+    members: [ b1,b2,b3,b4,b5,b6 ]
     module: [ isis,sr,bfd ]
   edge:
     members: [ e1,e2,e3,e4 ]
-    module: [ isis, bgp, sr, bfd, evpn ]
+    module: [ isis, bgp, sr, bfd ]
     node_data:
       bgp.as: 65000 
   spines:
-    members: [ ds1,ds2 ]
+    members: [ c1,c2 ]
     module: [ isis,bgp,evpn,bfd ]
     node_data:
       bgp.rr: True
       bgp.as: 64999
   leaves:
-    members: [ dl1,dl2 ]
+    members: [ d1,d2 ]
     module: [ vlan,vxlan,isis,bgp,evpn ]
   hosts:
     members: [ n1,n2,n3,n4 ]
@@ -75,22 +75,38 @@ groups:
 
 nodes:
   # CORE (no BGP)
-  c1:
-  c2:
-  c3:
-  c4:
-
-  # AGGREGATION (no BGP)
   a1:
   a2:
   a3:
   a4:
+
+  # AGGREGATION (no BGP)
+  b1:
+  b2:
+  b3:
+  b4:
+  b5:
+  b6:
 
   # EDGE
   e1:
   e2:
   e3:
   e4:
+  
+  # SPINE
+  c1:
+  c2:
+  
+  # LEAF
+  d1:
+  d2:
+  
+  # HOST
+  n1:
+  n2:
+  n3:
+  n4:
 
   # EXTERNAL PEERS
   x1:
@@ -108,38 +124,45 @@ nodes:
 
 links:
 # Core layer links
-- c1-c2
-- c1-c3
-- c2-c4
-- c3-c4
-- c1-c4
-- c2-c3
+- a1-a2
+- a1-a3
+- a2-a4
+- a3-a4
+- a1-a4
+- a2-a3
 
 # Aggregation layer links
-- a1-c1
-- a1-c2
-- a2-c1
-- a2-c2
-- a1-a2
-- a3-c3
-- a3-c4
-- a4-c3
-- a4-c4
-- a3-a4
+- b1-a1
+- b1-a2
+- b2-a1
+- b2-a2
+- b1-b2
+- b3-a3
+- b3-a4
+- b4-a3
+- b4-a4
+- b3-b4
+- b1-a1
+- b1-a2
+- b3-a1
+- b3-a3
+- b4-a1
+- b4-a3
+- b3-b4
 
 # Edge layer links
-- e1-a1
-- e1-a2
-- e2-a1
-- e2-a2
-- e3-a3
-- e3-a4
-- e4-a3
-- e4-a4
-- ds1-a1
-- ds1-a2
-- ds2-a1
-- ds2-a2
+- e1-b1
+- e1-b2
+- e2-b1
+- e2-b2
+- e3-b3
+- e3-b4
+- e4-b3
+- e4-b4
+- c1-b1
+- c1-b2
+- c2-b1
+- c2-b2
 
 # External links
 - x1-e1
@@ -149,21 +172,21 @@ links:
 
 # DC links
 - n1:
-  dl1:
+  d1:
     vlan.access: red
 - n2:
-  dl2:
-    vlan.access: red
+  d2:
+    vlan.access: blue
 - n3:
-  dl1:
+  d1:
     vlan.access: red
 - n4:
-  dl2:
-    vlan.access: red
-- dl1-ds1
-- dl1-ds2
-- dl2-ds1
-- dl2-ds2
+  d2:
+    vlan.access: blue
+- d1-c1
+- d1-c2
+- d2-c1
+- d2-c2
 
 # Stub links
 - x1
