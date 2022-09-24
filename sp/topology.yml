@@ -10,34 +10,8 @@ provider: clab
 
 name: sp
 
-addressing:
-  loopback:
-    ipv4: 10.255.255.0/24
-    ipv6: 2001:db8:0::/48
-  lan:
-    ipv4: 172.16.0.0/16
-    ipv6: 2001:db8:1::/48
-  p2p:
-    ipv4: 10.250.0.0/16
-    ipv6: 2001:db8:2::/48
-  mgmt:
-    ipv4: 192.168.121.0/24
-    start: 100
-    mac: 08-4F-A9-00-00-00
-
 defaults:
   device: srlinux
-  sr.extra_attributes.global: [ srgb_range_start, srgb_range_size ]
-#  bridge_type: ovs-bridge
-  providers:
-    clab:
-      devices:
-        srlinux:
-          provider_type: ixr6 # SR-MPLS only supported on 7250 IXR platform
-        
-# SR Global Block label range
-sr.srgb_range_start: 500000
-sr.srgb_range_size: 1000
 
 vlans:
   red:
