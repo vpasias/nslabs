@@ -1,6 +1,6 @@
 #
 # This topology combines SR-MPLS topology with IBGP session between AS-edge devices
-# and EBGP sessions with two external routers, using SR Linux 7250 IXR devices
+# and EBGP sessions with two external routers, using Arista EOS devices
 #
 # BGP-free core based on Segment Routing
 #
@@ -11,7 +11,7 @@ provider: clab
 name: sp
 
 defaults:
-  device: srlinux
+  device: ceos
 
 vlans:
   red:
