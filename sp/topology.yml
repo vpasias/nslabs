@@ -4,6 +4,7 @@
 #
 # BGP-free core based on Segment Routing
 #
+# Arista cEOS images - default: ceos:4.26.4M - new: ceos:4.27.6M
 
 provider: clab
 #defaults.devices.linux.clab.node.kind: bridge
