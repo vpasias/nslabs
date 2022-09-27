@@ -21,45 +21,54 @@ vlans:
     mode: bridge
 
 groups:
-  core:
-    members: [ a1,a2,a3,a4 ]
+  backbone:
+    members: [ a1,a2,a3,a4,b1,b2,b3,b4,b5,b6 ]
     module: [ isis,sr,bfd ]
-  aggr:
-    members: [ b1,b2,b3,b4,b5,b6 ]   
-    module: [ isis,sr,bfd ]
+  l2access:
+    members: [ c1,c2 ]   
+    module: [ isis, sr, bfd, vlan, vxlan ]
+  l3access:
+    members: [ d1,d2 ]   
+    module: [ isis, sr, bfd ]
   edge:
     members: [ e1,e2,e3,e4 ] 
     module: [ isis, bgp, sr, bfd ]
     node_data:
-      bgp.as: 65000 
-  spines:
-    members: [ c1,c2 ]
+      bgp.as: 65000
+  fabric:
+    members: [ f1,f2 ]
     module: [ isis,bgp,evpn ]
     device: frr
     node_data:
       bgp.rr: True
       bgp.as: 64999
-  leaves:
-    members: [ d1,d2 ]
-    module: [ vlan,vxlan,isis,bgp,evpn ]
+  switch:
+    members: [ g1,g2 ]
+    module: [ vlan,vxlan,bgp,evpn ]
     device: frr
     node_data:
       bgp.as: 64999
-  hosts:
+  cpe:
+    members: [ h1,h2,h3,h4 ]
+    device: frr
+  infra:
+    members: [ i1,i2,i3,i4 ]
+    module: [ isis ]
+  nodes:
     members: [ n1,n2,n3,n4 ]
     device: linux
   external:
-    members: [ x1,x2,x3,x4 ] 
+    members: [ x1,x2,x3,x4 ]
     module: [ bgp, bfd ]
 
 nodes:
-  # CORE (no BGP)
+  # CORE BACKBONE LAYER (no BGP)
   a1:
   a2:
   a3:
   a4:
 
-  # AGGREGATION (no BGP)
+  # AGGREGATION BACKBONE LAYER (no BGP)
   b1:
   b2:
   b3:
@@ -67,21 +76,41 @@ nodes:
   b5:
   b6:
 
-  # EDGE
+  # L2 ACCESS CONCENTRATORS LAYER
+  c1:
+  c2:
+
+  # L3 ACCESS DISTRIBUTION LAYER
+  d1:
+  d2:
+
+  # EDGE LAYER
   e1:
   e2:
   e3:
   e4:
 
-  # SPINE
-  c1:
-  c2:
+  # DC FABRIC - SPINE SWITCHES
+  f1:
+  f2:
 
-  # LEAF
-  d1:
-  d2:
+  # DC LEAF - ACCESS SWITCHES
+  g1:
+  g2:
 
-  # HOST
+  # CPE HOSTS
+  h1:
+  h2:
+  h3:
+  h4:
+  
+  # INFRASTRUCTURE - SERVICES LAYER
+  i1:
+  i2:
+  i3:
+  i4:
+  
+  # DC NODES
   n1:
   n2:
   n3:
@@ -102,7 +131,7 @@ nodes:
       as: 65004
 
 links:
-# Core layer links
+# Core Backbone Layer Links
 - a1-a2
 - a1-a3
 - a2-a4
@@ -110,7 +139,7 @@ links:
 - a1-a4
 - a2-a3
 
-# Aggregation layer links
+# Aggregation Backbone Layer Links
 - b1-a1
 - b1-a2
 - b2-a1
@@ -127,7 +156,7 @@ links:
 - b6-a3
 - b5-b6
 
-# Edge layer links
+# Edge Layer Links
 - e1-b1
 - e1-b2
 - e2-b1
@@ -136,12 +165,20 @@ links:
 - e3-b4
 - e4-b3
 - e4-b4
-- c1-b1
-- c1-b2
-- c2-b1
-- c2-b2
 
-# External links
+# L2 Access Layer Links
+- c1-h1
+- c1-h2
+- c2-h3
+- c2-h4
+
+# L3 Access Layer Links
+- d1-i1
+- d1-i2
+- d2-i3
+- d2-i4
+
+# External Peer Links
 - x1-e1
 - x2-e2
 - x3-e3
