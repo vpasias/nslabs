@@ -29,9 +29,9 @@ groups:
     module: [ isis, sr, bfd, vlan, vxlan ]
   l3access:
     members: [ d1,d2 ]
-    module: [ isis, sr, bfd ]    
+    module: [ isis, sr, bfd ]
   edge:
-    members: [ e1,e2,e3,e4 ] 
+    members: [ e1,e2,e3,e4 ]
     module: [ isis, bgp, sr, bfd ]
     node_data:
       bgp.as: 65000
@@ -44,7 +44,7 @@ groups:
       bgp.as: 64999
   switch:
     members: [ g1,g2 ]
-    module: [ vlan,vxlan,bgp,evpn ]
+    module: [ vlan,vxlan,bgp,evpn,isis ]
     device: frr
     node_data:
       bgp.as: 64999
