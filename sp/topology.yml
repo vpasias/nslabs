@@ -25,11 +25,11 @@ groups:
     members: [ a1,a2,a3,a4,b1,b2,b3,b4,b5,b6 ]
     module: [ isis,sr,bfd ]
   l2access:
-    members: [ c1,c2 ]   
+    members: [ c1,c2 ]
     module: [ isis, sr, bfd, vlan, vxlan ]
   l3access:
-    members: [ d1,d2 ]   
-    module: [ isis, sr, bfd ]
+    members: [ d1,d2 ]
+    module: [ isis, sr, bfd ]    
   edge:
     members: [ e1,e2,e3,e4 ] 
     module: [ isis, bgp, sr, bfd ]
@@ -54,12 +54,14 @@ groups:
   infra:
     members: [ i1,i2,i3,i4 ]
     module: [ isis ]
+    device: frr
   nodes:
     members: [ n1,n2,n3,n4 ]
     device: linux
   external:
     members: [ x1,x2,x3,x4 ]
-    module: [ bgp, bfd ]
+    module: [ bgp ]
+    device: frr
 
 nodes:
   # CORE BACKBONE LAYER (no BGP)
@@ -103,13 +105,13 @@ nodes:
   h2:
   h3:
   h4:
-  
+
   # INFRASTRUCTURE - SERVICES LAYER
   i1:
   i2:
   i3:
   i4:
-  
+
   # DC NODES
   n1:
   n2:
@@ -186,21 +188,21 @@ links:
 
 # DC links
 - n1:
-  d1:
+  g1:
     vlan.access: red
 - n2:
-  d2:
+  g2:
     vlan.access: red
 - n3:
-  d1:
+  g1:
     vlan.access: blue
 - n4:
-  d2:
+  g2:
     vlan.access: blue
-- d1-c1
-- d1-c2
-- d2-c1
-- d2-c2
+- g1-f1
+- g1-f2
+- g2-f1
+- g2-f2
 
 # Stub links
 - x1
