@@ -19,6 +19,10 @@ vlans:
     mode: bridge
   blue:
     mode: bridge
+  cust1:
+    mode: bridge
+  cust2:
+    mode: bridge    
 
 groups:
   backbone:
@@ -169,10 +173,18 @@ links:
 - e4-b4
 
 # L2 Access Layer Links
-- c1-h1
-- c1-h2
-- c2-h3
-- c2-h4
+- h1:
+  c1:
+    vlan.access: cust1
+- h2:
+  c1:
+    vlan.access: cust2
+- h3:
+  c2:
+    vlan.access: cust1
+- h4:
+  c2:
+    vlan.access: cust2
 
 # L3 Access Layer Links
 - d1-i1
