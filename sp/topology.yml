@@ -191,6 +191,10 @@ links:
 - d1-i2
 - d2-i3
 - d2-i4
+- d1-f1
+- d1-f2
+- d2-f1
+- d2-f2
 
 # External Peer Links
 - x1-e1
