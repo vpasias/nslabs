@@ -12,7 +12,10 @@ provider: clab
 name: sp
 
 defaults:
-  device: ceos
+  device: ceos 
+
+isis:
+  area: 49.0001  
 
 vlans:
   red:
@@ -31,18 +34,26 @@ groups:
   l2access:
     members: [ c1,c2 ]
     module: [ isis, sr, bfd, vlan, vxlan ]
+    isis:
+      area: 49.0002
   l3access:
     members: [ d1,d2 ]
     module: [ isis, sr, bfd ]
+    isis:
+      area: 49.0003
   edge:
     members: [ e1,e2,e3,e4 ]
     module: [ isis, bgp, sr, bfd ]
+    isis:
+      area: 49.0004
     node_data:
       bgp.as: 65000
   fabric:
     members: [ f1,f2 ]
     module: [ isis,bgp,evpn ]
     device: frr
+    isis:
+      area: 49.0005
     node_data:
       bgp.rr: True
       bgp.as: 64999
@@ -50,6 +61,8 @@ groups:
     members: [ g1,g2 ]
     module: [ vlan,vxlan,bgp,evpn,isis ]
     device: frr
+    isis:
+      area: 49.0005
     node_data:
       bgp.as: 64999
   cpe:
@@ -59,6 +72,8 @@ groups:
     members: [ i1,i2,i3,i4 ]
     module: [ isis ]
     device: frr
+    isis:
+      area: 49.0003
   nodes:
     members: [ n1,n2,n3,n4 ]
     device: linux
