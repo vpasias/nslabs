@@ -225,6 +225,18 @@ links:
 - e4-b4
 
 # L2 Access Layer Links
+- c1-b1
+- c1-b2
+- c2-b3
+- c2-b4
+
+# L3 Access Layer Links
+- d1-b1
+- d1-b2
+- d2-b3
+- d2-b4
+
+# L2 Access - Hosts Links
 - h1:
   c1:
     vlan.access: cust1
@@ -238,7 +250,7 @@ links:
   c2:
     vlan.access: cust2
 
-# L3 Access Layer Links
+# L3 Access - Infrastructure Routers Links
 - d1-i1
 - d1-i2
 - d2-i3
@@ -250,7 +262,7 @@ links:
 
 # External Peer Links
 - x1-e1
-- x2-e2
+- x2-e1
 - x3-e3
 - x4-e4
 
