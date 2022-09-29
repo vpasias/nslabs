@@ -14,9 +14,6 @@ name: sp
 defaults:
   device: ceos 
 
-isis:
-  area: 49.0001  
-
 vlans:
   red:
     mode: bridge
@@ -34,26 +31,18 @@ groups:
   l2access:
     members: [ c1,c2 ]
     module: [ isis, sr, bfd, vlan, vxlan ]
-    isis:
-      area: 49.0002
   l3access:
     members: [ d1,d2 ]
     module: [ isis, sr, bfd ]
-    isis:
-      area: 49.0003
   edge:
     members: [ e1,e2,e3,e4 ]
     module: [ isis, bgp, sr, bfd ]
-    isis:
-      area: 49.0004
     node_data:
       bgp.as: 65000
   fabric:
     members: [ f1,f2 ]
     module: [ isis,bgp,evpn ]
     device: frr
-    isis:
-      area: 49.0005
     node_data:
       bgp.rr: True
       bgp.as: 64999
@@ -61,8 +50,6 @@ groups:
     members: [ g1,g2 ]
     module: [ vlan,vxlan,bgp,evpn,isis ]
     device: frr
-    isis:
-      area: 49.0005
     node_data:
       bgp.as: 64999
   cpe:
@@ -72,8 +59,6 @@ groups:
     members: [ i1,i2,i3,i4 ]
     module: [ isis ]
     device: frr
-    isis:
-      area: 49.0006
   nodes:
     members: [ n1,n2,n3,n4 ]
     device: linux
@@ -85,39 +70,83 @@ groups:
 nodes:
   # CORE BACKBONE LAYER (no BGP)
   a1:
+    isis:
+      area: 49.0001
   a2:
+    isis:
+      area: 49.0001
   a3:
+    isis:
+      area: 49.0001
   a4:
+    isis:
+      area: 49.0001
 
   # AGGREGATION BACKBONE LAYER (no BGP)
   b1:
+    isis:
+      area: 49.0002
   b2:
+    isis:
+      area: 49.0002
   b3:
+    isis:
+      area: 49.0003
   b4:
+    isis:
+      area: 49.0003
   b5:
+    isis:
+      area: 49.0004
   b6:
+    isis:
+      area: 49.0004
 
   # L2 ACCESS CONCENTRATORS LAYER
   c1:
+    isis:
+      area: 49.0002
   c2:
+    isis:
+      area: 49.0003
 
   # L3 ACCESS DISTRIBUTION LAYER
   d1:
+    isis:
+      area: 49.0002
   d2:
-
+    isis:
+      area: 49.0003
+  
   # EDGE LAYER
   e1:
+    isis:
+      area: 49.0002 
   e2:
+    isis:
+      area: 49.0002
   e3:
+    isis:
+      area: 49.0003
   e4:
+    isis:
+      area: 49.0003
 
   # DC FABRIC - SPINE SWITCHES
   f1:
+    isis:
+      area: 49.0005
   f2:
+    isis:
+      area: 49.0005
 
   # DC LEAF - ACCESS SWITCHES
   g1:
+    isis:
+      area: 49.0005
   g2:
+    isis:
+      area: 49.0005
 
   # CPE HOSTS
   h1:
@@ -127,9 +156,17 @@ nodes:
 
   # INFRASTRUCTURE - SERVICES LAYER
   i1:
+    isis:
+      area: 49.0002
   i2:
+    isis:
+      area: 49.0002
   i3:
+    isis:
+      area: 49.0003
   i4:
+    isis:
+      area: 49.0003
 
   # DC NODES
   n1:
