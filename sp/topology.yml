@@ -32,7 +32,7 @@ groups:
     members: [ c1,c2 ]
     module: [ isis, sr, bfd, vlan, vxlan ]
   l3access:
-    members: [ d1,d2 ]
+    members: [ d1,d2,d3,d4 ]
     module: [ isis, sr, bfd ]
   edge:
     members: [ e1,e2,e3,e4 ]
@@ -117,6 +117,12 @@ nodes:
   d2:
     isis:
       area: 49.0003
+  d3:
+    isis:
+      area: 49.0004
+  d4:
+    isis:
+      area: 49.0004
   
   # EDGE LAYER
   e1:
@@ -235,6 +241,10 @@ links:
 - d1-b2
 - d2-b3
 - d2-b4
+- d3-b5
+- d3-b6
+- d4-b5
+- d4-b6
 
 # L2 Access - Hosts Links
 - h1:
@@ -255,10 +265,10 @@ links:
 - d1-i2
 - d2-i3
 - d2-i4
-- d1-f1
-- d1-f2
-- d2-f1
-- d2-f2
+- d3-f1
+- d3-f2
+- d4-f1
+- d4-f2
 
 # External Peer Links
 - x1-e1
