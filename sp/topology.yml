@@ -27,7 +27,7 @@ vlans:
 groups:
   backbone:
     members: [ a1,a2,a3,a4,b1,b2,b3,b4,b5,b6 ]
-    module: [ isis,sr,bfd ]
+    module: [ isis, sr, bfd ]
   l2access:
     members: [ c1,c2 ]
     module: [ isis, sr, bfd, vlan, vxlan ]
@@ -41,14 +41,14 @@ groups:
       bgp.as: 65000
   fabric:
     members: [ f1,f2 ]
-    module: [ isis,bgp,evpn ]
+    module: [ isis, bgp, evpn ]
     device: frr
     node_data:
       bgp.rr: True
       bgp.as: 64999
   switch:
     members: [ g1,g2 ]
-    module: [ vlan,vxlan,bgp,evpn,isis ]
+    module: [ vlan, vxlan, bgp, evpn, isis ]
     device: frr
     node_data:
       bgp.as: 64999
@@ -70,91 +70,43 @@ groups:
 nodes:
   # CORE BACKBONE LAYER (no BGP, IS-IS - SR)
   a1:
-    isis:
-      area: 49.0001
   a2:
-    isis:
-      area: 49.0001
   a3:
-    isis:
-      area: 49.0001
   a4:
-    isis:
-      area: 49.0001
 
   # AGGREGATION BACKBONE LAYER (no BGP, IS-IS - SR)
   b1:
-    isis:
-      area: 49.0001
   b2:
-    isis:
-      area: 49.0001
   b3:
-    isis:
-      area: 49.0001
   b4:
-    isis:
-      area: 49.0001
   b5:
-    isis:
-      area: 49.0001
   b6:
-    isis:
-      area: 49.0001
 
   # L2 ACCESS CONCENTRATORS LAYER
   c1:
     vxlan.flooding: static
-    isis:
-      area: 49.0001
   c2:
     vxlan.flooding: static
-    isis:
-      area: 49.0001
 
   # L3 ACCESS DISTRIBUTION LAYER
   d1:
-    isis:
-      area: 49.0001
   d2:
-    isis:
-      area: 49.0001
   d3:
-    isis:
-      area: 49.0001
   d4:
-    isis:
-      area: 49.0001
   
   # EDGE LAYER
   e1:
-    isis:
-      area: 49.0001 
   e2:
-    isis:
-      area: 49.0001
   e3:
-    isis:
-      area: 49.0001
   e4:
-    isis:
-      area: 49.0001
 
   # DC FABRIC - SPINE SWITCHES
   f1:
-    isis:
-      area: 49.0001
   f2:
-    isis:
-      area: 49.0001
 
   # DC LEAF - ACCESS SWITCHES
   g1:
-    isis:
-      area: 49.0001
   g2:
-    isis:
-      area: 49.0001
 
   # CPE HOSTS
   h1:
@@ -164,17 +116,9 @@ nodes:
 
   # INFRASTRUCTURE - SERVICES LAYER
   i1:
-    isis:
-      area: 49.0001
   i2:
-    isis:
-      area: 49.0001
   i3:
-    isis:
-      area: 49.0001
   i4:
-    isis:
-      area: 49.0001
 
   # DC NODES
   n1:
