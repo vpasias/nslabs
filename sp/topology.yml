@@ -12,7 +12,7 @@ provider: clab
 name: sp
 
 defaults:
-  device: ceos 
+  device: eos 
 
 vlans:
   red:
