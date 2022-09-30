@@ -2,7 +2,7 @@ module: [ isis, sr, mpls, bgp ]
 
 name: test
 
-defaults.device: vrnetlab/vr-sros
+defaults.device: sros
 
 bgp.as: 65000
 mpls.bgp:
