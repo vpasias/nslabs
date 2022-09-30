@@ -31,6 +31,8 @@ groups:
   l2access:
     members: [ c1,c2 ]
     module: [ isis, sr, bfd, vlan, vxlan ]
+    node_data:
+      vxlan.flooding: static
   l3access:
     members: [ d1,d2,d3,d4 ]
     module: [ isis, sr, bfd ]
