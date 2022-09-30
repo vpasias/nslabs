@@ -1,5 +1,7 @@
 module: [ isis, sr, mpls, bgp ]
 
+name: test
+
 defaults.device: sros
 
 bgp.as: 65000
