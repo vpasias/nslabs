@@ -6,7 +6,7 @@
 #
 # Arista cEOS images - default: ceos:4.26.4M - new: ceos:4.27.6M
 
-provider: clab
+# provider: clab
 #defaults.devices.linux.clab.node.kind: bridge
 
 name: sp
@@ -42,30 +42,30 @@ groups:
   fabric:
     members: [ f1,f2 ]
     module: [ isis, bgp, evpn ]
-    device: frr
+    device: cumulus
     node_data:
       bgp.rr: True
       bgp.as: 64999
   switch:
     members: [ g1,g2 ]
     module: [ vlan, vxlan, bgp, evpn, isis ]
-    device: frr
+    device: cumulus
     node_data:
       bgp.as: 64999
   cpe:
     members: [ h1,h2,h3,h4 ]
-    device: frr
+    device: vyos
   infra:
     members: [ i1,i2,i3,i4 ]
     module: [ isis ]
-    device: frr
+    device: vyos
   nodes:
     members: [ n1,n2,n3,n4 ]
     device: linux
   external:
     members: [ x1,x2,x3,x4 ]
     module: [ bgp ]
-    device: frr
+    device: vyos
 
 nodes:
   # CORE BACKBONE LAYER (no BGP, IS-IS - SR)
