@@ -16,9 +16,33 @@ groups:
   l2access:
     members: [ c1, c2 ]
     module: [ vlan,vxlan,isis,sr,bfd ]
+  l3access:
+    members: [ d1, d2 ]
+    module: [ isis,sr,bfd ]    
   backbone:
     members: [ a1, a2, a3, a4, b1, b2, b3, b4 ]
     module: [ isis,sr,bfd ]
+  service:
+    members: [ i1,i2 ]
+    module: [ isis ]
+    device: frr
+  edge:
+    members: [ e1,e2 ]
+    module: [ isis, bgp, sr, bfd ]
+    node_data:
+      bgp.as: 65000
+  external1:
+    members: [ x1 ]
+    module: [ bgp ]
+    device: frr
+    node_data:
+      bgp.as: 65001
+   external2:
+    members: [ x2 ]
+    module: [ bgp ]
+    device: frr
+    node_data:
+      bgp.as: 65002
 
 vlans:
   red:
@@ -26,7 +50,7 @@ vlans:
   blue:
     mode: bridge
 
-nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4 ]
+nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, d1, d2, i1, i1, e1, e2, x1, x2 ]
 
 links:
 - h1:
@@ -49,6 +73,30 @@ links:
   b3:
 - c2:
   b4:
+- d1:
+  b1:
+- d1:
+  b2:
+- d2:
+  b3:
+- d2:
+  b4:
+- e1:
+  b1:
+- e1:
+  b2:
+- e2:
+  b3:
+- e2:
+  b4:
+- i1:
+  d1:
+- i2:
+  d2:
+- e1:
+  x1:
+- e2:
+  x2:
 - b1:
   b2:
 - b3:
