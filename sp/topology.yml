@@ -17,9 +17,8 @@ groups:
     members: [ c1, c2 ]
     module: [ vlan,vxlan,isis,sr,bfd ]
   backbone:
-    members: [ a1, a2, a3, a4 ]
+    members: [ a1, a2, a3, a4, b1, b2, b3, b4 ]
     module: [ isis,sr,bfd ]
-
 
 vlans:
   red:
@@ -27,7 +26,7 @@ vlans:
   blue:
     mode: bridge
 
-nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4 ]
+nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4 ]
 
 links:
 - h1:
@@ -43,12 +42,32 @@ links:
   c2:
     vlan.access: blue
 - c1:
-  a1:
+  b1:
 - c1:
+  b2:
+- c2:
+  b3:
+- c2:
+  b4:
+- b1:
+  b2:
+- b3:
+  b4:
+- b1:
+  a1:
+- b1:
   a2:
-- c2:
+- b2:
+  a1:
+- b2:
+  a2:
+- b3:
   a3:
-- c2:
+- b3:
+  a4:
+- b4:
+  a3:
+- b4:
   a4:
 - a1:
   a2:
