@@ -18,7 +18,7 @@ groups:
     module: [ vlan,vxlan,isis,sr,bfd ]
   l3access:
     members: [ d1, d2 ]
-    module: [ isis,sr,bfd ]    
+    module: [ isis,sr,bfd ]
   backbone:
     members: [ a1, a2, a3, a4, b1, b2, b3, b4 ]
     module: [ isis,sr,bfd ]
