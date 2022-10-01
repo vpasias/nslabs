@@ -8,9 +8,9 @@ message: |
   Please note it might take a while for the lab to work due to STP learning phase
 
 groups:
-  hosts:
+  cpe:
     members: [ h1, h2, h3, h4 ]
-    device: linux
+    device: frr
   l2access:
     members: [ c1, c2 ]
     module: [ vlan,vxlan,isis,sr,bfd ]
@@ -23,7 +23,6 @@ groups:
   service:
     members: [ i1,i2,i3,i4 ]
     module: [ isis ]
-    device: frr
   edge:
     members: [ e1,e2 ]
     module: [ isis, bgp, sr, bfd ]
@@ -41,17 +40,15 @@ groups:
     device: frr
     node_data:
       bgp.as: 65002
-  fabric:
+  sfabric:
     members: [ f1,f2 ]
     module: [ isis, bgp]
-    device: frr
     node_data:
       bgp.rr: True
       bgp.as: 64999
-  switch:
+  lfabric:
     members: [ g1,g2 ]
     module: [ vlan, vxlan, bgp, isis ]
-    device: frr
     node_data:
       bgp.as: 64999
   nodes:
