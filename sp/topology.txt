@@ -12,9 +12,9 @@ sp
                                           |    |  X |    |
                                      h1 - c1   b5 - b6   c2 - h3
                                           ||   |  X |    ||
-                                x1 - e1 - b1 - a1 - a3 - b3 - e3 - x3
+                                x1 - e1 - b1 - a1 - a3 - b3 - e2 - x2
                                         X || X |  X |  X |  X  
-                                x2 - e2 - b2 - a2 - a4 - b4 - e4 - x4 
+                                     e2 - b2 - a2 - a4 - b4 - e4 
                                           ||             ||
                                      i1 - d1             d2 - i2
                                        \   |              |  /
