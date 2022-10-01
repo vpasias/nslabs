@@ -37,7 +37,7 @@ groups:
     device: frr
     node_data:
       bgp.as: 65001
-   external2:
+  external2:
     members: [ x2 ]
     module: [ bgp ]
     device: frr
