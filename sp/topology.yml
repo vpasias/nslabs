@@ -7,6 +7,24 @@ message: |
   * h1 should not be able to reach h3
   Please note it might take a while for the lab to work due to STP learning phase
 
+addressing:
+  loopback:
+    ipv4: 10.0.0.0/24
+  router_id:
+    ipv4: 10.0.0.0/24
+    prefix: 32
+  lan:
+    ipv4: 172.16.0.0/16
+  p2p:
+    ipv4: 10.1.0.0/16
+  mgmt:
+    ipv4: 172.20.20.0/24
+    mac: 08-4F-A9-00-00-00
+  l2only:
+  vrf_loopback:
+    ipv4: 10.2.0.0/24
+    prefix: 32
+
 groups:
   cpe:
     members: [ h1, h2, h3, h4 ]
