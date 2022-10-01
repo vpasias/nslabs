@@ -8,6 +8,7 @@ message: |
   Please note it might take a while for the lab to work due to STP learning phase
 
 defaults.addressing.mgmt.ipv4: 172.20.20.0/24
+defaults.addressing.lan.ipv4: 192.168.0.0/24
 
 groups:
   cpe:
