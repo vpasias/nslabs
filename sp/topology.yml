@@ -7,7 +7,7 @@ message: |
   * h1 should not be able to reach h3
   Please note it might take a while for the lab to work due to STP learning phase
 
-defaults.addressing.mgmt.ipv4: 172.20.20.0/24
+defaults.addressing.mgmt.ipv4: 172.20.0.0/16
 defaults.addressing.lan.ipv4: 10.3.0.0/16
 
 groups:
