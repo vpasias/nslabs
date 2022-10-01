@@ -23,7 +23,7 @@ groups:
     members: [ a1, a2, a3, a4, b1, b2, b3, b4 ]
     module: [ isis,sr,bfd ]
   service:
-    members: [ i1,i2 ]
+    members: [ i1,i2,i3,i4 ]
     module: [ isis ]
     device: frr
   edge:
@@ -50,7 +50,7 @@ vlans:
   blue:
     mode: bridge
 
-nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, d1, d2, i1, i2, e1, e2, x1, x2 ]
+nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, d1, d2, i1, i2, i3, i4, e1, e2, x1, x2 ]
 
 links:
 - h1:
@@ -93,6 +93,10 @@ links:
   i1:
 - d2:
   i2:
+- i1:
+  i3:
+- i2:
+  i4:
 - e1:
   x1:
 - e2:
