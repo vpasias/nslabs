@@ -17,10 +17,10 @@ groups:
     members: [ c1, c2 ]
     module: [ vlan,vxlan,isis,sr,bfd ]
   l3access:
-    members: [ d1, d2 ]
+    members: [ d1, d2, d3, d4 ]
     module: [ isis,sr,bfd ]
   backbone:
-    members: [ a1, a2, a3, a4, b1, b2, b3, b4 ]
+    members: [ a1, a2, a3, a4, b1, b2, b3, b4, b5, b6 ]
     module: [ isis,sr,bfd ]
   service:
     members: [ i1,i2,i3,i4 ]
@@ -70,7 +70,7 @@ vlans:
   white:
     mode: bridge
 
-nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, d1, d2, i1, i2, i3, i4, e1, e2, x1, x2, f1, f2, g1, g2, n1, n2, n3, n4 ]
+nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, b5, b6, d1, d2, d3, d4, i1, i2, i3, i4, e1, e2, x1, x2, f1, f2, g1, g2, n1, n2, n3, n4 ]
 
 links:
 - h1:
@@ -143,6 +143,24 @@ links:
   a3:
 - b4:
   a4:
+- b5:
+  a1:
+- b5:
+  a3:
+- b6:
+  a1:
+- b6:
+  a3:
+- b5:
+  b6:
+- d3:
+  b5:
+- d3:
+  b6:
+- d4:
+  b5:
+- d4:
+  b6:
 - a1:
   a2:
 - a3:
@@ -178,6 +196,10 @@ links:
 - g2:
   f2:
 - f1:
-  d1:
+  d3:
+- f1:
+  d4:
 - f2:
-  d1:
+  d3:
+- f2:
+  d4:
