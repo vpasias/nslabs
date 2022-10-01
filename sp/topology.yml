@@ -43,22 +43,6 @@ groups:
     device: frr
     node_data:
       bgp.as: 65002
-  fabric:
-    members: [ f1,f2 ]
-    module: [ isis, bgp, evpn ]
-    device: frr    
-    node_data:
-      bgp.rr: True
-      bgp.as: 64999
-  switch:
-    members: [ g1,g2 ]
-    module: [ vlan, vxlan, bgp, evpn, isis ]
-    device: frr    
-    node_data:
-      bgp.as: 64999 
-  nodes:
-    members: [ n1, n2, n3, n4 ]
-    device: linux
 
 vlans:
   red:
@@ -155,23 +139,5 @@ links:
   a4:
 - a2:
   a3:
-- n1:
-  g1:
-    vlan.access: black
-- n2:
-  g2:
-    vlan.access: black
-- n3:
-  g1:
-    vlan.access: white
-- n4:
-  g2:
-    vlan.access: white
-- g1-f1
-- g1-f2
-- g2-f1
-- g2-f2
-- d1-f1
-- d1-f2
 - x1
 - x2
