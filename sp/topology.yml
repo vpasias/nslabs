@@ -1,0 +1,64 @@
+message: |
+  The devices under test are VLAN-to-VXLAN bridges between two access VLANs
+  and two VXLAN VNIs.
+
+  * h1 and h2 should be able to ping each other
+  * h3 and h4 should be able to ping each other
+  * h1 should not be able to reach h3
+
+  Please note it might take a while for the lab to work due to
+  STP learning phase
+
+groups:
+  hosts:
+    members: [ h1, h2, h3, h4 ]
+    device: linux
+  l2access:
+    members: [ c1, c2 ]
+    module: [ vlan,vxlan,isis,sr,bfd ]
+  backbone:
+    members: [ a1, a2, a3, a4 ]
+    module: [ isis,sr,bfd ]
+
+
+vlans:
+  red:
+    mode: bridge
+  blue:
+    mode: bridge
+
+nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4 ]
+
+links:
+- h1:
+  c1:
+    vlan.access: red
+- h2:
+  c2:
+    vlan.access: red
+- h3:
+  c1:
+    vlan.access: blue
+- h4:
+  c2:
+    vlan.access: blue
+- c1:
+  a1:
+- c1:
+  a2:
+- c2:
+  a3:
+- c2:
+  a4:
+- a1:
+  a2:
+- a3:
+  a4:
+- a1:
+  a3:
+- a2:
+  a4:
+- a1:
+  a4:
+- a2:
+  a3:
