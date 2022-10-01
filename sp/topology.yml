@@ -1,13 +1,11 @@
 message: |
-  The devices under test are VLAN-to-VXLAN bridges between two access VLANs
-  and two VXLAN VNIs.
-
+  SR-MPLS Lab with Backbone (a & b type), L2 access (c type), L3 access (d type), DC (f & g type), Edge (e type) and Service (i type) router/switches.
+  
+  Also there are VLAN-to-VXLAN bridges between two access VLANs and two VXLAN VNIs:
   * h1 and h2 should be able to ping each other
   * h3 and h4 should be able to ping each other
   * h1 should not be able to reach h3
-
-  Please note it might take a while for the lab to work due to
-  STP learning phase
+  Please note it might take a while for the lab to work due to STP learning phase
 
 groups:
   hosts:
