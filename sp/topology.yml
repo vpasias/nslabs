@@ -46,12 +46,14 @@ groups:
   fabric:
     members: [ f1,f2 ]
     module: [ isis, bgp, evpn ]
+    device: frr    
     node_data:
       bgp.rr: True
       bgp.as: 64999
   switch:
     members: [ g1,g2 ]
     module: [ vlan, vxlan, bgp, evpn, isis ]
+    device: frr    
     node_data:
       bgp.as: 64999 
   nodes:
