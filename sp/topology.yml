@@ -43,14 +43,32 @@ groups:
     device: frr
     node_data:
       bgp.as: 65002
+  fabric:
+    members: [ f1,f2 ]
+    module: [ isis, bgp, evpn ]
+    node_data:
+      bgp.rr: True
+      bgp.as: 64999
+  switch:
+    members: [ g1,g2 ]
+    module: [ vlan, vxlan, bgp, evpn, isis ]
+    node_data:
+      bgp.as: 64999 
+  nodes:
+    members: [ n1, n2, n3, n4 ]
+    device: linux
 
 vlans:
   red:
     mode: bridge
   blue:
     mode: bridge
+  black:
+    mode: bridge
+  white:
+    mode: bridge
 
-nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, d1, d2, i1, i2, i3, i4, e1, e2, x1, x2 ]
+nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, d1, d2, i1, i2, i3, i4, e1, e2, x1, x2, f1, f2, g1, g2, n1, n2, n3, n4 ]
 
 links:
 - h1:
@@ -97,6 +115,8 @@ links:
   i3:
 - i2:
   i4:
+- i4:
+  d2:
 - e1:
   x1:
 - e2:
@@ -133,3 +153,23 @@ links:
   a4:
 - a2:
   a3:
+- n1:
+  g1:
+    vlan.access: black
+- n2:
+  g2:
+    vlan.access: black
+- n3:
+  g1:
+    vlan.access: white
+- n4:
+  g2:
+    vlan.access: white
+- g1-f1
+- g1-f2
+- g2-f1
+- g2-f2
+- d1-f1
+- d1-f2
+- x1
+- x2
