@@ -10,7 +10,6 @@ message: |
 groups:
   cpe:
     members: [ h1, h2, h3, h4 ]
-    device: frr
   l2access:
     members: [ c1, c2 ]
     module: [ vlan,vxlan,isis,sr,bfd ]
@@ -31,13 +30,11 @@ groups:
   external1:
     members: [ x1 ]
     module: [ bgp ]
-    device: frr
     node_data:
       bgp.as: 65001
   external2:
     members: [ x2 ]
     module: [ bgp ]
-    device: frr
     node_data:
       bgp.as: 65002
   sfabric:
