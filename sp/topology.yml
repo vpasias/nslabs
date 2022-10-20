@@ -49,7 +49,7 @@ groups:
     node_data:
       bgp.as: 64999
   nodes:
-    members: [ n1,n2,n3,n4 ]
+    members: [ n1,n2,n3,n4,n5,n6,n7,n8 ]
     device: linux
 
 vlans:
@@ -61,8 +61,10 @@ vlans:
     mode: bridge
   white:
     mode: bridge
+  green:
+    mode: bridge    
 
-nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, b5, b6, d1, d2, d3, d4, i1, i2, i3, i4, e1, e2, x1, x2, f1, f2, g1, g2, n1, n2, n3, n4 ]
+nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, b5, b6, d1, d2, d3, d4, i1, i2, i3, i4, e1, e2, x1, x2, f1, f2, g1, g2, n1, n2, n3, n4, n5, n6, n7, n8 ]
 
 links:
 - h1:
@@ -77,6 +79,12 @@ links:
 - h4:
   c2:
     vlan.access: blue
+- n5:
+  c1:
+    vlan.access: green
+- n6:
+  c2:
+    vlan.access: green    
 - c1:
   b1:
 - c1:
@@ -169,14 +177,20 @@ links:
 - x2
 - n1:
   g1:
-    vlan.access: black
+    vlan.access: green
 - n2:
   g2:
-    vlan.access: black
+    vlan.access: green
 - n3:
   g1:
-    vlan.access: white
+    vlan.access: green
 - n4:
+  g2:
+    vlan.access: green
+- n7:
+  g1:
+    vlan.access: black
+- n8:
   g2:
     vlan.access: white
 - g1:
