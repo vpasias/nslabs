@@ -1,4 +1,4 @@
-module: [ isis, sr, bgp ]
+module: [ isis, bgp ]
 
 name: test
 
@@ -13,7 +13,7 @@ nodes:
   pe1:
   pe2:
   p:
-    module: [ isis, sr ]
+    module: [ isis ]
  #   mpls.bgp: False
  #   bgp.as: 65000
   rr:
