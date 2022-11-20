@@ -13,13 +13,13 @@ groups:
     members: [ c1, c2 ]
     module: [ vlan,vxlan,isis,sr,bfd ]
   l3access:
-    members: [ d1, d2, d3, d4 ]
+    members: [ d1, d2 ]
     module: [ isis,sr,bfd ]
   backbone:
-    members: [ a1, a2, a3, a4, b1, b2, b3, b4, b5, b6 ]
+    members: [ a1, a2, a3, a4, b1, b2, b3, b4 ]
     module: [ isis,sr,bfd ]
   service:
-    members: [ i1,i2,i3,i4 ]
+    members: [ i1,i2 ]
     module: [ isis ]
   edge:
     members: [ e1,e2 ]
@@ -36,20 +36,6 @@ groups:
     module: [ bgp ]
     node_data:
       bgp.as: 65002
-  sfabric:
-    members: [ f1,f2 ]
-    module: [ isis, bgp]
-    node_data:
-      bgp.rr: True
-      bgp.as: 64999
-  lfabric:
-    members: [ g1,g2 ]
-    module: [ vlan, vxlan, bgp, isis ]
-    node_data:
-      bgp.as: 64999
-  nodes:
-    members: [ n1,n2,n3,n4 ]
-    device: linux
 
 vlans:
   red:
@@ -63,7 +49,7 @@ vlans:
   green:
     mode: bridge    
 
-nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, b5, b6, d1, d2, d3, d4, i1, i2, i3, i4, e1, e2, x1, x2, f1, f2, g1, g2, n1, n2, n3, n4 ]
+nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, d1, d2, i1, i2, e1, e2, x1, x2 ]
 
 links:
 - h1:
@@ -77,13 +63,7 @@ links:
     vlan.access: blue
 - h4:
   c2:
-    vlan.access: blue
-- n3:
-  c1:
-    vlan.access: green
-- n4:
-  c2:
-    vlan.access: green    
+    vlan.access: blue    
 - c1:
   b1:
 - c1:
@@ -112,12 +92,6 @@ links:
   i1:
 - d2:
   i2:
-- i1:
-  i3:
-- i2:
-  i4:
-- i4:
-  d2:
 - e1:
   x1:
 - e2:
@@ -142,24 +116,6 @@ links:
   a3:
 - b4:
   a4:
-- b5:
-  a1:
-- b5:
-  a3:
-- b6:
-  a1:
-- b6:
-  a3:
-- b5:
-  b6:
-- d3:
-  b5:
-- d3:
-  b6:
-- d4:
-  b5:
-- d4:
-  b6:
 - a1:
   a2:
 - a3:
@@ -174,25 +130,3 @@ links:
   a3:
 - x1
 - x2
-- n1:
-  g1:
-    vlan.access: green
-- n2:
-  g2:
-    vlan.access: green
-- g1:
-  f1:
-- g1:
-  f2:
-- g2:
-  f1:
-- g2:
-  f2:
-- f1:
-  d3:
-- f1:
-  d4:
-- f2:
-  d3:
-- f2:
-  d4:
