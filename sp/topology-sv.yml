@@ -1,1 +1,198 @@
+message: |
+  SR-MPLS Lab with Backbone (a & b type), L2 access (c type), L3 access (d type), DC (f & g type), Edge (e type) and Service (i type) router/switches.
+  
+  Also there are VLAN-to-VXLAN bridges between two access VLANs and two VXLAN VNIs:
+  * h1 and h2 should be able to ping each other
+  * h3 and h4 should be able to ping each other
+  * h1 should not be able to reach h3
+  Please note it might take a while for the lab to work due to STP learning phase
+groups:
+  cpe:
+    members: [ h1, h2, h3, h4 ]
+  l2access:
+    members: [ c1, c2 ]
+    module: [ vlan,vxlan,isis,sr,bfd ]
+  l3access:
+    members: [ d1, d2, d3, d4 ]
+    module: [ isis,sr,bfd ]
+  backbone:
+    members: [ a1, a2, a3, a4, b1, b2, b3, b4, b5, b6 ]
+    module: [ isis,sr,bfd ]
+  service:
+    members: [ i1,i2,i3,i4 ]
+    module: [ isis ]
+  edge:
+    members: [ e1,e2 ]
+    module: [ isis, bgp, sr, bfd ]
+    node_data:
+      bgp.as: 65000
+  external1:
+    members: [ x1 ]
+    module: [ bgp ]
+    node_data:
+      bgp.as: 65001
+  external2:
+    members: [ x2 ]
+    module: [ bgp ]
+    node_data:
+      bgp.as: 65002
+  sfabric:
+    members: [ f1,f2 ]
+    module: [ isis, bgp]
+    node_data:
+      bgp.rr: True
+      bgp.as: 64999
+  lfabric:
+    members: [ g1,g2 ]
+    module: [ vlan, vxlan, bgp, isis ]
+    node_data:
+      bgp.as: 64999
+  nodes:
+    members: [ n1,n2,n3,n4 ]
+    device: linux
 
+vlans:
+  red:
+    mode: bridge
+  blue:
+    mode: bridge
+  black:
+    mode: bridge
+  white:
+    mode: bridge
+  green:
+    mode: bridge    
+
+nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, b5, b6, d1, d2, d3, d4, i1, i2, i3, i4, e1, e2, x1, x2, f1, f2, g1, g2, n1, n2, n3, n4 ]
+
+links:
+- h1:
+  c1:
+    vlan.access: red
+- h2:
+  c2:
+    vlan.access: red
+- h3:
+  c1:
+    vlan.access: blue
+- h4:
+  c2:
+    vlan.access: blue
+- n3:
+  c1:
+    vlan.access: green
+- n4:
+  c2:
+    vlan.access: green    
+- c1:
+  b1:
+- c1:
+  b2:
+- c2:
+  b3:
+- c2:
+  b4:
+- d1:
+  b1:
+- d1:
+  b2:
+- d2:
+  b3:
+- d2:
+  b4:
+- e1:
+  b1:
+- e1:
+  b2:
+- e2:
+  b3:
+- e2:
+  b4:
+- d1:
+  i1:
+- d2:
+  i2:
+- i1:
+  i3:
+- i2:
+  i4:
+- i4:
+  d2:
+- e1:
+  x1:
+- e2:
+  x2:
+- b1:
+  b2:
+- b3:
+  b4:
+- b1:
+  a1:
+- b1:
+  a2:
+- b2:
+  a1:
+- b2:
+  a2:
+- b3:
+  a3:
+- b3:
+  a4:
+- b4:
+  a3:
+- b4:
+  a4:
+- b5:
+  a1:
+- b5:
+  a3:
+- b6:
+  a1:
+- b6:
+  a3:
+- b5:
+  b6:
+- d3:
+  b5:
+- d3:
+  b6:
+- d4:
+  b5:
+- d4:
+  b6:
+- a1:
+  a2:
+- a3:
+  a4:
+- a1:
+  a3:
+- a2:
+  a4:
+- a1:
+  a4:
+- a2:
+  a3:
+- x1
+- x2
+- n1:
+  g1:
+    vlan.access: green
+- n2:
+  g2:
+    vlan.access: green
+- g1:
+  f1:
+- g1:
+  f2:
+- g2:
+  f1:
+- g2:
+  f2:
+- f1:
+  d3:
+- f1:
+  d4:
+- f2:
+  d3:
+- f2:
+  d4:
