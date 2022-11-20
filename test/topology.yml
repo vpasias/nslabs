@@ -1,8 +1,8 @@
-module: [ isis, bgp, mpls ]
+module: [ isis, bgp, sr ]
 
 name: test
 
-defaults.device: vyos
+defaults.device: eos
 
 bgp.as: 65000
 mpls.bgp:
