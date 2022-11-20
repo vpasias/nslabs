@@ -14,13 +14,10 @@ nodes:
   pe2:
   p:
     module: [ isis, mpls ]
-    mpls.bgp: False
-    bgp.as: 65000
   rr:
     bgp.rr: True
   ce1:
     bgp.as: 65101
-    mpls.bgp: False
   ce2:
     bgp.as: 65102
 
