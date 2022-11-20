@@ -1,4 +1,4 @@
-module: [ isis, bgp, sr ]
+module: [ isis, bgp, mpls ]
 
 name: test
 
