@@ -20,10 +20,10 @@ groups:
     members: [ a1, a2, a3, a4, b1, b2, b3, b4 ]
     module: [ isis,sr,bfd ]
   service:
-    members: [ i1,i2 ]
+    members: [ i1, i2, i3, i4 ]
     module: [ isis ]
   edge:
-    members: [ e1,e2 ]
+    members: [ e1, e2 ]
     module: [ isis, bgp, sr, bfd ]
     node_data:
       bgp.as: 65000
@@ -48,9 +48,9 @@ vlans:
   white:
     mode: bridge
   green:
-    mode: bridge    
+    mode: bridge
 
-nodes: [ n1, n2, n3, n4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, d1, d2, i1, i2, e1, e2, x1, x2, h1, h2, h3, h4, h5, h6 ]
+nodes: [ n1, n2, n3, n4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, d1, d2, i1, i2, i3, i4, e1, e2, x1, x2, h1, h2, h3, h4, h5, h6 ]
 
 links:
 - n1:
@@ -70,7 +70,7 @@ links:
     vlan.access: red
 - h6:
   c2:
-    vlan.access: red    
+    vlan.access: red
 - c1:
   b1:
 - c1:
@@ -99,6 +99,14 @@ links:
   i1:
 - d2:
   i2:
+- d1:
+  i3:
+- d2:
+  i4:
+- i1:
+  i3:
+- i2:
+  i4:
 - e1:
   x1:
 - e2:
