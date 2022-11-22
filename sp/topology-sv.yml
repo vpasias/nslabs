@@ -2,13 +2,13 @@ message: |
   SR-MPLS Lab with Backbone (a & b type), L2 access (c type), L3 access (d type), Edge (e type) and Service (i type) router/switches.
   
   Also there are VLAN-to-VXLAN bridges between two access VLANs and two VXLAN VNIs:
-  * h1 and h2 should be able to ping each other
-  * h3 and h4 should be able to ping each other
-  * h1 should not be able to reach h3
-  Please note it might take a while for the lab to work due to STP learning phase
+  * n1 and n2 should be able to ping each other
+  * n3 and n4 should be able to ping each other
 groups:
   cpe:
-    members: [ h1, h2, h3, h4 ]
+    members: [ n1, n2, n3, n4 ]
+  hosts:
+    members: [ h1, h2, h3, h4 ]    
   l2access:
     members: [ c1, c2 ]
     module: [ vlan,vxlan,isis,sr,bfd ]
@@ -49,21 +49,21 @@ vlans:
   green:
     mode: bridge    
 
-nodes: [ h1, h2, h3, h4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, d1, d2, i1, i2, e1, e2, x1, x2 ]
+nodes: [ n1, n2, n3, n4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, d1, d2, i1, i2, e1, e2, x1, x2, h1, h2, h3, h4 ]
 
 links:
-- h1:
+- n1:
   c1:
     vlan.access: red
-- h2:
+- n2:
   c2:
     vlan.access: red
-- h3:
+- n3:
   c1:
-    vlan.access: blue
-- h4:
+    vlan.access: red
+- n4:
   c2:
-    vlan.access: blue    
+    vlan.access: red    
 - c1:
   b1:
 - c1:
@@ -128,5 +128,13 @@ links:
   a4:
 - a2:
   a3:
+- h1:
+  n1:
+- h2:
+  n2:
+- h3:
+  n3:
+- h4:
+  n4:  
 - x1
 - x2
