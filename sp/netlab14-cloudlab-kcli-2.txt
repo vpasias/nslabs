@@ -1,0 +1,177 @@
+chmod +x cloudlab-setup-ubuntu-tl.sh && ./cloudlab-setup-ubuntu-tl.sh && \
+sudo apt-get install genisoimage libguestfs-tools libosinfo-bin virtinst qemu-kvm git vim net-tools wget curl bash-completion python3-pip libvirt-daemon-system virt-manager bridge-utils libnss-libvirt sysfsutils libvirt-clients osinfo-db-tools intltool sshpass ovmf genometools virt-top xorriso -y && \
+sudo sed -i 's/hosts:          files dns/hosts:          files libvirt libvirt_guest dns/' /etc/nsswitch.conf && sudo lsmod | grep kvm && sudo reboot
+#sudo systemctl restart libvirtd && sudo systemctl status libvirtd
+
+screen
+# Press Return to continue
+# detach from session without killing it: Ctrl a d 
+# to see screen sessions: screen -ls
+# detach from closed session: screen -d -r 2369.pts-0.node0
+# enter session: screen -r 2369.pts-0.node0
+# exit a session and terminate it: exit
+
+sudo -i
+cd /mnt/extra && cat /sys/module/kvm_intel/parameters/nested && cat /proc/cpuinfo | awk '/^processor/{print $3}' | wc -l && free -h && df -hT && sudo virsh list --all && sudo brctl show && \
+wget -O "/mnt/extra/osinfo-db.tar.xz" https://releases.pagure.org/libosinfo/osinfo-db-20220516.tar.xz && sudo osinfo-db-import --local "/mnt/extra/osinfo-db.tar.xz"
+
+# Create the iason user
+sudo useradd iason -m -s /bin/bash && sudo usermod -aG sudo iason && echo "iason:iason" | chpasswd && echo "iason ALL=(root) NOPASSWD:ALL" | sudo tee -a /etc/sudoers.d/iason && \
+sudo chmod 0440 /etc/sudoers.d/iason && su - iason
+
+# Install dependencies
+sudo apt update && sudo apt install software-properties-common -y && sudo add-apt-repository ppa:deadsnakes/ppa -y && sudo apt update && sudo apt install python3.9 -y && \
+sudo apt install -y python3-venv dirmngr openvswitch-switch && \
+sudo apt update -y && sudo apt-get install apt-transport-https ca-certificates curl gnupg -y && \
+sudo usermod -aG libvirt `id -un` && sudo adduser `id -un` libvirt-qemu && sudo adduser `id -un` kvm && sudo adduser `id -un` libvirt-dnsmasq && sudo sed -i 's/0770/0777/' /etc/libvirt/libvirtd.conf && \
+echo 0 | sudo tee /sys/module/kvm/parameters/halt_poll_ns && echo 'security_driver = "none"' | sudo tee /etc/libvirt/qemu.conf && sudo chmod 0644 /boot/vmlinuz* && \
+sudo systemctl restart libvirtd && sudo systemctl status libvirtd
+
+exit
+
+su - iason
+
+virsh list --all && virsh net-list --all && virsh pool-list && python3 --version && python --version && python3.9 --version && mkdir -p /home/iason/images && mkdir -p /home/iason/vms
+
+########################################################################################################################################################################
+####################### kcli (https://github.com/karmab/kcli) ########################################################################################################
+########################  https://www.linkedin.com/pulse/kcli-only-tool-you-need-create-kubernetes-openshift-banerjee?trk=pulse-article_more-articles_related-content-card ########################  
+########################################################################################################################################################################
+################################################################################################################################################
+
+mkdir -p $HOME/.kcli $$ ssh-keygen -t rsa -N '' -f $HOME/.ssh/id_rsa
+
+curl https://raw.githubusercontent.com/karmab/kcli/master/install.sh | sudo bash
+
+alias kcli='sudo kcli'
+
+kcli create pool -p /var/lib/libvirt/images default && sudo setfacl -m u:$(id -un):rwx /var/lib/libvirt/images && sudo setfacl -m u:$(id -un):rwx /mnt/extra/libvirt && \
+kcli list images && kcli list vms && mkdir -p kclilabs && cd kclilabs
+
+kcli create vm -i ubuntu2004 -P memory=200704 -P numcpus=48 -P disks=['{"size": 900, "interface": "sata"}'] netlab
+
+#kcli delete vm netlab -y
+ssh root@netlab
+
+su - ubuntu
+
+sudo apt-get update && sudo apt-get install -y python3-pip && sudo python3 -m pip install networklab && netlab install ubuntu ansible libvirt containerlab -y
+
+exit 
+
+su - ubuntu
+
+vagrant -v && virsh list --all && virsh net-list --all && virsh pool-list && vagrant plugin list && vagrant box list && ansible --version && python3 --version && netlab version
+
+*****************************************************************************************************************************************************************
+*****************************************************************************************************************************************************************
+*****************************************************************************************************************************************************************
+*** Part 1. Basic Box addition: Arista vEOS - Cisco IOSv - RouterOS - VyOS
+*****************************************************************************************************************************************************************
+*****************************************************************************************************************************************************************
+*****************************************************************************************************************************************************************
+
+vagrant box add vpasias/verouter && vagrant box add vpasias/cirouter && vagrant box add vpasias/routeros && vagrant box add vpasias/jrouter && vagrant box add vpasias/cixrouter && \
+mv /home/ubuntu/.vagrant.d/boxes/vpasias-VAGRANTSLASH-verouter/ /home/ubuntu/.vagrant.d/boxes/arista-VAGRANTSLASH-veos/ && \
+mv /home/ubuntu/.vagrant.d/boxes/vpasias-VAGRANTSLASH-cirouter/ /home/ubuntu/.vagrant.d/boxes/cisco-VAGRANTSLASH-iosv/ && \
+mv /home/ubuntu/.vagrant.d/boxes/vpasias-VAGRANTSLASH-routeros/ /home/ubuntu/.vagrant.d/boxes/mikrotik-VAGRANTSLASH-chr/ && \
+mv /home/ubuntu/.vagrant.d/boxes/vpasias-VAGRANTSLASH-jrouter/ /home/ubuntu/.vagrant.d/boxes/juniper-VAGRANTSLASH-vsrx3/ && \
+mv /home/ubuntu/.vagrant.d/boxes/vpasias-VAGRANTSLASH-cixrouter/ /home/ubuntu/.vagrant.d/boxes/cisco-VAGRANTSLASH-csr1000v/ && \
+vagrant box list && \
+cat << EOF | tee ~/.ssh/config
+Host *
+    KexAlgorithms=+diffie-hellman-group1-sha1,diffie-hellman-group-exchange-sha1
+EOF
+
+#ceos
+#docker pull saogawa/ceos:4.27.6M && docker image list && docker tag saogawa/ceos:4.27.6M ceos:4.26.4M && docker rmi saogawa/ceos:4.27.6M && docker image list
+docker pull meekley/ceos:4.28.3M && docker image list && docker tag meekley/ceos:4.28.3M ceos:4.26.4M && docker rmi meekley/ceos:4.28.3M && docker image list 
+
+# SROS
+docker pull h4ndzdatm0ld/sros && docker image list && docker tag h4ndzdatm0ld/sros vrnetlab/vr-sros && docker rmi h4ndzdatm0ld/sros && docker image list
+*****************************************************************************************************************************************************************
+*****************************************************************************************************************************************************************
+*****************************************************************************************************************************************************************
+*** Part 2. Tests
+*****************************************************************************************************************************************************************
+*****************************************************************************************************************************************************************
+*****************************************************************************************************************************************************************
+
+#################################################################################################################################################################
+#################################################################################################################################################################
+### Test SP - Initial SR Linux SR-MPLS ###
+#################################################################################################################################################################
+#################################################################################################################################################################
+# Based on Containerlab
+cd ~ && git clone https://github.com/vpasias/nslabs.git && cd nslabs/sp && \
+netlab up -p clab -s groups.l2access.device=eos -s groups.backbone.device=eos -s groups.l3access.device=eos -s groups.edge.device=eos -s groups.service.device=frr -s groups.sfabric.device=frr -s groups.lfabric.device=frr -s groups.cpe.device=frr -s groups.external1.device=frr -s groups.external2.device=frr
+#sudo containerlab inspect --name sp
+
+# Based on Libvirt
+cd ~ && git clone https://github.com/vpasias/nslabs.git && cd nslabs/sp && \
+netlab up -p libvirt -s groups.l2access.device=eos -s groups.backbone.device=eos -s groups.l3access.device=eos -s groups.edge.device=eos -s groups.service.device=vyos -s groups.sfabric.device=vyos -s groups.lfabric.device=vyos -s groups.cpe.device=vyos -s groups.external1.device=vyos -s groups.external2.device=vyos
+
+# Based on Libvirt - small version
+cd ~ && git clone https://github.com/vpasias/nslabs.git && cd nslabs/sp && mv topology.yml old2.topology.yml && mv topology-sv.yml topology.yml && \
+netlab up -p libvirt -s groups.l2access.device=eos -s groups.backbone.device=eos -s groups.l3access.device=eos -s groups.edge.device=eos -s groups.service.device=eos -s groups.cpe.device=linux -s groups.external1.device=eos -s groups.external2.device=eos
+
+netlab connect a1
+show ip route
+exit
+
+#docker exec -it clab-sp-h1 ping 172.16.0.2 -c 2
+netlab connect h1
+# Ping h2
+ping 172.16.0.2
+quit
+
+netlab connect x1
+#vtysh -c 'sh ip route'
+sh ip route
+quit
+
+netlab connect i1
+vtysh -c 'sh ip route'
+# Ping i4
+ping 10.0.0.24
+quit
+
+# Delete
+netlab down && sleep 5 && netlab down && sleep 5 && netlab down && docker ps && vagrant global-status && cd ~ && sudo rm -rf nslabs/ && rm -rf ~/.ssh/known_hosts && touch ~/.ssh/known_hosts
+
+#################################################################################################################################################################
+#################################################################################################################################################################
+### Device - Network Test ###
+#################################################################################################################################################################
+#################################################################################################################################################################
+# Based on Containerlab
+#git clone https://github.com/vpasias/nslabs.git && cd nslabs/test && netlab up -p clab && sudo containerlab inspect --name test
+git clone https://github.com/vpasias/nslabs.git && cd nslabs/test && netlab up
+
+netlab connect p
+show ip route
+exit
+
+# Delete
+netlab down && vagrant global-status && docker ps && cd ~ && sudo rm -rf nslabs/ && rm -rf ~/.ssh/known_hosts && touch ~/.ssh/known_hosts
+
+#################################################################################################################################################################
+### Additional system configurations ###
+#################################################################################################################################################################
+
+# Remove all docker containers, images, volumes
+sudo docker stop $(sudo docker ps -a -q) && sudo docker rm $(sudo sudo docker ps -a -q) --force && sudo docker rmi $(sudo docker images -q) --force && sudo docker volume rm $(sudo docker volume ls -q) --force
+
+# Development packages
+#sudo python3 -m pip install mypy types-Jinja2 types-PyYAML sphinx recommonmark sphinx_rtd_theme myst_parser sphinx_markdown_tables
+
+# Upgrade netsim-tools
+# sudo python3 -m pip install --upgrade 'netsim-tools>=1.3.2'
+
+# Dev version installation
+# sudo python3 -m pip uninstall networklab -y && cd ~ && git clone https://github.com/ipspace/netlab && cd /home/ubuntu/netlab && git checkout dev && python3 -m pip install -r requirements.txt && python3 -m pip install -r requirements-dev.txt && source /home/ubuntu/netlab/setup.sh
+
+# Other dev version installation of netsim-tools
+# git clone https://github.com/jbemmel/netsim-tools.git --branch custom-dev && netsim-tools && sudo python3.9 -m pip install -r requirements.txt
+# ansible-galaxy collection install git+https://github.com/nokia/ansible-networking-collections.git#/grpc/ && sudo python3.9 -m pip install grpcio protobuf
+# source setup.sh
