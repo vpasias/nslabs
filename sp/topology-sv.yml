@@ -4,6 +4,7 @@ message: |
   Also there are VLAN-to-VXLAN bridges between two access VLANs and two VXLAN VNIs:
   * n1 and n2 should be able to ping each other
   * n3 and n4 should be able to ping each other
+  
 groups:
   cpe:
     members: [ n1, n2, n3, n4 ]
