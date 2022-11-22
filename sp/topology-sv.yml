@@ -1,5 +1,5 @@
 message: |
-  SR-MPLS Lab with Backbone (a & b type), L2 access (c type), L3 access (d type), Edge (e type) and Service (i type) router/switches.
+  SR-MPLS Lab with Backbone (a & b type), L2 access (c type), L3 access (d type), Edge (e type), Service (i type) router/switches and CPEs (n type).
   
   Also there are VLAN-to-VXLAN bridges between two access VLANs and two VXLAN VNIs:
   * n1 and n2 should be able to ping each other
