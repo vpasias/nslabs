@@ -52,7 +52,8 @@ ssh root@netlab
 
 su - ubuntu
 
-sudo apt-get update && sudo apt-get install -y python3-pip && sudo python3 -m pip install networklab && netlab install ubuntu ansible libvirt containerlab -y
+sudo apt-get update && sudo apt-get install -y python3-pip && sudo python3 -m pip install networklab && netlab install ubuntu ansible libvirt containerlab -y && \
+sudo python3 -m pip install ansible-pylibssh
 
 exit 
 
@@ -88,10 +89,10 @@ EOF
 
 #ceos
 #docker pull saogawa/ceos:4.27.6M && docker image list && docker tag saogawa/ceos:4.27.6M ceos:4.26.4M && docker rmi saogawa/ceos:4.27.6M && docker image list
-docker pull meekley/ceos:4.28.3M && docker image list && docker tag meekley/ceos:4.28.3M ceos:4.26.4M && docker rmi meekley/ceos:4.28.3M && docker image list 
+#docker pull meekley/ceos:4.28.3M && docker image list && docker tag meekley/ceos:4.28.3M ceos:4.26.4M && docker rmi meekley/ceos:4.28.3M && docker image list 
 
 # SROS
-docker pull h4ndzdatm0ld/sros && docker image list && docker tag h4ndzdatm0ld/sros vrnetlab/vr-sros && docker rmi h4ndzdatm0ld/sros && docker image list
+#docker pull h4ndzdatm0ld/sros && docker image list && docker tag h4ndzdatm0ld/sros vrnetlab/vr-sros && docker rmi h4ndzdatm0ld/sros && docker image list
 *****************************************************************************************************************************************************************
 *****************************************************************************************************************************************************************
 *****************************************************************************************************************************************************************
@@ -105,18 +106,18 @@ docker pull h4ndzdatm0ld/sros && docker image list && docker tag h4ndzdatm0ld/sr
 ### Test SP ###
 #################################################################################################################################################################
 #################################################################################################################################################################
-# Based on Containerlab
+### Based on Containerlab
 cd ~ && git clone https://github.com/vpasias/nslabs.git && cd nslabs/sp && \
 netlab up -p clab -s groups.l2access.device=eos -s groups.backbone.device=eos -s groups.l3access.device=eos -s groups.edge.device=eos -s groups.service.device=frr -s groups.sfabric.device=frr -s groups.lfabric.device=frr -s groups.cpe.device=frr -s groups.external1.device=frr -s groups.external2.device=frr
 #sudo containerlab inspect --name sp
 
-# Based on Libvirt
+### Based on Libvirt
 cd ~ && git clone https://github.com/vpasias/nslabs.git && cd nslabs/sp && \
 netlab up -p libvirt -s groups.l2access.device=eos -s groups.backbone.device=eos -s groups.l3access.device=eos -s groups.edge.device=eos -s groups.service.device=vyos -s groups.sfabric.device=vyos -s groups.lfabric.device=vyos -s groups.cpe.device=vyos -s groups.external1.device=vyos -s groups.external2.device=vyos
 
 # Based on Libvirt - small version
 cd ~ && git clone https://github.com/vpasias/nslabs.git && cd nslabs/sp && mv topology.yml old2.topology.yml && mv topology-sv.yml topology.yml && \
-netlab up -p libvirt -s groups.l2access.device=eos -s groups.backbone.device=eos -s groups.l3access.device=eos -s groups.edge.device=eos -s groups.service.device=eos -s groups.cpe.device=linux -s groups.external1.device=eos -s groups.external2.device=eos
+netlab up -p libvirt -s groups.l2access.device=eos -s groups.backbone.device=eos -s groups.l3access.device=eos -s groups.edge.device=eos -s groups.service.device=eos -s groups.cpe.device=iosv -s groups.external1.device=iosv -s groups.external2.device=iosv -s groups.hosts.device=linux
 
 netlab connect a1
 show ip route
@@ -149,6 +150,7 @@ netlab down && sleep 5 && netlab down && sleep 5 && netlab down && docker ps && 
 #################################################################################################################################################################
 # Based on Containerlab
 #git clone https://github.com/vpasias/nslabs.git && cd nslabs/test && netlab up -p clab && sudo containerlab inspect --name test
+# Based on Libvirt
 git clone https://github.com/vpasias/nslabs.git && cd nslabs/test && netlab up
 
 netlab connect p
