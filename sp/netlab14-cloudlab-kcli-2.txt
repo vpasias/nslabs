@@ -34,14 +34,12 @@ su - iason
 virsh list --all && virsh net-list --all && virsh pool-list && python3 --version && python --version && python3.9 --version && mkdir -p /home/iason/images && mkdir -p /home/iason/vms
 
 ########################################################################################################################################################################
-####################### kcli (https://github.com/karmab/kcli) ########################################################################################################
+####################### Create Simulation Host VM based on kcli (https://github.com/karmab/kcli) ########################################################################################################
 ########################  https://www.linkedin.com/pulse/kcli-only-tool-you-need-create-kubernetes-openshift-banerjee?trk=pulse-article_more-articles_related-content-card ########################  
 ########################################################################################################################################################################
 ################################################################################################################################################
 
-mkdir -p $HOME/.kcli $$ ssh-keygen -t rsa -N '' -f $HOME/.ssh/id_rsa
-
-curl https://raw.githubusercontent.com/karmab/kcli/master/install.sh | sudo bash
+mkdir -p $HOME/.kcli $$ ssh-keygen -t rsa -N '' -f $HOME/.ssh/id_rsa && curl https://raw.githubusercontent.com/karmab/kcli/master/install.sh | sudo bash
 
 alias kcli='sudo kcli'
 
@@ -50,7 +48,6 @@ kcli list images && kcli list vms && mkdir -p kclilabs && cd kclilabs
 
 kcli create vm -i ubuntu2004 -P memory=200704 -P numcpus=48 -P disks=['{"size": 900, "interface": "sata"}'] netlab
 
-#kcli delete vm netlab -y
 ssh root@netlab
 
 su - ubuntu
@@ -83,6 +80,12 @@ Host *
     KexAlgorithms=+diffie-hellman-group1-sha1,diffie-hellman-group-exchange-sha1
 EOF
 
+# cat /etc/ssh/ssh_config
+# KexAlgorithms diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1
+# Ciphers aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc
+# cat ~/.ssh/config
+# KexAlgorithms=+diffie-hellman-group1-sha1,diffie-hellman-group-exchange-sha1
+
 #ceos
 #docker pull saogawa/ceos:4.27.6M && docker image list && docker tag saogawa/ceos:4.27.6M ceos:4.26.4M && docker rmi saogawa/ceos:4.27.6M && docker image list
 docker pull meekley/ceos:4.28.3M && docker image list && docker tag meekley/ceos:4.28.3M ceos:4.26.4M && docker rmi meekley/ceos:4.28.3M && docker image list 
@@ -99,7 +102,7 @@ docker pull h4ndzdatm0ld/sros && docker image list && docker tag h4ndzdatm0ld/sr
 
 #################################################################################################################################################################
 #################################################################################################################################################################
-### Test SP - Initial SR Linux SR-MPLS ###
+### Test SP ###
 #################################################################################################################################################################
 #################################################################################################################################################################
 # Based on Containerlab
@@ -154,6 +157,12 @@ exit
 
 # Delete
 netlab down && vagrant global-status && docker ps && cd ~ && sudo rm -rf nslabs/ && rm -rf ~/.ssh/known_hosts && touch ~/.ssh/known_hosts
+
+#################################################################################################################################################################
+### Delete Simulation Host VM ###
+#################################################################################################################################################################
+
+kcli delete vm netlab -y
 
 #################################################################################################################################################################
 ### Additional system configurations ###
