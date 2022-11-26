@@ -52,7 +52,45 @@ vlans:
   green:
     mode: bridge
 
-nodes: [ g1, g2, g3, g4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, d1, d2, i1, i2, e1, e2, x1, x2, h1, h2, h3, h4, n1, n2, n3, n4 ]
+nodes:
+  g1:
+  g2:
+  g3:
+  g4:
+  c1:
+  c2:
+  a1:
+  a2:
+  a3:
+  a4:
+  b1:
+  b2:
+  b3:
+  b4:
+  d1:
+  d2:
+  i1:
+  i2:
+  e1:
+  e2:
+  x1:
+  x2:
+  h1:
+  h2:
+  h3:
+  h4:
+  n1:
+    cpu: 4
+    memory: 16384
+  n2:
+    cpu: 4
+    memory: 16384
+  n3:
+    cpu: 4
+    memory: 16384
+  n4:
+    cpu: 4
+    memory: 16384
 
 links:
 - g1:
