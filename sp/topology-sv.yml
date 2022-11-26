@@ -1,5 +1,5 @@
 message: |
-  SR-MPLS Lab with Backbone (a & b type), L2 access (c type), L3 access (d type), Edge (e type), Service (i type) router/switches and CPEs (n type).
+  SR-MPLS Lab with Backbone (a & b type), L2 access (c type), L3 access (d type), Edge (e type), Service (i type) router/switches, Nodes (n type) and CPEs (g type).
   
   Also there are VLAN-to-VXLAN bridges between two access VLANs and two VXLAN VNIs:
   * n1 and n2 should be able to ping each other
@@ -7,9 +7,11 @@ message: |
   
 groups:
   cpe:
-    members: [ n1, n2, n3, n4 ]
+    members: [ g1, g2, g3, g4 ]
   hosts:
-    members: [ h1, h2, h3, h4 ]    
+    members: [ h1, h2, h3, h4 ]
+  nodes:
+    members: [ n1, n2, n3, n4 ]
   l2access:
     members: [ c1, c2 ]
     module: [ vlan,vxlan,isis,sr,bfd ]
@@ -50,21 +52,33 @@ vlans:
   green:
     mode: bridge
 
-nodes: [ n1, n2, n3, n4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, d1, d2, i1, i2, e1, e2, x1, x2, h1, h2, h3, h4 ]
+nodes: [ g1, g2, g3, g4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, d1, d2, i1, i2, e1, e2, x1, x2, h1, h2, h3, h4, n1, n2, n3, n4 ]
 
 links:
+- g1:
+  c1:
+    vlan.access: blue
+- g2:
+  c2:
+    vlan.access: blue
+- g3:
+  c1:
+    vlan.access: blue
+- g4:
+  c2:
+    vlan.access: blue
 - n1:
   c1:
-    vlan.access: blue
+    vlan.access: red
 - n2:
   c2:
-    vlan.access: blue
+    vlan.access: red
 - n3:
   c1:
-    vlan.access: blue
+    vlan.access: red
 - n4:
   c2:
-    vlan.access: blue
+    vlan.access: red
 - c1:
   b1:
 - c1:
@@ -130,12 +144,12 @@ links:
 - a2:
   a3:
 - h1:
-  n1:
+  g1:
 - h2:
-  n2:
+  g2:
 - h3:
-  n3:
+  g3:
 - h4:
-  n4:
+  g4:
 - x1
 - x2
