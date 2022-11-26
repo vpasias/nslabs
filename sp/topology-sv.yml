@@ -9,7 +9,7 @@ groups:
   cpe:
     members: [ n1, n2, n3, n4 ]
   hosts:
-    members: [ h1, h2, h3, h4, h5, h6 ]    
+    members: [ h1, h2, h3, h4 ]    
   l2access:
     members: [ c1, c2 ]
     module: [ vlan,vxlan,isis,sr,bfd ]
@@ -20,7 +20,7 @@ groups:
     members: [ a1, a2, a3, a4, b1, b2, b3, b4 ]
     module: [ isis,sr,bfd ]
   service:
-    members: [ i1, i2, i3, i4 ]
+    members: [ i1, i2 ]
     module: [ isis ]
   edge:
     members: [ e1, e2 ]
@@ -50,7 +50,7 @@ vlans:
   green:
     mode: bridge
 
-nodes: [ n1, n2, n3, n4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, d1, d2, i1, i2, i3, i4, e1, e2, x1, x2, h1, h2, h3, h4, h5, h6 ]
+nodes: [ n1, n2, n3, n4, c1, c2, a1, a2, a3, a4, b1, b2, b3, b4, d1, d2, i1, i2, e1, e2, x1, x2, h1, h2, h3, h4 ]
 
 links:
 - n1:
@@ -65,12 +65,6 @@ links:
 - n4:
   c2:
     vlan.access: blue
-- h5:
-  c1:
-    vlan.access: red
-- h6:
-  c2:
-    vlan.access: red
 - c1:
   b1:
 - c1:
@@ -99,14 +93,6 @@ links:
   i1:
 - d2:
   i2:
-- d1:
-  i3:
-- d2:
-  i4:
-- i1:
-  i3:
-- i2:
-  i4:
 - e1:
   x1:
 - e2:
