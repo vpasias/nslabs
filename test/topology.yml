@@ -2,8 +2,6 @@ module: [ isis, bgp, mpls ]
 
 name: test
 
-defaults.device: eos
-
 bgp.as: 65000
 mpls.bgp:
   ipv4: True
