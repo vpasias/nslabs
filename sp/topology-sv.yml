@@ -80,16 +80,16 @@ nodes:
   h3:
   h4:
   n1:
-    cpu: 4
+    cpu: 2
     memory: 16384
   n2:
-    cpu: 4
+    cpu: 2
     memory: 16384
   n3:
-    cpu: 4
+    cpu: 2
     memory: 16384
   n4:
-    cpu: 4
+    cpu: 2
     memory: 16384
 
 links:
