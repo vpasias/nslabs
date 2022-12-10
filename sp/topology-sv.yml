@@ -14,9 +14,16 @@ groups:
     members: [ n1, n2, n3, n4 ]
   l2access:
     members: [ c1, c2 ]
-    module: [ vlan,vxlan,isis,sr,bfd,vrf ]
+    module: [ vxlan,isis,sr,bfd ]
+  red_team:
+    module: [ vlan,vrf ]
+    members: [ c1, c2 ]
     vlans:
       red_transport:
+  blue_team:
+    module: [ vlan,vrf ]
+    members: [ c1, c2 ]
+    vlans:
       blue_transport:
   l3access:
     members: [ d1, d2 ]
