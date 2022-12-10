@@ -14,7 +14,10 @@ groups:
     members: [ n1, n2, n3, n4 ]
   l2access:
     members: [ c1, c2 ]
-    module: [ vlan,vxlan,isis,sr,bfd ]
+    module: [ vlan,vxlan,isis,sr,bfd,vrf ]
+    vlans:
+      red_transport:
+      blue_transport:
   l3access:
     members: [ d1, d2 ]
     module: [ isis,sr,bfd ]
@@ -40,17 +43,23 @@ groups:
     node_data:
       bgp.as: 65002
 
-vlans:
+vrfs:
   red:
-    mode: bridge
   blue:
-    mode: bridge
+
+vlans:
+  red_transport:
+    vrf: red
+  blue_transport:
+    vrf: blue
   black:
     mode: bridge
   white:
     mode: bridge
   green:
-    mode: bridge
+    mode: bridge    
+
+vxlan.vlans: [ red_transport, blue_transport ]
 
 nodes:
   g1:
@@ -95,28 +104,28 @@ nodes:
 links:
 - g1:
   c1:
-    vlan.access: blue
+  vrf: blue
 - g2:
   c2:
-    vlan.access: blue
+  vrf: blue
 - g3:
   c1:
-    vlan.access: blue
+  vrf: blue
 - g4:
   c2:
-    vlan.access: blue
+  vrf: blue
 - n1:
   c1:
-    vlan.access: red
+  vrf: red
 - n2:
   c2:
-    vlan.access: red
+  vrf: red
 - n3:
   c1:
-    vlan.access: red
+  vrf: red
 - n4:
   c2:
-    vlan.access: red
+  vrf: red
 - c1:
   b1:
 - c1:
