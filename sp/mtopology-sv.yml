@@ -1,1 +1,200 @@
+message: |
+  SR-MPLS Lab with Backbone (a & b type), L2 access (c type), L3 access (d type), Edge (e type), Service (i type) router/switches, Nodes (n type) and CPEs (g type).
+  
+  Also there are VLAN-to-VXLAN bridges between two access VLANs and two VXLAN VNIs:
+  * n1 and n2 should be able to ping each other
+  * n3 and n4 should be able to ping each other
 
+provider: libvirt
+
+groups:
+  cpe:
+    members: [ g1, g2, g3, g4 ]
+  hosts:
+    members: [ h1, h2, h3, h4 ]
+  nodes:
+    members: [ n1, n2, n3, n4 ]
+  l2access:
+    members: [ c1, c2 ]
+    module: [ vxlan,isis,sr,bfd,vlan ]
+    provider: clab
+  l3access:
+    members: [ d1, d2 ]
+    module: [ isis,sr,bfd ]
+    provider: clab
+  backbone:
+    members: [ a1, a2, a3, a4, b1, b2, b3, b4 ]
+    module: [ isis,sr,bfd ]
+    provider: clab
+  service:
+    members: [ i1, i2 ]
+    module: [ isis ]
+    provider: clab
+  edge:
+    members: [ e1, e2 ]
+    module: [ isis, bgp, sr, bfd ]
+    provider: clab
+    node_data:
+      bgp.as: 65000
+  external1:
+    members: [ x1 ]
+    module: [ bgp ]
+    node_data:
+      bgp.as: 65001
+  external2:
+    members: [ x2 ]
+    module: [ bgp ]
+    node_data:
+      bgp.as: 65002
+
+vlans:
+  red:
+    mode: bridge
+  blue:
+    mode: bridge
+  black:
+    mode: bridge
+  white:
+    mode: bridge
+  green:
+    mode: bridge
+
+nodes:
+  g1:
+  g2:
+  g3:
+  g4:
+  c1:
+  c2:
+  a1:
+  a2:
+  a3:
+  a4:
+  b1:
+  b2:
+  b3:
+  b4:
+  d1:
+  d2:
+  i1:
+  i2:
+  e1:
+  e2:
+  x1:
+  x2:
+  h1:
+  h2:
+  h3:
+  h4:
+  n1:
+    cpu: 4
+    memory: 16384
+  n2:
+    cpu: 4
+    memory: 16384
+  n3:
+    cpu: 4
+    memory: 16384
+  n4:
+    cpu: 4
+    memory: 16384
+
+links:
+- g1:
+  c1:
+    vlan.access: blue
+- g2:
+  c2:
+    vlan.access: blue
+- g3:
+  c1:
+    vlan.access: blue
+- g4:
+  c2:
+    vlan.access: blue
+- n1:
+  c1:
+    vlan.access: red
+- n2:
+  c2:
+    vlan.access: red
+- n3:
+  c1:
+    vlan.access: red
+- n4:
+  c2:
+    vlan.access: red
+- c1:
+  b1:
+- c1:
+  b2:
+- c2:
+  b3:
+- c2:
+  b4:
+- d1:
+  b1:
+- d1:
+  b2:
+- d2:
+  b3:
+- d2:
+  b4:
+- e1:
+  b1:
+- e1:
+  b2:
+- e2:
+  b3:
+- e2:
+  b4:
+- d1:
+  i1:
+- d2:
+  i2:
+- e1:
+  x1:
+- e2:
+  x2:
+- b1:
+  b2:
+- b3:
+  b4:
+- b1:
+  a1:
+- b1:
+  a2:
+- b2:
+  a1:
+- b2:
+  a2:
+- b3:
+  a3:
+- b3:
+  a4:
+- b4:
+  a3:
+- b4:
+  a4:
+- a1:
+  a2:
+- a3:
+  a4:
+- a1:
+  a3:
+- a2:
+  a4:
+- a1:
+  a4:
+- a2:
+  a3:
+- h1:
+  g1:
+- h2:
+  g2:
+- h3:
+  g3:
+- h4:
+  g4:
+- x1
+- x2
