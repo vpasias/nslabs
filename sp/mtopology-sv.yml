@@ -18,6 +18,8 @@ groups:
     members: [ c1, c2 ]
     module: [ vxlan,isis,sr,bfd,vlan,evpn,bgp ]
     provider: clab
+    node_data:
+      bgp.as: 65100    
   l3access:
     members: [ d1, d2 ]
     module: [ isis,sr,bfd ]
