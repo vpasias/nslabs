@@ -19,7 +19,7 @@ groups:
     module: [ vxlan,isis,sr,bfd,vlan,evpn,bgp ]
     provider: clab
     node_data:
-      bgp.as: 65100    
+      bgp.as: 65000
   l3access:
     members: [ d1, d2 ]
     module: [ isis,sr,bfd ]
@@ -37,17 +37,17 @@ groups:
     module: [ isis, bgp, sr, bfd ]
     provider: clab
     node_data:
-      bgp.as: 65000
+      bgp.as: 65001
   external1:
     members: [ x1 ]
     module: [ bgp ]
     node_data:
-      bgp.as: 65001
+      bgp.as: 65002
   external2:
     members: [ x2 ]
     module: [ bgp ]
     node_data:
-      bgp.as: 65002
+      bgp.as: 65003
 
 vlans:
   red:
