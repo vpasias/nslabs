@@ -17,12 +17,10 @@ groups:
   l2access:
     members: [ c1, c2 ]
     module: [ vxlan,isis,sr,bfd,vlan,evpn,bgp ]
-    node_data:
-      evpn.as: 64999
+    bgp.as: 64999
   l3access:
     members: [ d1, d2 ]
     module: [ isis,sr,bfd ]
-    provider: clab
   backbone:
     members: [ a1, a2, a3, a4, b1, b2, b3, b4 ]
     module: [ isis,sr,bfd ]
@@ -32,18 +30,15 @@ groups:
   edge:
     members: [ e1, e2 ]
     module: [ isis, bgp, sr, bfd ]
-    node_data:
-      bgp.as: 65000
+    bgp.as: 65000
   external1:
     members: [ x1 ]
     module: [ bgp ]
-    node_data:
-      bgp.as: 65001
+    bgp.as: 65001
   external2:
     members: [ x2 ]
     module: [ bgp ]
-    node_data:
-      bgp.as: 65002
+    bgp.as: 65002
 
 vlans:
   red:
