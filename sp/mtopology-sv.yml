@@ -17,7 +17,7 @@ groups:
   l2access:
     members: [ c1, c2 ]
     module: [ vxlan,isis,sr,bfd,vlan,evpn,bgp ]
-    bgp.as: 64999
+    evpn.as: 64999
   l3access:
     members: [ d1, d2 ]
     module: [ isis,sr,bfd ]
