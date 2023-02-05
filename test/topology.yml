@@ -1,4 +1,4 @@
-module: [ ospf, mpls ]
+module: [ isis, sr ]
 
 name: test
 
