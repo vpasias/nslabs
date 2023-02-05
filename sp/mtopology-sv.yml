@@ -6,6 +6,7 @@ message: |
   * n3 and n4 should be able to ping each other
 
 provider: libvirt
+bgp.as: 65000
 
 groups:
   cpe:
@@ -17,7 +18,6 @@ groups:
   l2access:
     members: [ c1, c2 ]
     module: [ vxlan,isis,sr,bfd,vlan,evpn,bgp ]
-    evpn.as: 64999
   l3access:
     members: [ d1, d2 ]
     module: [ isis,sr,bfd ]
@@ -30,15 +30,15 @@ groups:
   edge:
     members: [ e1, e2 ]
     module: [ isis, bgp, sr, bfd ]
-    bgp.as: 65000
+    bgp.as: 65001
   external1:
     members: [ x1 ]
     module: [ bgp ]
-    bgp.as: 65001
+    bgp.as: 65002
   external2:
     members: [ x2 ]
     module: [ bgp ]
-    bgp.as: 65002
+    bgp.as: 65003
 
 vlans:
   red:
