@@ -16,7 +16,7 @@ groups:
     members: [ n1, n2, n3, n4 ]
   l2access:
     members: [ c1, c2 ]
-    module: [ vxlan,isis,sr,bfd,vlan ]
+    module: [ vxlan,isis,sr,bfd,vlan,evpn ]
     provider: clab
   l3access:
     members: [ d1, d2 ]
